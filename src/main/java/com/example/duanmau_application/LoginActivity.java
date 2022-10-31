@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password=edtpassword.getText().toString();
                 boolean check=nguoiDungDAO.KiemTraDangNhap(username,password);
                 if (check){
-
+//gdfgfd
 
                     startActivity(new Intent(LoginActivity.this,MainActivity.class));
                     overridePendingTransition(R.anim.anim_enter, R.anim.anim_exit);
