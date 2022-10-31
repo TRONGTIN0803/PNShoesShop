@@ -57,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
 //hahaconga
 
                 String hahaconga;
+
                     startActivity(new Intent(LoginActivity.this,MainActivity.class));
                     overridePendingTransition(R.anim.anim_enter, R.anim.anim_exit);
                 }else{
