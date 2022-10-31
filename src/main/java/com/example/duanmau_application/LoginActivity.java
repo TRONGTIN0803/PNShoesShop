@@ -55,6 +55,13 @@ public class LoginActivity extends AppCompatActivity {
                 if (check){
 //gdfgfd
 
+<<<<<<< HEAD
+=======
+//hahaconga
+
+                String hahaconga;
+
+>>>>>>> 1d87d0ba02ea1da247804b1b94ec80b597f15c99
                     startActivity(new Intent(LoginActivity.this,MainActivity.class));
                     overridePendingTransition(R.anim.anim_enter, R.anim.anim_exit);
                 }else{
