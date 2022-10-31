@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_white_conner_16dp"
+    android:layout_marginTop="20dp"
+    android:padding="15dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thong Ke Doanh Thu"
+        android:textSize="26dp"
+        android:padding="10dp"
+        android:background="@drawable/bg_blue_conner_topleft_topright_16dp"
+        android:gravity="center"
+        android:textColor="#DD5A26"
+        android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple_500"
+            android:text="Bat Dau tu:"
+            android:layout_marginBottom="10dp"
+            android:textStyle="bold"
+            android:textSize="26dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/edtbatdau"
+            android:focusable="false"
+            android:background="@drawable/bg_gray_edittext_conner_16dp"
+            android:padding="15dp" />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple_500"
+            android:textStyle="bold"
+            android:text="Den ngay:"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="26dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_gray_edittext_conner_16dp"
+            android:padding="15dp"
+            android:focusable="false"
+            android:id="@+id/edtketthuc"/>
+
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thong ke"
+        android:textColor="@color/red"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:background="@drawable/bg_blue_conner_16dp"
+        android:id="@+id/btnthongke"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text=" VND"
+        android:id="@+id/txtketqua"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:textColor="#EA1C1C"
+        android:textStyle="bold"/>
+
+</LinearLayout>

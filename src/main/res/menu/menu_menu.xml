@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Trang Chu"
+        android:id="@+id/menuitemhome"
+        android:icon="@drawable/ic_baseline_home_24">
+
+    </item>
+    <item
+
+        android:title="Quản lý phiếu mượn"
+        android:id="@+id/menuitemqlpm"
+        android:icon="@drawable/ic_baseline_article_24">
+    </item>
+    <item
+        android:title="Quản lý loại sách"
+        android:id="@+id/menuitemqlloaisach"
+        android:icon="@drawable/ic_baseline_bookmarks_24">
+    </item>
+
+    <item
+        android:title="Quan Lý đầu sách"
+        android:id="@+id/menuitemqlsach"
+        android:icon="@drawable/ic_baseline_menu_book_24">
+    </item>
+    <item
+        android:title="Quản lý người dùng"
+        android:id="@+id/menuitemqltv"
+        android:icon="@drawable/ic_baseline_person_add_alt_24">
+    </item>
+    <item android:title="Thong ke">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:title="Doanh Thu Của Thủ Thư"
+                    android:icon="@drawable/ic_baseline_attach_money_24"
+                    android:id="@+id/menuitemdoanhthuthuthu">
+                </item>
+                <item
+                    android:title="Doanh Thu"
+                    android:id="@+id/menuitemdoanhthu"
+                    android:icon="@drawable/ic_baseline_show_chart_24">
+                </item>
+                <item
+                    android:title="Top 10 sach doanh thu cao nhat"
+                    android:id="@+id/menuitemtop10"
+                    android:icon="@drawable/ic_baseline_bar_chart_24">
+                </item>
+            </group>
+        </menu>
+    </item>
+    <item android:title="Nguoi Dung">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:title="Tao Tai Khoan"
+                    android:id="@+id/menuitemtaotaikhoan"
+                    android:icon="@drawable/ic_baseline_manage_accounts_24">
+                </item>
+                <item android:title="Thông tin cá nhân"
+                    android:id="@+id/menuitemttcanhan"
+                    android:icon="@drawable/ic_baseline_switch_account_24"></item>
+            <item android:title="Doi Mat Khau"
+                android:id="@+id/menuitemdmk"
+                android:icon="@drawable/ic_baseline_key_24"></item>
+            <item android:title="Thoat"
+                android:id="@+id/menuitemthoat"
+                android:icon="@drawable/ic_baseline_close_24">
+            </item>
+            </group>
+        </menu>
+    </item>
+
+</menu>

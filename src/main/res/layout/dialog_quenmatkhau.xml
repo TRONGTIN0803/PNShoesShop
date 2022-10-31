@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_white_conner_16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_conner_topleft_topright_16dp"
+        android:text="Quên mật khẩu"
+        android:textSize="30dp"
+        android:textColor="@color/blue"
+        android:gravity="center"
+        android:padding="10dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mã thủ thư:"
+        android:textSize="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_gray_edittext_conner_16dp"
+        android:padding="15dp"
+        android:textSize="20dp"
+        android:id="@+id/edtmattqmk"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tên thủ thư:"
+        android:textSize="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_gray_edittext_conner_16dp"
+        android:padding="15dp"
+        android:textSize="20dp"
+        android:id="@+id/edttenttqmk"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:weightSum="10"
+        android:padding="10dp">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4.5"
+            android:id="@+id/btnhuyquenmatkhau"
+            android:background="@drawable/bg_gray_conner_16dp"
+            android:text="Hủy"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4.5"
+            android:id="@+id/btnquenmatkhau"
+            android:background="@drawable/bg_yellow_conner_16dp"
+            android:text="Quên mật khẩu"/>
+    </LinearLayout>
+
+</LinearLayout>

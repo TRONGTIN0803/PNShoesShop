@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_white_conner_16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:background="@drawable/bg_white_conner_topleft_topright_16dp"
+        android:textSize="20dp"
+        android:text="Sua Thong Tin Sach"
+        android:textColor="#ED1111"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtmasach"
+        android:textSize="22dp"
+        android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="Ten Sach:"
+            android:textSize="18dp"
+            android:textColor="@color/black"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:hint="Ten Sach"
+            android:id="@+id/edtsuatensach"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="Gia Thue:"
+            android:textSize="18dp"
+            android:textColor="@color/black"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:hint="Nhap gia thue"
+            android:id="@+id/edtsuagiathue"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="The Loai:"
+            android:textSize="18dp"
+            android:textColor="@color/black"/>
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:background="@drawable/bg_spinner"
+            android:layout_height="40dp"
+            android:dropDownVerticalOffset="40dp"
+            android:id="@+id/spnsualoaisach"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:weightSum="10"
+        android:padding="10dp">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4.5"
+            android:id="@+id/btnhuycapnhatsach"
+            android:background="@drawable/bg_gray_conner_16dp"
+            android:text="Huy"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4.5"
+            android:id="@+id/btncapnhatsachsach"
+            android:background="@drawable/bg_yellow_conner_16dp"
+            android:text="Them"/>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

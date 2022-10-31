@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_white_conner_16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đừng quên nữa nghe 3"
+        android:textSize="30dp"
+        android:background="@drawable/bg_blue_conner_topleft_topright_16dp"
+        android:textColor="@color/yellow"
+        android:gravity="center"
+        android:padding="10dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="dfsfdfsd"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        android:id="@+id/txtshowmatkhau"
+        android:textSize="30dp"
+        android:padding="20dp"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_yellow_conner_16dp"
+        android:text="OK"
+        android:id="@+id/btnok"
+        android:padding="20dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        />
+
+</LinearLayout>
