@@ -1,7 +1,0 @@
-<resources>
-    <string name="open">Open</string>
-    <string name="close">Close</string>
-    <string name="app_name">DuAnMau_Application</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-</resources>
