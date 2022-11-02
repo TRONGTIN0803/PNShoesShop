@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DA1_Test/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/DA1_Test/app/src/main/res/layout/fragment_muasanpham.xml" value="0.22826086956521738" />
+        <entry key="..\:/DA1_Test/app/src/main/res/layout/item_sanpham.xml" value="0.1721311475409836" />
         <entry key="..\:/Users/PHUOC TRONG/Documents/GitHub/DuAn1/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/PHUOC TRONG/Documents/GitHub/DuAn1/app/src/main/res/layout/fragment_muasanpham.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/PHUOC TRONG/Documents/GitHub/DuAn1/app/src/main/res/layout/fragment_thongtincanhan.xml" value="0.24895833333333334" />
