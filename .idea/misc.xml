@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/DA1_Test/app/src/main/res/drawable-v24/btn_login.xml" value="0.2005" />
+        <entry key="..\:/DA1_Test/app/src/main/res/drawable-v24/edt_login.xml" value="0.2005" />
+        <entry key="..\:/DA1_Test/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/fragment__san_pham_test.xml" value="0.25" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/fragment_muasanpham.xml" value="0.22826086956521738" />
