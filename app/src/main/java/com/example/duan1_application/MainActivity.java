@@ -1,29 +1,40 @@
 package com.example.duan1_application;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
-import com.example.duan1_application.Adapter.ViewPagerAdapter;
-import com.google.android.material.tabs.TabLayout;
+import com.example.duan1_application.Fragment.Fragment_ThongTinCaNhan;
+import com.example.duan1_application.Fragment.Fragment_XemLichSu;
+import com.example.duan1_application.Fragment.Frangment_MuaSanPham;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tabLayout=findViewById(R.id.tablayout);
-        viewPager=findViewById(R.id.viewpager);
-
-        ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-        viewPager.setAdapter(viewPagerAdapter);
-        tabLayout.setupWithViewPager(viewPager);
+        BottomNavigationView bottomNav = findViewById(R.id.bottomnavigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new Frangment_MuaSanPham()).commit();
     }
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener = item -> {
+
+        Fragment selectedFragment = null;
+        int itemId = item.getItemId();
+        if (itemId == R.id.Shop) {
+            selectedFragment = new Frangment_MuaSanPham();
+        } else if (itemId == R.id.History) {
+            selectedFragment = new Fragment_XemLichSu();
+        } else if (itemId == R.id.Account) {
+            selectedFragment = new Fragment_ThongTinCaNhan();
+        }
+        if (selectedFragment != null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFragment).commit();
+        }
+        return true;
+    };
+
 }

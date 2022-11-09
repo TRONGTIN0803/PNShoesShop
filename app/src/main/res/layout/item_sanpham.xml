@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="15dp">
+        android:padding="15dp"
+        android:background="@drawable/edt_login">
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
