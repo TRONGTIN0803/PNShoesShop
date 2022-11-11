@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
+import com.example.duan1_application.Fragment.Fragment_GioHang;
 import com.example.duan1_application.Fragment.Fragment_ThongTinCaNhan;
 import com.example.duan1_application.Fragment.Fragment_XemLichSu;
 import com.example.duan1_application.Fragment.Frangment_MuaSanPham;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
             selectedFragment = new Fragment_XemLichSu();
         } else if (itemId == R.id.Account) {
             selectedFragment = new Fragment_ThongTinCaNhan();
+        }else if (itemId == R.id.Cart){
+            selectedFragment = new Fragment_GioHang();
         }
         if (selectedFragment != null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFragment).commit();
