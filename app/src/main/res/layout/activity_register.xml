@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
+    tools:context=".RegisterActivity"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="30dp">
@@ -45,7 +45,7 @@
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/edtPhone"
+        android:id="@+id/edtPhonergt"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:paddingLeft="5dp"
@@ -68,16 +68,16 @@
             android:background="@drawable/btn_login"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:id="@+id/btngetOTP"/>
-<!--        <EditText-->
-<!--            android:id="@+id/edtOTP"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="@drawable/edt_login"-->
-<!--            android:layout_marginLeft="10dp"-->
-<!--            android:paddingLeft="5dp"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:hint="Enter your OTP"/>-->
+            android:id="@+id/btngetOTPrgt"/>
+        <!--        <EditText-->
+        <!--            android:id="@+id/edtOTP"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:background="@drawable/edt_login"-->
+        <!--            android:layout_marginLeft="10dp"-->
+        <!--            android:paddingLeft="5dp"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:hint="Enter your OTP"/>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,38 +86,38 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
-                android:id="@+id/otp1"/>
+                android:id="@+id/otp1rgt"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
-                android:id="@+id/otp2"/>
+                android:id="@+id/otp2rgt"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
-                android:id="@+id/otp3"/>
+                android:id="@+id/otp3rgt"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
-                android:id="@+id/otp4"/>
+                android:id="@+id/otp4rgt"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
-                android:id="@+id/otp5"/>
+                android:id="@+id/otp5rgt"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
-                android:id="@+id/otp6"/>
+                android:id="@+id/otp6rgt"/>
 
 
         </LinearLayout>
     </LinearLayout>
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnLogin"
+        android:id="@+id/btndangky"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:text="Sign in"
@@ -127,13 +127,14 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/btn_login"/>
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnregister"
+        android:id="@+id/btnbacktologin"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:text="Sign up"
+        android:text="Back to Login"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="18sp"
         android:layout_marginTop="10dp"
         android:background="@drawable/btn_login"/>
+
 </LinearLayout>

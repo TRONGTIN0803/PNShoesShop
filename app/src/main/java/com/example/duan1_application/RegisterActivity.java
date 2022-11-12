@@ -40,7 +40,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String mVerificationId;
@@ -48,13 +48,13 @@ public class LoginActivity extends AppCompatActivity {
     private String TAG = "firebase - REGISTER";
     private TextView edtNum1, edtNum2, edtNum3, edtNum4, edtNum5, edtNum6;
     private EditText edtnumberphone;
-    private Button btnlayOTP, btnlogin,btnregister;
+    private Button btnlayOTP, btndangky,btnbacktologin;
     private ServiceAPI requestInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
         requestInterface = new Retrofit.Builder()
                 .baseUrl(BASE_SERVICE)
@@ -62,35 +62,35 @@ public class LoginActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(ServiceAPI.class);
 
+
         mAuth = FirebaseAuth.getInstance();
 
-        edtnumberphone=findViewById(R.id.edtPhone);
-        edtNum1=findViewById(R.id.otp1);
-        edtNum2=findViewById(R.id.otp2);
-        edtNum3=findViewById(R.id.otp3);
-        edtNum4=findViewById(R.id.otp4);
-        edtNum5=findViewById(R.id.otp5);
-        edtNum6=findViewById(R.id.otp6);
-        btnlayOTP=findViewById(R.id.btngetOTP);
-        btnlogin=findViewById(R.id.btnLogin);
-        btnregister=findViewById(R.id.btnregister);
+        edtnumberphone=findViewById(R.id.edtPhonergt);
+        edtNum1=findViewById(R.id.otp1rgt);
+        edtNum2=findViewById(R.id.otp2rgt);
+        edtNum3=findViewById(R.id.otp3rgt);
+        edtNum4=findViewById(R.id.otp4rgt);
+        edtNum5=findViewById(R.id.otp5rgt);
+        edtNum6=findViewById(R.id.otp6rgt);
+        btnlayOTP=findViewById(R.id.btngetOTPrgt);
+        btndangky=findViewById(R.id.btndangky);
+        btnbacktologin=findViewById(R.id.btnbacktologin);
 
-        btnregister.setOnClickListener(new View.OnClickListener() {
+        btnbacktologin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+                finish();
             }
         });
-
         btnlayOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShowNotification.showProgressDialog(LoginActivity.this, "Vui lòng đợi");
+                ShowNotification.showProgressDialog(RegisterActivity.this, "Vui lòng đợi");
                 sendVerificationCode("+84" + edtnumberphone.getText().toString());
             }
         });
 
-        btnlogin.setOnClickListener(new View.OnClickListener() {
+        btndangky.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String otp = edtNum1.getText().toString() +
@@ -114,7 +114,6 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, token);
             }
         });
-
 
     }
     private void sendVerificationCode(String number) {
@@ -155,9 +154,9 @@ public class LoginActivity extends AppCompatActivity {
             ShowNotification.dismissProgressDialog();
 
             if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                ShowNotification.showAlertDialog(LoginActivity.this, "Request fail");
+                ShowNotification.showAlertDialog(RegisterActivity.this, "Request fail");
             } else if (e instanceof FirebaseTooManyRequestsException) {
-                ShowNotification.showAlertDialog(LoginActivity.this, "Quota không đủ");
+                ShowNotification.showAlertDialog(RegisterActivity.this, "Quota không đủ");
             }
         }
 
@@ -172,7 +171,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     };
     private void verifyCode(String code) {
-        ShowNotification.showProgressDialog(LoginActivity.this, "Đang xác thực");
+        ShowNotification.showProgressDialog(RegisterActivity.this, "Đang xác thực");
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
         signInWithPhoneAuthCredential(credential);
     }
@@ -185,11 +184,12 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = task.getResult().getUser();
-                            checkLogin(edtnumberphone.getText().toString());
+                            Dangky(edtnumberphone.getText().toString());
+                            finish();
                         } else {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                ShowNotification.showAlertDialog(LoginActivity.this, "Lỗi");
+                                ShowNotification.showAlertDialog(RegisterActivity.this, "Lỗi");
                             }
                         }
                     }
@@ -316,19 +316,20 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void checkLogin(String sdt){
-        new CompositeDisposable().add(requestInterface.checkLogin(sdt)
+    private void Dangky(String sdt){
+        Khachhang khachhang=new Khachhang(sdt);
+        new CompositeDisposable().add(requestInterface.Dangky(khachhang)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError)
         );
     }
 
-    private void handleResponse(Khachhang khachhang) {
-        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+    private void handleResponse(Integer integer) {
+        Toast.makeText(this, "Dang ky thanh cong!", Toast.LENGTH_SHORT).show();
     }
 
     private void handleError(Throwable throwable) {
-        Toast.makeText(this, "Dang nhap that bai!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Dang ky that bai!", Toast.LENGTH_SHORT).show();
     }
 }
