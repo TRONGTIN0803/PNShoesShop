@@ -67,16 +67,54 @@
             android:text="Get OTP"
             android:background="@drawable/btn_login"
             android:textColor="@color/white"
-            android:textStyle="bold"/>
-        <EditText
-            android:id="@+id/edtOTP"
+            android:textStyle="bold"
+            android:id="@+id/btngetOTP"/>
+<!--        <EditText-->
+<!--            android:id="@+id/edtOTP"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="@drawable/edt_login"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:paddingLeft="5dp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:hint="Enter your OTP"/>-->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/edt_login"
-            android:layout_marginLeft="10dp"
-            android:paddingLeft="5dp"
-            android:textColor="@color/black"
-            android:hint="Enter your OTP"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp">
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:id="@+id/otp1"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:id="@+id/otp2"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:id="@+id/otp3"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:id="@+id/otp4"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:id="@+id/otp5"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:id="@+id/otp6"/>
+
+
+        </LinearLayout>
     </LinearLayout>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
