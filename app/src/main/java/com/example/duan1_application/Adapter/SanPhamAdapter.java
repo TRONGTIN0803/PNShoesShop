@@ -11,13 +11,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.duan1_application.R;
+import com.example.duan1_application.model.SanPham;
+
+import java.util.ArrayList;
 
 public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHolder>{
     private Context context;
+    private ArrayList<SanPham> list;
 
-    public SanPhamAdapter(Context context) {
+    public SanPhamAdapter(Context context, ArrayList<SanPham> list) {
         this.context = context;
+        this.list = list;
     }
 
     @NonNull
@@ -30,14 +36,17 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.ivHinh.setImageResource(R.mipmap.image1);
-        holder.txtTen.setText("abc");
-        holder.txtGia.setText("100.000đ");
+        Glide.with(context)
+                .load(list.get(position).getHinhanh())
+                .centerCrop()
+                .into(holder.ivHinh);
+        holder.txtTen.setText(list.get(position).getTenSp());
+        holder.txtGia.setText(String.valueOf(list.get(position).getGia()));
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
