@@ -5,6 +5,7 @@ import static com.example.duan1_application.api.ServiceAPI.BASE_SERVICE;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.example.duan1_application.model.SanPham;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.ArrayList;
+import java.util.concurrent.Delayed;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -33,7 +35,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Frangment_MuaSanPham extends Fragment {
     RecyclerView recyclerView;
     ServiceAPI requestInterface;
-    private static ProgressDialog mProgressDialog;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,8 +42,7 @@ public class Frangment_MuaSanPham extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
 
         DemoCallAPI();
-        showProgressDialog(getContext(),"Đang tải dữ liệu");
-        dismissProgressDialog();
+
         return view;
     }
     private void DemoCallAPI() {
@@ -59,7 +59,7 @@ public class Frangment_MuaSanPham extends Fragment {
     }
 
     private void handleError(Throwable throwable) {
-        Toast.makeText(getContext(), "Call Error", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Chưa kết nối internet", Toast.LENGTH_SHORT).show();
     }
 
     private void handleResponse(ArrayList<SanPham> sanPhams) {
@@ -69,14 +69,5 @@ public class Frangment_MuaSanPham extends Fragment {
         SanPhamAdapter adapter = new SanPhamAdapter(getContext(),list);
         recyclerView.setAdapter(adapter);
     }
-    public static void showProgressDialog(Context context, String message) {
-        mProgressDialog = new ProgressDialog(context);
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.setMessage(message);
-        mProgressDialog.setCanceledOnTouchOutside(false);
-        mProgressDialog.show();
-    }
-    public static void dismissProgressDialog() {
-        mProgressDialog.dismiss();
-    }
+
 }
