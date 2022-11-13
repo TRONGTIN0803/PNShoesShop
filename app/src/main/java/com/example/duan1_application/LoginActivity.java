@@ -86,7 +86,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ShowNotification.showProgressDialog(LoginActivity.this, "Vui lòng đợi");
-                sendVerificationCode("+84" + edtnumberphone.getText().toString());
+                checkLogin(edtnumberphone.getText().toString());
+
             }
         });
 
@@ -185,7 +186,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = task.getResult().getUser();
-                            checkLogin(edtnumberphone.getText().toString());
+                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
                         } else {
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
@@ -325,10 +326,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void handleResponse(Khachhang khachhang) {
-        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+        if (khachhang.getMaKh()>0){
+            sendVerificationCode("+84" + edtnumberphone.getText().toString());
+        }
+
     }
 
     private void handleError(Throwable throwable) {
-        Toast.makeText(this, "Dang nhap that bai!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "So dien thoai chua duoc dang ky", Toast.LENGTH_SHORT).show();
+        ShowNotification.dismissProgressDialog();
     }
 }

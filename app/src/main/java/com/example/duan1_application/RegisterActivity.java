@@ -32,6 +32,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -50,6 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText edtnumberphone;
     private Button btnlayOTP, btndangky,btnbacktologin;
     private ServiceAPI requestInterface;
+    private ArrayList<Khachhang>list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +88,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ShowNotification.showProgressDialog(RegisterActivity.this, "Vui lòng đợi");
-                sendVerificationCode("+84" + edtnumberphone.getText().toString());
+                check(edtnumberphone.getText().toString());
+
             }
         });
 
@@ -331,5 +334,25 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void handleError(Throwable throwable) {
         Toast.makeText(this, "Dang ky that bai!", Toast.LENGTH_SHORT).show();
+    }
+    private void check(String sdt){
+
+        new CompositeDisposable().add(requestInterface.checkLogin(sdt)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::handleResponsecheck, this::handleErrorcheck)
+        );
+    }
+    private void handleResponsecheck(Khachhang khachhang) {
+        if (khachhang.getMaKh()>0){
+            Toast.makeText(this, "So dien thoai da duoc su dung", Toast.LENGTH_SHORT).show();
+            ShowNotification.dismissProgressDialog();
+        }else{
+            sendVerificationCode("+84" + edtnumberphone.getText().toString());
+        }
+    }
+
+    private void handleErrorcheck(Throwable throwable) {
+        Toast.makeText(this, "Call Error", Toast.LENGTH_SHORT).show();
     }
 }
