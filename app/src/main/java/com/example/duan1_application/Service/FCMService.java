@@ -25,16 +25,16 @@ public class FCMService extends com.google.firebase.messaging.FirebaseMessagingS
     private static final String TAG = "MyFirebaseService";
 
     @Override
-    public void onMessageReceived(@NonNull RemoteMessage remotemessage) {
-        if (remotemessage.getNotification() != null) {
-            Log.d(TAG, "Message Notification Body: " + remotemessage.getNotification().getBody());
-            showNotification(remotemessage.getNotification().getTitle(), remotemessage.getNotification().getBody());
+    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+        if (remoteMessage.getNotification() != null) {
+            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+            showNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
         }
         // Kiểm tra xem message có chứa data payload không.
-        if (remotemessage.getData().size() > 0) {
-            Log.d(TAG, "Message data payload: " + remotemessage.getData());
-            Map<String, String> dataPayload = remotemessage.getData();
-            String title = dataPayload.get("title"); String body = dataPayload.get("body");
+        if (remoteMessage.getData().size() > 0) { Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+            Map<String, String> dataPayload = remoteMessage.getData();
+            String title = dataPayload.get("title");
+            String body = dataPayload.get("body");
             showNotification(title, body);
         }
     }
@@ -52,7 +52,7 @@ public class FCMService extends com.google.firebase.messaging.FirebaseMessagingS
         Intent intent = new Intent(this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-        String channelId = "fir-phoneauth-82389";
+        String channelId = getString(R.string.project_id);
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)

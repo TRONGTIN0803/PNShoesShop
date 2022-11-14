@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "703843174570",
-    "project_id": "otpduan1",
-    "storage_bucket": "otpduan1.appspot.com"
+    "project_number": "976783428635",
+    "project_id": "da1otp-7339c",
+    "storage_bucket": "da1otp-7339c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:703843174570:android:17ce365d2fe3f50696a8d3",
+        "mobilesdk_app_id": "1:976783428635:android:7e278bb3f2b06d93e0fcbe",
         "android_client_info": {
           "package_name": "com.example.duan1_application"
         }
       },
       "oauth_client": [
         {
-          "client_id": "703843174570-phthesv483fmmpfac03pv4huu095kvqr.apps.googleusercontent.com",
+          "client_id": "976783428635-dfeft08e1v8ogst4a5mq5brb4kimbmg1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.duan1_application",
@@ -22,20 +22,20 @@
           }
         },
         {
-          "client_id": "703843174570-4mgvivcvai196od49mpo5tci1puro24o.apps.googleusercontent.com",
+          "client_id": "976783428635-mcnqh54ns6rmmdoq9auf7cpgsjvni0da.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBbZ8OKko8DfuWIBxyMQuUiAgkEbhm4rEA"
+          "current_key": "AIzaSyCytiVlFqJCCAY_YgZzFPrw2Mzcz6SKb68"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "703843174570-4mgvivcvai196od49mpo5tci1puro24o.apps.googleusercontent.com",
+              "client_id": "976783428635-mcnqh54ns6rmmdoq9auf7cpgsjvni0da.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
