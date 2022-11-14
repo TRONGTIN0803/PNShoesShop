@@ -344,15 +344,14 @@ public class RegisterActivity extends AppCompatActivity {
         );
     }
     private void handleResponsecheck(Khachhang khachhang) {
-        if (khachhang.getMaKh()>0){
+        if (khachhang!=null){
             Toast.makeText(this, "So dien thoai da duoc su dung", Toast.LENGTH_SHORT).show();
             ShowNotification.dismissProgressDialog();
-        }else{
-            sendVerificationCode("+84" + edtnumberphone.getText().toString());
         }
+
     }
 
     private void handleErrorcheck(Throwable throwable) {
-        Toast.makeText(this, "Call Error", Toast.LENGTH_SHORT).show();
+        sendVerificationCode("+84" + edtnumberphone.getText().toString());
     }
 }
