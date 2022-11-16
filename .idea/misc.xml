@@ -5,6 +5,9 @@
       <map>
         <entry key="..\:/DA1_Test/app/src/main/res/drawable-v24/btn_login.xml" value="0.2005" />
         <entry key="..\:/DA1_Test/app/src/main/res/drawable-v24/edt_login.xml" value="0.2005" />
+        <entry key="..\:/DA1_Test/app/src/main/res/drawable/account.xml" value="0.1835" />
+        <entry key="..\:/DA1_Test/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.1835" />
+        <entry key="..\:/DA1_Test/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.1835" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/fragment__san_pham_test.xml" value="0.25" />
