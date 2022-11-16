@@ -5,7 +5,9 @@ import static com.example.duan1_application.api.ServiceAPI.BASE_SERVICE;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -50,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtnumberphone;
     private Button btnlayOTP, btnlogin,btnregister;
     private ServiceAPI requestInterface;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                 .build().create(ServiceAPI.class);
 
         mAuth = FirebaseAuth.getInstance();
+        sharedPreferences=this.getSharedPreferences("KHACHHANG", Context.MODE_PRIVATE);
 
         edtnumberphone=findViewById(R.id.edtPhone);
         edtNum1=findViewById(R.id.otp1);
@@ -328,6 +332,10 @@ public class LoginActivity extends AppCompatActivity {
     private void handleResponse(Khachhang khachhang) {
         if (khachhang.getMaKh()>0){
             sendVerificationCode("+84" + edtnumberphone.getText().toString());
+            SharedPreferences.Editor editor=sharedPreferences.edit();
+            editor.putInt("makh", khachhang.getMaKh());
+            editor.putString("sdt",khachhang.getSdt());
+            editor.commit();
         }
 
     }

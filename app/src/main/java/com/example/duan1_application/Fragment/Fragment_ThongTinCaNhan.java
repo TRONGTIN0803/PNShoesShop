@@ -3,6 +3,7 @@ package com.example.duan1_application.Fragment;
 import static com.example.duan1_application.api.ServiceAPI.BASE_SERVICE;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +32,7 @@ public class Fragment_ThongTinCaNhan extends Fragment {
     ServiceAPI requestInterface;
     ImageView ivAVT;
     TextView txtTen,txtSDT;
-    Context context;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,7 +49,9 @@ public class Fragment_ThongTinCaNhan extends Fragment {
         return view;
     }
     private void DemoCallAPI() {
-        new CompositeDisposable().add(requestInterface.getKH(1)
+        SharedPreferences sharedPreferences= getContext().getSharedPreferences("KHACHHANG",Context.MODE_PRIVATE);
+        int makh=sharedPreferences.getInt("makh",-1);
+        new CompositeDisposable().add(requestInterface.getKH(makh)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError)
@@ -59,10 +62,21 @@ public class Fragment_ThongTinCaNhan extends Fragment {
     }
 
     private void handleResponse(Khachhang khachHang) {
-        txtTen.setText(khachHang.getTenKh());
-        Glide.with(context)
-                .load(khachHang.getAvt())
-                .into(ivAVT);
+        if (khachHang.getTenKh()==null){
+            txtTen.setText("Chưa Xác Định");
+        }else{
+            txtTen.setText(khachHang.getTenKh());
+        }
+        if (khachHang.getAvt()==null){
+            Glide.with(getContext())
+                    .load(R.mipmap.profile)
+                    .into(ivAVT);
+        }else{
+            Glide.with(getContext())
+                    .load(khachHang.getAvt())
+                    .into(ivAVT);
+        }
+
         txtSDT.setText(khachHang.getSdt());
     }
 }
