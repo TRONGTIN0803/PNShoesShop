@@ -16,6 +16,10 @@ public interface ServiceAPI {
 
     @GET("api/GetDSSanPham")
     Observable<ArrayList<SanPham>> getDSSanPham();
+
+    @GET("api/getThongtinKH")
+    Observable<Khachhang> getKH(@Query("makh")int makh);
+
     @GET("api/checkLogin")
     Observable<Khachhang>checkLogin(@Query("sdt")String sdt);
 
