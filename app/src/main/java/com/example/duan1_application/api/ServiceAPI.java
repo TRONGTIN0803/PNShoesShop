@@ -25,4 +25,10 @@ public interface ServiceAPI {
 
     @POST("api/Register")
     Observable<Integer>Dangky(@Body Khachhang khachhang);
+
+    @POST("api/CapNhatTenKhachHang")
+    Observable<Integer>UpdateName(@Body Khachhang khachhang);
+
+    @POST("api/CapNhatAvtKhachHang")
+    Observable<Integer>updateAvt(@Body Khachhang khachHang);
 }

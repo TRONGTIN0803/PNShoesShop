@@ -12,6 +12,17 @@ public class Khachhang {
         this.sdt = sdt;
         this.avt = avt;
     }
+    public Khachhang(int maKh,String avt,String tenKh){
+        this.maKh=maKh;
+        this.avt=avt;
+        this.tenKh=tenKh;
+    }
+
+    public Khachhang(int maKh, String tenKh) {
+        this.maKh = maKh;
+        this.tenKh = tenKh;
+    }
+
 
     public Khachhang(String sdt) {
         this.sdt = sdt;
