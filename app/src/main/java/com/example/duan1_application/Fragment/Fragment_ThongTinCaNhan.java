@@ -125,7 +125,7 @@ public class Fragment_ThongTinCaNhan extends Fragment {
                     .into(ivAVT);
         }
 
-        txtSDT.setText(khachHang.getSdt());
+        txtSDT.setText(khachHang.getSdt().substring(0,4)+"******");
     }
 
     private void ShowDiaLog(){

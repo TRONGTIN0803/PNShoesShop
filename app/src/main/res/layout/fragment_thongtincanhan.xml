@@ -63,68 +63,7 @@
                 android:layout_gravity="center"
                 android:id="@+id/ivsuaname"/>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:background="@drawable/account"
-            android:layout_marginTop="5dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Giới tính:"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_weight="1"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nam"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:paddingRight="10dp"/>
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_baseline_arrow_forward_24"
-                android:layout_gravity="center" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:background="@drawable/account"
-            android:layout_marginTop="5dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ngày sinh:"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_weight="1"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="11-11-2001"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:fontFamily="@font/poppins_medium"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:paddingRight="10dp"/>
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_baseline_arrow_forward_24"
-                android:layout_gravity="center" />
-        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -151,11 +90,6 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:paddingRight="10dp" />
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_baseline_arrow_forward_24"
-                android:layout_gravity="center" />
         </LinearLayout>
 
     </LinearLayout>
