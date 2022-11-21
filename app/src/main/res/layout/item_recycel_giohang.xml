@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="@drawable/bg_light"
+        android:layout_marginTop="16sp"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ivHinhSP"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginRight="12sp"
+            android:src="@mipmap/image1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtTenSP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36sp"
+                    android:textColor="#223263"
+                    android:fontFamily="@font/poppins_bold"
+                    android:lineHeight="18sp"
+                    android:textSize="12sp"
+                    android:text="Nike Air Zoom Pegasus 36 Miami"
+                    android:textStyle="bold"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/love"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/ivTrash"
+                        android:layout_marginRight="16sp"
+                        android:layout_gravity="left"/>
+                    <ImageView
+                        android:id="@+id/ivTrash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/trash"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12sp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtGiaSP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="#40BFFF"
+                    android:text="$40.00" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imgTru"
+                        android:layout_width="32sp"
+                        android:layout_height="24sp"
+                        android:layout_margin="0dp"
+                        android:background="@drawable/rectangle_430"
+                        android:text="-"
+                        android:textColor="#9098B1"
+                        app:backgroundTint="@null"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/textTotal"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24sp"
+                        android:layout_marginLeft="136dp"
+                        android:background="@drawable/rectangle_431"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textSize="12sp"
+                        android:layout_margin="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/imgCong"
+                        app:layout_constraintRight_toLeftOf="@id/imgTru"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <ImageView
+                        android:id="@+id/imgCong"
+                        android:layout_width="32sp"
+                        android:layout_height="24sp"
+                        android:background="@drawable/rectangle_432"
+                        app:backgroundTint="@null"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintLeft_toRightOf="@id/textTotal"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:layout_constraintRight_toRightOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
