@@ -5,6 +5,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,13 +19,15 @@ import com.example.duan1_application.model.SanPham;
 
 import java.util.ArrayList;
 
-public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHolder>{
+public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHolder> implements Filterable {
     private Context context;
     private ArrayList<SanPham> list;
+    private ArrayList<SanPham> listsearch;
 
     public SanPhamAdapter(Context context, ArrayList<SanPham> list) {
         this.context = context;
         this.list = list;
+        this.listsearch=list;
     }
 
     @NonNull
@@ -47,6 +51,37 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String search=charSequence.toString();
+                if (search.isEmpty()){
+                    list=listsearch;
+                }else {
+                    ArrayList<SanPham>listsp=new ArrayList<>();
+                    for (SanPham sp:listsearch){
+                        if(sp.getTenSp().toLowerCase().contains(search.toLowerCase())){
+                            listsp.add(sp);
+                        }
+                    }
+                    list=listsp;
+                }
+                FilterResults filterResults=new FilterResults();
+                filterResults.values=list;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                list=(ArrayList<SanPham>) filterResults.values;
+                notifyDataSetChanged();
+
+            }
+        };
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
