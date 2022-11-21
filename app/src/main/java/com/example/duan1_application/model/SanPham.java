@@ -3,11 +3,11 @@ package com.example.duan1_application.model;
 public class SanPham {
     private int maSp;
     private String tenSp;
-    private String gia;
+    private int gia;
     private String mahang;
     private String hinhanh;
 
-    public SanPham(int maSp, String tenSp, String gia, String mahang, String hinhanh) {
+    public SanPham(int maSp, String tenSp, int gia, String mahang, String hinhanh) {
         this.maSp = maSp;
         this.tenSp = tenSp;
         this.gia = gia;
@@ -31,11 +31,11 @@ public class SanPham {
         this.tenSp = tenSp;
     }
 
-    public String getGia() {
+    public int getGia() {
         return gia;
     }
 
-    public void setGia(String gia) {
+    public void setGia(int gia) {
         this.gia = gia;
     }
 
