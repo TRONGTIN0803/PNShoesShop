@@ -46,7 +46,7 @@ public class Frangment_MuaSanPham extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_muasanpham,container,false);
         recyclerView = view.findViewById(R.id.recyclerView);
-        setHasOptionsMenu(true);
+
         DemoCallAPI();
         return view;
     }
@@ -68,6 +68,7 @@ public class Frangment_MuaSanPham extends Fragment {
     }
 
     private void handleResponse(ArrayList<SanPham> sanPhams) {
+        setHasOptionsMenu(true);
         ArrayList<SanPham> list = sanPhams;
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(gridLayoutManager);
