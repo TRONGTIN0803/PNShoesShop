@@ -10,28 +10,12 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
-            android:textSize="16sp"
-            android:lineHeight="24sp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginBottom="28dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="Your Cart"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@drawable/bg_light"/>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewCart"
             android:layout_width="match_parent"
-            android:layout_height="327dp"
+            android:layout_height="335dp"
             android:layout_marginLeft="20sp"
+            android:layout_marginTop="16sp"
             android:layout_marginRight="20sp">
 
         </androidx.recyclerview.widget.RecyclerView>
