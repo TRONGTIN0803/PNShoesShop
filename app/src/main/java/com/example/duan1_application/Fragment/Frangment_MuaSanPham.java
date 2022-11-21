@@ -3,16 +3,20 @@ package com.example.duan1_application.Fragment;
 import static com.example.duan1_application.api.ServiceAPI.BASE_SERVICE;
 
 import android.app.ProgressDialog;
+import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,14 +39,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Frangment_MuaSanPham extends Fragment {
     RecyclerView recyclerView;
     ServiceAPI requestInterface;
+    private SanPhamAdapter adapter;
+    private SearchView searchView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_muasanpham,container,false);
         recyclerView = view.findViewById(R.id.recyclerView);
-
+        setHasOptionsMenu(true);
         DemoCallAPI();
-
         return view;
     }
     private void DemoCallAPI() {
@@ -66,8 +71,31 @@ public class Frangment_MuaSanPham extends Fragment {
         ArrayList<SanPham> list = sanPhams;
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(gridLayoutManager);
-        SanPhamAdapter adapter = new SanPhamAdapter(getContext(),list);
+        adapter = new SanPhamAdapter(getContext(),list);
         recyclerView.setAdapter(adapter);
+    }
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.search_menu,menu);
+
+        SearchManager searchManager=(SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        searchView=(SearchView)menu.findItem(R.id.action_seach).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.getFilter().filter(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
 }
