@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_white_conner_16dp"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/ivHinhDiaLog"
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/txtTenDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/txtGiaDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/edtsdt"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@drawable/edt_login"
+        android:hint="Nhập số điện thoại"
+        android:textSize="20sp"
+        android:paddingLeft="5dp"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/edtDiachi"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@drawable/edt_login"
+        android:hint="Nhập địa chỉ"
+        android:textSize="20sp"
+        android:paddingLeft="5dp"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/edtsoLuong"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@drawable/edt_login"
+        android:hint="Nhập số lượng"
+        android:textSize="20sp"
+        android:paddingLeft="5dp"
+        android:layout_marginTop="10dp"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đặt hàng"
+        android:id="@+id/btnDatHangDiaLog"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_login"
+        android:textColor="@color/white"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="them vao gio hang"
+        android:id="@+id/btnThemGioHang"/>
+
+</LinearLayout>

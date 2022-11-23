@@ -32,4 +32,7 @@ public interface ServiceAPI {
 
     @POST("api/CapNhatAvtKhachHang")
     Observable<Integer>updateAvt(@Body Khachhang khachHang);
+
+    @POST("api/themHoaDon")
+    Observable<Integer> themHoaDon(@Body HoaDon hoaDon);
 }
