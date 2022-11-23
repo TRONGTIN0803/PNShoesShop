@@ -48,7 +48,6 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     private ArrayList<SanPham> list;
     private ArrayList<SanPham> listsearch;
     ServiceAPI requestInterface;
-    int sl;
     public SanPhamAdapter(Context context, ArrayList<SanPham> list) {
         this.context = context;
         this.list = list;
@@ -155,7 +154,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         Button btnDatHang = dialog.findViewById(R.id.btnDatHangDiaLog);
 
         txtTen.setText(sanPham.getTenSp());
-        txtgia.setText(String.valueOf(sanPham.getGia()));
+        txtgia.setText("Gia San Pham: "+sanPham.getGia());
 
         Glide.with(context)
                 .load(sanPham.getHinhanh())
@@ -169,11 +168,12 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 String SDT = edtsdt.getText().toString();
                 String DiaChi = edtdiaChi.getText().toString();
                 Date currentTime = Calendar.getInstance().getTime();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
                 String ngay= simpleDateFormat.format(currentTime);
-                int gia = sanPham.getGia()*sl;
-                sl = Integer.parseInt(edtSoLuong.getText().toString());
-                HoaDon hoaDon = new HoaDon(makh,0,SDT,DiaChi,gia,ngay,sanPham.getMaSp(),sl);
+                int sol = Integer.parseInt(edtSoLuong.getText().toString());
+                int gia = sanPham.getGia()*sol;
+
+                HoaDon hoaDon = new HoaDon(makh,0,SDT,DiaChi,gia,ngay,sanPham.getMaSp(),sol,"MS01");
                 new CompositeDisposable().add(requestInterface.themHoaDon(hoaDon)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())

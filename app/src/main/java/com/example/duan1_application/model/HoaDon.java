@@ -10,8 +10,9 @@ public class HoaDon {
     private String ngayHd;
     private int maSp;
     private int SoLuong;
+    private String masize;
 
-    public HoaDon(int maKh, int trangThai, String sdt, String diachi, int triGia, String ngayHd, int maSp, int soLuong) {
+    public HoaDon(int maKh, int trangThai, String sdt, String diachi, int triGia, String ngayHd, int maSp, int soLuong,String masize) {
         this.maKh = maKh;
         this.trangThai = trangThai;
         this.sdt = sdt;
@@ -19,7 +20,8 @@ public class HoaDon {
         this.triGia = triGia;
         this.ngayHd = ngayHd;
         this.maSp = maSp;
-        SoLuong = soLuong;
+        this.SoLuong = soLuong;
+        this.masize=masize;
     }
 
     public int getMaHd() {
@@ -76,5 +78,29 @@ public class HoaDon {
 
     public void setNgayHd(String ngayHd) {
         this.ngayHd = ngayHd;
+    }
+
+    public int getMaSp() {
+        return maSp;
+    }
+
+    public void setMaSp(int maSp) {
+        this.maSp = maSp;
+    }
+
+    public int getSoLuong() {
+        return SoLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        SoLuong = soLuong;
+    }
+
+    public String getMasize() {
+        return masize;
+    }
+
+    public void setMasize(String masize) {
+        this.masize = masize;
     }
 }
