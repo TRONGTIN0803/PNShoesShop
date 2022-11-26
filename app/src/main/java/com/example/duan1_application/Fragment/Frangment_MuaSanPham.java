@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.duan1_application.Adapter.SanPhamAdapter;
 import com.example.duan1_application.R;
 import com.example.duan1_application.api.ServiceAPI;
+import com.example.duan1_application.model.HangSP;
 import com.example.duan1_application.model.SanPham;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
@@ -41,6 +42,8 @@ public class Frangment_MuaSanPham extends Fragment {
     ServiceAPI requestInterface;
     private SanPhamAdapter adapter;
     private SearchView searchView;
+    private ArrayList<HangSP>listhangsp;
+    private ArrayList<SanPham>list;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,11 +72,38 @@ public class Frangment_MuaSanPham extends Fragment {
 
     private void handleResponse(ArrayList<SanPham> sanPhams) {
         setHasOptionsMenu(true);
-        ArrayList<SanPham> list = sanPhams;
+
+
+        list = sanPhams;
+        getDSHANGSP();
+
+    }
+    private void getDSHANGSP(){
+        new CompositeDisposable().add(requestInterface.getDSHangSP()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::handleResponsehangsp, this::handleErrorhangsp)
+        );
+    }
+
+    private void handleResponsehangsp(ArrayList<HangSP> hangSPS) {
+        listhangsp=hangSPS;
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
         recyclerView.setLayoutManager(gridLayoutManager);
         adapter = new SanPhamAdapter(getContext(),list);
         recyclerView.setAdapter(adapter);
+        for (HangSP item:listhangsp){
+            for (SanPham sp:list){
+                if (item.getMahang().equals(sp.getMahang())){
+                    sp.setTenhang(item.getTenhang());
+                }
+            }
+
+        }
+    }
+
+    private void handleErrorhangsp(Throwable throwable) {
+        Toast.makeText(getContext(), "Tin Ngu", Toast.LENGTH_SHORT).show();
     }
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {

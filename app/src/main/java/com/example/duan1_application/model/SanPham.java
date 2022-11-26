@@ -6,6 +6,7 @@ public class SanPham {
     private int gia;
     private String mahang;
     private String hinhanh;
+    private String tenhang;
 
     public SanPham(int maSp, String tenSp, int gia, String mahang, String hinhanh) {
         this.maSp = maSp;
@@ -53,5 +54,13 @@ public class SanPham {
 
     public void setHinhanh(String hinhanh) {
         this.hinhanh = hinhanh;
+    }
+
+    public String getTenhang() {
+        return tenhang;
+    }
+
+    public void setTenhang(String tenhang) {
+        this.tenhang = tenhang;
     }
 }

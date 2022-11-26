@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.duan1_application.R;
 import com.example.duan1_application.api.ServiceAPI;
+import com.example.duan1_application.model.HangSP;
 import com.example.duan1_application.model.HoaDon;
 import com.example.duan1_application.model.SanPham;
 import com.example.duan1_application.model.Size;
@@ -53,6 +54,9 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     private ArrayList<SanPham> listsearch;
     ServiceAPI requestInterface;
     private ArrayList<HashMap<String,Object>> listHM;
+
+
+
     public SanPhamAdapter(Context context, ArrayList<SanPham> list) {
         this.context = context;
         this.list = list;
@@ -104,7 +108,8 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 }else {
                     ArrayList<SanPham>listsp=new ArrayList<>();
                     for (SanPham sp:listsearch){
-                        if(sp.getTenSp().toLowerCase().contains(search.toLowerCase())){
+                        String giasearch=String.valueOf(sp.getGia());
+                        if(sp.getTenSp().toLowerCase().contains(search.toLowerCase())||giasearch.contains(search)||sp.getTenhang().toLowerCase().contains(search.toLowerCase())){
                             listsp.add(sp);
                         }
                     }
@@ -227,4 +232,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     private void size(){
 
     }
+
+
+
 }

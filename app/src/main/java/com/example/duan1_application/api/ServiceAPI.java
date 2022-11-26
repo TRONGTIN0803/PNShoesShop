@@ -1,6 +1,7 @@
 package com.example.duan1_application.api;
 
 import com.example.duan1_application.model.CTHD;
+import com.example.duan1_application.model.HangSP;
 import com.example.duan1_application.model.HoaDon;
 import com.example.duan1_application.model.Khachhang;
 import com.example.duan1_application.model.SanPham;
@@ -34,6 +35,9 @@ public interface ServiceAPI {
 
     @GET("api/getDSSizetheoSanPham")
     Observable<ArrayList<Size>> getDSSizetheoMaSp(@Query("masp")int masp);
+
+    @GET("api/getDSHangSP")
+    Observable<ArrayList<HangSP>> getDSHangSP();
 
     @POST("api/Register")
     Observable<Integer>Dangky(@Body Khachhang khachhang);
