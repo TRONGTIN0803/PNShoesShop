@@ -60,16 +60,15 @@
             android:textColor="#40BFFF"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="7dp"/>
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="dat hang"
-            android:id="@+id/btnDatHang"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="gio hang "
-            android:id="@+id/btnGioHang"/>
+            android:text="Đặt hàng"
+            android:id="@+id/btnDatHang"
+            android:background="@drawable/btn_login"
+            android:textColor="@color/white"
+            android:layout_marginTop="5dp"/>
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,12 +31,14 @@ import com.example.duan1_application.R;
 import com.example.duan1_application.api.ServiceAPI;
 import com.example.duan1_application.model.HoaDon;
 import com.example.duan1_application.model.SanPham;
+import com.example.duan1_application.model.Size;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -48,6 +52,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     private ArrayList<SanPham> list;
     private ArrayList<SanPham> listsearch;
     ServiceAPI requestInterface;
+    private ArrayList<HashMap<String,Object>> listHM;
     public SanPhamAdapter(Context context, ArrayList<SanPham> list) {
         this.context = context;
         this.list = list;
@@ -122,14 +127,13 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView ivHinh;
         TextView txtTen,txtGia;
-        Button btnDatHang,btnGioHang;
+        Button btnDatHang;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivHinh = itemView.findViewById(R.id.ivHinh);
             txtTen = itemView.findViewById(R.id.txtTen);
             txtGia = itemView.findViewById(R.id.txtGia);
             btnDatHang = itemView.findViewById(R.id.btnDatHang);
-            btnGioHang = itemView.findViewById(R.id.btnGioHang);
         }
     }
     private void showDiaLog(SanPham sanPham){
@@ -152,9 +156,11 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         EditText edtdiaChi = dialog.findViewById(R.id.edtDiachi);
         ImageView ivHinh = dialog.findViewById(R.id.ivHinhDiaLog);
         Button btnDatHang = dialog.findViewById(R.id.btnDatHangDiaLog);
+        Spinner spinner = dialog.findViewById(R.id.spinner);
+
 
         txtTen.setText(sanPham.getTenSp());
-        txtgia.setText("Gia San Pham: "+sanPham.getGia());
+        txtgia.setText("Giá sản phẩm: "+sanPham.getGia());
 
         Glide.with(context)
                 .load(sanPham.getHinhanh())
@@ -172,14 +178,39 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 String ngay= simpleDateFormat.format(currentTime);
                 int sol = Integer.parseInt(edtSoLuong.getText().toString());
                 int gia = sanPham.getGia()*sol;
-
-                HoaDon hoaDon = new HoaDon(makh,0,SDT,DiaChi,gia,ngay,sanPham.getMaSp(),sol,"MS01");
+                HashMap<String,Object> hsm= (HashMap<String, Object>) spinner.getSelectedItem();
+                String masize = (String) hsm.get("masize");
+                HoaDon hoaDon = new HoaDon(makh,0,SDT,DiaChi,gia,ngay,sanPham.getMaSp(),sol,masize);
                 new CompositeDisposable().add(requestInterface.themHoaDon(hoaDon)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe(this::handleResponse, this::handleError)
                 );
+                int masp = sanPham.getMaSp();
+                new CompositeDisposable().add(requestInterface.getDSSizetheoMaSp(masp)
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribeOn(Schedulers.io())
+                                .subscribe(this::handleResponseSize, this::handleError)
+                );
                 dialog.dismiss();
+            }
+
+            private void handleResponseSize(ArrayList<Size> list) {
+                ArrayList<Size> list1 = list;
+                ArrayList<HashMap<String,Object>> listHM = new ArrayList<>();
+                for (Size size: list1){
+                    HashMap<String,Object> hs = new HashMap<>();
+                    hs.put("masize",size.getMasize());
+                    listHM.add(hs);
+                }
+                SimpleAdapter simpleAdapter = new SimpleAdapter(
+                        context,
+                        listHM,
+                        android.R.layout.simple_list_item_1,
+                        new String[]{"masize"},
+                        new int[]{android.R.id.text1}
+                );
+                spinner.setAdapter(simpleAdapter);
             }
 
             private void handleError(Throwable throwable) {
@@ -192,7 +223,8 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         });
         dialog.show();
 
+    }
+    private void size(){
 
     }
-
 }

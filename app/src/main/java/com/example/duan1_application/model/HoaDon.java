@@ -3,25 +3,39 @@ package com.example.duan1_application.model;
 public class HoaDon {
     private int maHd;
     private int maKh;
-    private int trangThai;
+    private int trangthai;
     private String sdt;
     private String diachi;
-    private int triGia;
+    private int trigia;
     private String ngayHd;
     private int maSp;
     private int SoLuong;
     private String masize;
+    private String HinhAnh;
 
-    public HoaDon(int maKh, int trangThai, String sdt, String diachi, int triGia, String ngayHd, int maSp, int soLuong,String masize) {
+    public HoaDon(int maKh, int trangthai, String sdt, String diachi, int trigia, String ngayHd, int maSp, int soLuong,String masize) {
         this.maKh = maKh;
-        this.trangThai = trangThai;
+        this.trangthai = trangthai;
         this.sdt = sdt;
         this.diachi = diachi;
-        this.triGia = triGia;
+        this.trigia = trigia;
         this.ngayHd = ngayHd;
         this.maSp = maSp;
         this.SoLuong = soLuong;
         this.masize=masize;
+    }
+
+    public HoaDon(int maHd, int trangthai) {
+        this.maHd = maHd;
+        this.trangthai = trangthai;
+    }
+
+    public String getHinhAnh() {
+        return HinhAnh;
+    }
+
+    public void setHinhAnh(String hinhAnh) {
+        HinhAnh = hinhAnh;
     }
 
     public int getMaHd() {
@@ -41,11 +55,11 @@ public class HoaDon {
     }
 
     public int getTrangThai() {
-        return trangThai;
+        return trangthai;
     }
 
     public void setTrangThai(int trangThai) {
-        this.trangThai = trangThai;
+        this.trangthai = trangThai;
     }
 
     public String getSdt() {
@@ -65,11 +79,11 @@ public class HoaDon {
     }
 
     public int getTriGia() {
-        return triGia;
+        return trigia;
     }
 
     public void setTriGia(int triGia) {
-        this.triGia = triGia;
+        this.trigia = trigia;
     }
 
     public String getNgayHd() {

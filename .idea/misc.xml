@@ -7,10 +7,16 @@
         <entry key="..\:/DA1_Test/app/src/main/res/drawable-v24/edt_login.xml" value="0.2005" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/DA1_Test/app/src/main/res/layout/dialog_sanpham.xml" value="0.19429347826086957" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/fragment__san_pham_test.xml" value="0.25" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/fragment_giohang.xml" value="0.24895833333333334" />
+        <entry key="..\:/DA1_Test/app/src/main/res/layout/fragment_lichsu.xml" value="0.24895833333333334" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/fragment_muasanpham.xml" value="0.22826086956521738" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/fragment_thongtincanhan.xml" value="0.25" />
+        <entry key="..\:/DA1_Test/app/src/main/res/layout/fragment_xemlichsu.xml" value="0.25" />
+        <entry key="..\:/DA1_Test/app/src/main/res/layout/fragment_xemlichsu1.xml" value="0.16666666666666666" />
+        <entry key="..\:/DA1_Test/app/src/main/res/layout/item_lichsu.xml" value="0.25" />
+        <entry key="..\:/DA1_Test/app/src/main/res/layout/item_recycel_giohang.xml" value="0.25" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/item_sanpham.xml" value="0.1721311475409836" />
         <entry key="..\:/DA1_Test/app/src/main/res/menu/menu.xml" value="0.25" />
         <entry key="..\:/Du_An_1/DA1_Test/app/src/main/res/drawable/botron_edt.xml" value="0.1955" />
