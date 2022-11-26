@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 
 import com.example.duan1_application.Fragment.Fragment_GioHang;
+import com.example.duan1_application.Fragment.Fragment_LichSu;
 import com.example.duan1_application.Fragment.Fragment_ThongTinCaNhan;
 import com.example.duan1_application.Fragment.Fragment_XemLichSu;
 import com.example.duan1_application.Fragment.Frangment_MuaSanPham;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             selectedFragment = new Frangment_MuaSanPham();
             actionBar.setTitle("");
         } else if (itemId == R.id.History) {
-            selectedFragment = new Fragment_XemLichSu();
+            selectedFragment = new Fragment_LichSu();
             actionBar.setTitle("Lịch sử");
         } else if (itemId == R.id.Account) {
             selectedFragment = new Fragment_ThongTinCaNhan();

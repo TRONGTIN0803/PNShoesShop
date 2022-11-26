@@ -1,8 +1,10 @@
 package com.example.duan1_application.api;
 
+import com.example.duan1_application.model.CTHD;
 import com.example.duan1_application.model.HoaDon;
 import com.example.duan1_application.model.Khachhang;
 import com.example.duan1_application.model.SanPham;
+import com.example.duan1_application.model.Size;
 
 import java.util.ArrayList;
 
@@ -24,6 +26,15 @@ public interface ServiceAPI {
     @GET("api/checkLogin")
     Observable<Khachhang>checkLogin(@Query("sdt")String sdt);
 
+    @GET("api/getDSHoaDontheoTrangThaiKH")
+    Observable<ArrayList<HoaDon>> getDSHoaDontheoTrangThaiKH(@Query("makh") int makh,@Query("trangthai") int trangthai);
+
+    @GET("api/getCTHD")
+    Observable<CTHD> getCTHD(@Query("mahd")int mahd);
+
+    @GET("api/getDSSizetheoSanPham")
+    Observable<ArrayList<Size>> getDSSizetheoMaSp(@Query("masp")int masp);
+
     @POST("api/Register")
     Observable<Integer>Dangky(@Body Khachhang khachhang);
 
@@ -35,4 +46,7 @@ public interface ServiceAPI {
 
     @POST("api/themHoaDon")
     Observable<Integer> themHoaDon(@Body HoaDon hoaDon);
+
+    @POST("api/ThayDoiTrangThai")
+    Observable<Integer> thayDoiTrangThai(@Body HoaDon hoaDon);
 }
