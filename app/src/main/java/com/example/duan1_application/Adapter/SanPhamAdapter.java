@@ -53,9 +53,6 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     private ArrayList<SanPham> list;
     private ArrayList<SanPham> listsearch;
     ServiceAPI requestInterface;
-    private ArrayList<HashMap<String,Object>> listHM;
-
-
 
     public SanPhamAdapter(Context context, ArrayList<SanPham> list) {
         this.context = context;
@@ -183,40 +180,17 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 String ngay= simpleDateFormat.format(currentTime);
                 int sol = Integer.parseInt(edtSoLuong.getText().toString());
                 int gia = sanPham.getGia()*sol;
-                HashMap<String,Object> hsm= (HashMap<String, Object>) spinner.getSelectedItem();
-                String masize = (String) hsm.get("masize");
-                HoaDon hoaDon = new HoaDon(makh,0,SDT,DiaChi,gia,ngay,sanPham.getMaSp(),sol,masize);
+                HoaDon hoaDon = new HoaDon(makh,0,SDT,DiaChi,gia,ngay,sanPham.getMaSp(),sol,"MS01");
                 new CompositeDisposable().add(requestInterface.themHoaDon(hoaDon)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe(this::handleResponse, this::handleError)
                 );
-                int masp = sanPham.getMaSp();
-                new CompositeDisposable().add(requestInterface.getDSSizetheoMaSp(masp)
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribeOn(Schedulers.io())
-                                .subscribe(this::handleResponseSize, this::handleError)
-                );
+
                 dialog.dismiss();
             }
 
-            private void handleResponseSize(ArrayList<Size> list) {
-                ArrayList<Size> list1 = list;
-                ArrayList<HashMap<String,Object>> listHM = new ArrayList<>();
-                for (Size size: list1){
-                    HashMap<String,Object> hs = new HashMap<>();
-                    hs.put("masize",size.getMasize());
-                    listHM.add(hs);
-                }
-                SimpleAdapter simpleAdapter = new SimpleAdapter(
-                        context,
-                        listHM,
-                        android.R.layout.simple_list_item_1,
-                        new String[]{"masize"},
-                        new int[]{android.R.id.text1}
-                );
-                spinner.setAdapter(simpleAdapter);
-            }
+
 
             private void handleError(Throwable throwable) {
                 Toast.makeText(context, "thất bại", Toast.LENGTH_SHORT).show();
@@ -229,10 +203,5 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         dialog.show();
 
     }
-    private void size(){
-
-    }
-
-
 
 }
