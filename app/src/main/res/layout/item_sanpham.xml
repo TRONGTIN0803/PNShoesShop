@@ -54,6 +54,7 @@
                 android:background="@drawable/ic_baseline_star_border_24"/>
         </LinearLayout>
         <TextView
+
             android:id="@+id/txtGia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

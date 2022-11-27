@@ -7,7 +7,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <EditText
             android:id="@+id/edt_search"
@@ -24,8 +25,20 @@
             android:src="@drawable/ic_baseline_search_24"
             android:layout_margin="10dp"
             android:layout_gravity="center"/>
-
     </LinearLayout>
+
+    <TextView
+        android:layout_width="373dp"
+        android:layout_gravity="center"
+        android:layout_height="206dp"
+        android:background="@drawable/head_main"
+        android:text="CHOSE YOUR STYLE"
+        android:textColor="@color/white"
+        android:paddingLeft="20dp"
+        android:paddingTop="30dp"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
