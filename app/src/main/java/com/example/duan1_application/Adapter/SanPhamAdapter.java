@@ -53,7 +53,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     private ArrayList<SanPham> list;
     private ArrayList<SanPham> listsearch;
     ServiceAPI requestInterface;
-
+    int So = 1;
     public SanPhamAdapter(Context context, ArrayList<SanPham> list) {
         this.context = context;
         this.list = list;
@@ -80,7 +80,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 .centerCrop()
                 .into(holder.ivHinh);
         holder.txtTen.setText(list.get(position).getTenSp());
-        holder.txtGia.setText(String.valueOf(list.get(position).getGia()));
+        holder.txtGia.setText(String.valueOf(list.get(position).getGia())+"₫");
         holder.btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,16 +158,36 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         EditText edtdiaChi = dialog.findViewById(R.id.edtDiachi);
         ImageView ivHinh = dialog.findViewById(R.id.ivHinhDiaLog);
         Button btnDatHang = dialog.findViewById(R.id.btnDatHangDiaLog);
+        Button btnSoTru = dialog.findViewById(R.id.btnSoTru);
+        Button btnSoCong = dialog.findViewById(R.id.btnSoCong);
         Spinner spinner = dialog.findViewById(R.id.spinner);
 
-
+        edtSoLuong.setText(""+So);
         txtTen.setText(sanPham.getTenSp());
-        txtgia.setText("Giá sản phẩm: "+sanPham.getGia());
+        txtgia.setText("Giá sản phẩm: "+sanPham.getGia()+"₫");
 
         Glide.with(context)
                 .load(sanPham.getHinhanh())
                 .centerCrop()
                 .into(ivHinh);
+        btnSoTru.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(So > 1){
+                    int sotru = So--;
+                    edtSoLuong.setText(""+(sotru-1));
+                } else {
+                    edtSoLuong.setText(""+So);
+                }
+            }
+        });
+        btnSoCong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int soCong = So++;
+                    edtSoLuong.setText(""+(soCong+1));
+            }
+        });
         btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
