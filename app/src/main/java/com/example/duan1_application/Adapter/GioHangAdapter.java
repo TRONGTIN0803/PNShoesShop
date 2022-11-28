@@ -21,6 +21,7 @@ import com.example.duan1_application.R;
 import com.example.duan1_application.api.ServiceAPI;
 import com.example.duan1_application.model.CTHD;
 import com.example.duan1_application.model.HoaDon;
+import com.example.duan1_application.model.ItemClickxoacthd;
 import com.example.duan1_application.model.SanPham;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
@@ -34,13 +35,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHolder>{
     ImageView ivHinhSP;
-    TextView txtTenSP,txtGiaSP, txtSoLuong;
+    TextView txtTenSP, txtSoLuong;
     private Context context;
-    private ArrayList<HoaDon> list;
+    private ArrayList<CTHD> list;
     ServiceAPI requestInterface;
-    public GioHangAdapter(ArrayList<HoaDon> list,Context context) {
+    private ItemClickxoacthd itemClickxoacthd;
+    public GioHangAdapter(ArrayList<CTHD> list,Context context,ItemClickxoacthd itemClickxoacthd) {
         this.context = context;
         this.list = list;
+        this.itemClickxoacthd=itemClickxoacthd;
     }
 
     @NonNull
@@ -58,48 +61,66 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (list.get(position).getTrangThai()==0){
-            holder.txtTrangThai.setText("Đang sử lý");
-        }
-        holder.txtTongGia.setText("Tổng giá: "+list.get(position).getTriGia());
-        holder.btnHuy.setOnClickListener(new View.OnClickListener() {
+//        if (list.get(position).getTrangThai()==0){
+//            holder.txtTrangThai.setText("Đang sử lý");
+//        }
+//        holder.txtTongGia.setText("Tổng giá: "+list.get(position).getTriGia());
+//        holder.btnHuy.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                int maHd = list.get(holder.getAdapterPosition()).getMaHd();
+//                int trangthai = -1;
+//                HoaDon hoaDon = new HoaDon(maHd,trangthai);
+//                new CompositeDisposable().add(requestInterface.thayDoiTrangThai(hoaDon)
+//                        .observeOn(AndroidSchedulers.mainThread())
+//                        .subscribeOn(Schedulers.io())
+//                        .subscribe(this::handleResponse, this::handleError)
+//                );
+//            }
+//
+//            private void handleError(Throwable throwable) {
+//
+//            }
+//
+//            private void handleResponse(Integer integer) {
+//
+//            }
+//        });
+//        new CompositeDisposable().add(requestInterface.getCTHD(list.get(position).getMaHd())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.io())
+//                .subscribe(this::handleResponseCT, this::handleErrorCT)
+//        );
+//
+//    }
+//
+//    private void handleErrorCT(Throwable throwable) {
+//    }
+//
+//    private void handleResponseCT(CTHD cthd) {
+//
+//        Glide.with(context).load(String.valueOf(cthd.getHinhanh())).centerCrop().into(ivHinhSP);
+//        txtTenSP.setText(cthd.getTenSp());
+//        txtGiaSP.setText("Giá: "+cthd.getGia());
+//        txtSoLuong.setText("Số Lượng: "+cthd.getSoluong());
+ //       holder.txtTrangThai.setText("Đang sử lý");
+        holder.txtGiaSP.setText("Giá SP: "+list.get(position).getGia());
+        Glide.with(context).load(list.get(position).getHinhanh()).centerCrop().into(ivHinhSP);
+        txtTenSP.setText(list.get(position).getTenSp());
+        txtSoLuong.setText("Số Lượng: "+list.get(position).getSoluong());
+        holder.ivxoaitemgiohang.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                int maHd = list.get(holder.getAdapterPosition()).getMaHd();
-                int trangthai = -1;
-                HoaDon hoaDon = new HoaDon(maHd,trangthai);
-                new CompositeDisposable().add(requestInterface.thayDoiTrangThai(hoaDon)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.io())
-                        .subscribe(this::handleResponse, this::handleError)
-                );
+            public void onClick(View view) {
+                itemClickxoacthd.Itemclickxoacthd(list.get(holder.getAdapterPosition()));
             }
 
-            private void handleError(Throwable throwable) {
 
-            }
 
-            private void handleResponse(Integer integer) {
 
-            }
+
+
+
         });
-        new CompositeDisposable().add(requestInterface.getCTHD(list.get(position).getMaHd())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(this::handleResponseCT, this::handleErrorCT)
-        );
-
-    }
-
-    private void handleErrorCT(Throwable throwable) {
-    }
-
-    private void handleResponseCT(CTHD cthd) {
-
-        Glide.with(context).load(String.valueOf(cthd.getHinhanh())).centerCrop().into(ivHinhSP);
-        txtTenSP.setText(cthd.getTenSp());
-        txtGiaSP.setText("Giá: "+cthd.getGia());
-        txtSoLuong.setText("Số Lượng: "+cthd.getSoluong());
     }
 
     @Override
@@ -109,17 +130,20 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView txtTrangThai,txtTongGia;
+        TextView txtTrangThai,txtTongGia,txtGiaSP;
         Button btnHuy;
+        ImageView ivxoaitemgiohang;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivHinhSP = itemView.findViewById(R.id.ivHinhSP);
             txtGiaSP = itemView.findViewById(R.id.txtGiaSP);
             txtTenSP = itemView.findViewById(R.id.txtTenSP);
-            txtTrangThai = itemView.findViewById(R.id.txtTrangThai);
-            btnHuy = itemView.findViewById(R.id.btnHuy);
+   //         txtTrangThai = itemView.findViewById(R.id.txtTrangThai);
+  //          btnHuy = itemView.findViewById(R.id.btnHuy);
             txtSoLuong = itemView.findViewById(R.id.txtSoLuong);
-            txtTongGia = itemView.findViewById(R.id.txtTongGia);
+   //         txtTongGia = itemView.findViewById(R.id.txtTongGia);
+            ivxoaitemgiohang=itemView.findViewById(R.id.ivxoaitemgiohang);
+
         }
     }
     private void load(){

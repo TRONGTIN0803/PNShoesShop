@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_white_conner_16dp"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:id="@+id/ivHinhDiaLoggiohang"
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/txtTenDialoggiohang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/txtGiaDialoggiohang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+    <EditText
+        android:id="@+id/edtsoLuonggiohang"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@drawable/edt_login"
+        android:hint="Nhập số lượng"
+        android:textSize="20sp"
+        android:paddingLeft="5dp"
+        android:layout_marginTop="10dp"/>
+    <Spinner
+        android:id="@+id/spinnergiohang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Them vao gio hang"
+        android:id="@+id/btnthemgiohangDiaLog"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_login"
+        android:textColor="@color/white"/>
+</LinearLayout>

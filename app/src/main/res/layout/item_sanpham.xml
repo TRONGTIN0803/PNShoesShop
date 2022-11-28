@@ -69,6 +69,14 @@
             android:background="@drawable/btn_login"
             android:textColor="@color/white"
             android:layout_marginTop="5dp"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gio Hang"
+            android:id="@+id/btnthemgiohang"
+            android:background="@drawable/btn_login"
+            android:textColor="@color/white"
+            android:layout_marginTop="5dp"/>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

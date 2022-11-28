@@ -60,33 +60,39 @@
                         android:textSize="16sp"
                         android:layout_weight="1"/>
                 </LinearLayout>
-                <TextView
-                    android:id="@+id/txtTongGia"
+<!--                <TextView-->
+<!--                    android:id="@+id/txtTongGia"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="#03A9F4"-->
+<!--                    android:text="2"-->
+<!--                    android:fontFamily="@font/poppins_bold"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:layout_marginTop="5dp"/>-->
+<!--                <TextView-->
+<!--                    android:id="@+id/txtTrangThai"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="#F44336"-->
+<!--                    android:text="2"-->
+<!--                    android:fontFamily="@font/poppins_bold"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:layout_marginTop="5dp"/>-->
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#03A9F4"
-                    android:text="2"
-                    android:fontFamily="@font/poppins_bold"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp"/>
-                <TextView
-                    android:id="@+id/txtTrangThai"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#F44336"
-                    android:text="2"
-                    android:fontFamily="@font/poppins_bold"
-                    android:textSize="16sp"
-                    android:layout_marginTop="5dp"/>
+                    android:src="@drawable/ic_baseline_delete_forever_24"
+                    android:layout_gravity="end"
+                    android:id="@+id/ivxoaitemgiohang"/>
             </LinearLayout>
         </LinearLayout>
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnHuy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hủy đơn"
-            android:background="@drawable/btn_login"
-            android:textColor="@color/white"
-            android:layout_marginTop="10dp"/>
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btnHuy"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Hủy đơn"-->
+<!--            android:background="@drawable/btn_login"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:layout_marginTop="10dp"/>-->
     </LinearLayout>
 </androidx.cardview.widget.CardView>

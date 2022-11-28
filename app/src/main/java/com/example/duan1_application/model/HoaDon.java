@@ -30,6 +30,12 @@ public class HoaDon {
         this.trangthai = trangthai;
     }
 
+    public HoaDon(int maHd, int maKh, int trigia) {
+        this.maHd = maHd;
+        this.maKh = maKh;
+        this.trigia = trigia;
+    }
+
     public String getHinhAnh() {
         return HinhAnh;
     }

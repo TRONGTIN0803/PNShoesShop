@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -9,7 +11,24 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewCart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="500dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtgiagiohang"
+            android:text="gia"
+            android:textSize="32dp"
+            android:textStyle="bold"
+            android:textColor="@color/red"
+            android:padding="10dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnthanhtoan"
+            android:text="Dặt hàng"
+            android:backgroundTint="@color/teal_200"
+            android:textSize="16dp"/>
 
 
 

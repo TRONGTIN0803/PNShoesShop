@@ -65,11 +65,11 @@ public class LichSuAdapter extends RecyclerView.Adapter<LichSuAdapter.ViewHolder
             holder.txtTrangThai.setText("Đã hủy đơn hàng");
         }
         holder.txtTongGia.setText("Tổng giá: "+list.get(position).getTriGia());
-        new CompositeDisposable().add(requestInterface.getCTHD(list.get(position).getMaHd())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(this::handleResponse, this::handleError)
-        );
+//        new CompositeDisposable().add(requestInterface.getCTHD(list.get(position).getMaHd())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribeOn(Schedulers.io())
+//                .subscribe(this::handleResponse, this::handleError)
+//        );
     }
 
     private void handleError(Throwable throwable) {

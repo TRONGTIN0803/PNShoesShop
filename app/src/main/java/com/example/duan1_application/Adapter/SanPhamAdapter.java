@@ -29,8 +29,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.duan1_application.R;
 import com.example.duan1_application.api.ServiceAPI;
+import com.example.duan1_application.model.CTHD;
 import com.example.duan1_application.model.HangSP;
 import com.example.duan1_application.model.HoaDon;
+import com.example.duan1_application.model.ItenClick;
 import com.example.duan1_application.model.SanPham;
 import com.example.duan1_application.model.Size;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -54,13 +56,16 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     private ArrayList<SanPham> listsearch;
     ServiceAPI requestInterface;
     private ArrayList<HashMap<String,Object>> listHM;
+    private SharedPreferences sharedPreferences;
+    private int makh;
+    private ItenClick itenClick;
 
 
-
-    public SanPhamAdapter(Context context, ArrayList<SanPham> list) {
+    public SanPhamAdapter(Context context, ArrayList<SanPham> list,ItenClick itenClick) {
         this.context = context;
         this.list = list;
         this.listsearch=list;
+        this.itenClick=itenClick;
     }
 
     @NonNull
@@ -68,6 +73,8 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
         View view = inflater.inflate(R.layout.item_sanpham,parent,false);
+        sharedPreferences= context.getSharedPreferences("KHACHHANG",Context.MODE_PRIVATE);
+        makh=sharedPreferences.getInt("makh",-1);
         requestInterface = new Retrofit.Builder()
                 .baseUrl(BASE_SERVICE)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -87,7 +94,26 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         holder.btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDiaLog(list.get(holder.getAdapterPosition()));
+                showDiaLog(list.get(holder.getAdapterPosition()),0);
+            }
+        });
+        holder.btngiohang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new CompositeDisposable().add(requestInterface.getGioHang(makh)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.io())
+                        .subscribe(this::handleResponsegetgiohang, this::handleErrorgetgiohang)
+                );
+            }
+            private void handleResponsegetgiohang(HoaDon hoaDon) {
+                HoaDon hd=hoaDon;
+                hd.setMaSp(list.get(holder.getAdapterPosition()).getMaSp());
+                itenClick.ItemClick(list.get(holder.getAdapterPosition()),hd);
+            }
+            private void handleErrorgetgiohang(Throwable throwable) {
+                showDiaLog(list.get(holder.getAdapterPosition()),-2);
+                //Toast.makeText(context, "Nganh lol", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -129,19 +155,21 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         };
     }
 
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView ivHinh;
         TextView txtTen,txtGia;
-        Button btnDatHang;
+        Button btnDatHang,btngiohang;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivHinh = itemView.findViewById(R.id.ivHinh);
             txtTen = itemView.findViewById(R.id.txtTen);
             txtGia = itemView.findViewById(R.id.txtGia);
             btnDatHang = itemView.findViewById(R.id.btnDatHang);
+            btngiohang=itemView.findViewById(R.id.btnthemgiohang);
         }
     }
-    private void showDiaLog(SanPham sanPham){
+    private void showDiaLog(SanPham sanPham,int x){
         Dialog dialog=new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_sanpham);
@@ -163,7 +191,11 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         Button btnDatHang = dialog.findViewById(R.id.btnDatHangDiaLog);
         Spinner spinner = dialog.findViewById(R.id.spinner);
 
-
+        if (x==-2){
+            btnDatHang.setText("Them vao Gio hang");
+//            edtsdt.setVisibility(View.GONE);
+//            edtdiaChi.setVisibility(View.GONE);
+        }
         txtTen.setText(sanPham.getTenSp());
         txtgia.setText("Giá sản phẩm: "+sanPham.getGia());
 
@@ -174,8 +206,6 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences= context.getSharedPreferences("KHACHHANG",Context.MODE_PRIVATE);
-                int makh=sharedPreferences.getInt("makh",-1);
                 String SDT = edtsdt.getText().toString();
                 String DiaChi = edtdiaChi.getText().toString();
                 Date currentTime = Calendar.getInstance().getTime();
@@ -185,7 +215,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 int gia = sanPham.getGia()*sol;
                 HashMap<String,Object> hsm= (HashMap<String, Object>) spinner.getSelectedItem();
                 String masize = (String) hsm.get("masize");
-                HoaDon hoaDon = new HoaDon(makh,0,SDT,DiaChi,gia,ngay,sanPham.getMaSp(),sol,masize);
+                HoaDon hoaDon = new HoaDon(makh,x,SDT,DiaChi,gia,ngay,sanPham.getMaSp(),sol,masize);
                 new CompositeDisposable().add(requestInterface.themHoaDon(hoaDon)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
@@ -229,8 +259,9 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         dialog.show();
 
     }
-    private void size(){
 
+
+    private void size(){
     }
 
 

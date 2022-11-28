@@ -6,13 +6,33 @@ import java.lang.Integer;
 import java.lang.String;
 
 public class CTHD implements Serializable {
+  private int maCthd;
   private String hinhanh;
-
+  private int maHd;
   private String tenSp;
-
+  private int masp;
   private int soluong;
-
+  private String masize;
   private int gia;
+
+  public CTHD(int macthd) {
+    this.maCthd = macthd;
+  }
+
+  public CTHD(int mahd, int masp, int soluong, String masize) {
+    this.maHd = mahd;
+    this.masp = masp;
+    this.soluong = soluong;
+    this.masize = masize;
+  }
+
+  public int getMacthd() {
+    return maCthd;
+  }
+
+  public void setMacthd(int macthd) {
+    this.maCthd = macthd;
+  }
 
   public String getHinhanh() {
     return hinhanh;
@@ -44,5 +64,29 @@ public class CTHD implements Serializable {
 
   public void setGia(int gia) {
     this.gia = gia;
+  }
+
+  public int getMahd() {
+    return maHd;
+  }
+
+  public void setMahd(int mahd) {
+    this.maHd = mahd;
+  }
+
+  public int getMasp() {
+    return masp;
+  }
+
+  public void setMasp(int masp) {
+    this.masp = masp;
+  }
+
+  public String getMasize() {
+    return masize;
+  }
+
+  public void setMasize(String masize) {
+    this.masize = masize;
   }
 }

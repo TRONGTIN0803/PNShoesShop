@@ -31,13 +31,19 @@ public interface ServiceAPI {
     Observable<ArrayList<HoaDon>> getDSHoaDontheoTrangThaiKH(@Query("makh") int makh,@Query("trangthai") int trangthai);
 
     @GET("api/getCTHD")
-    Observable<CTHD> getCTHD(@Query("mahd")int mahd);
+    Observable<ArrayList<CTHD>> getCTHD(@Query("mahd")int mahd);
 
     @GET("api/getDSSizetheoSanPham")
     Observable<ArrayList<Size>> getDSSizetheoMaSp(@Query("masp")int masp);
 
     @GET("api/getDSHangSP")
     Observable<ArrayList<HangSP>> getDSHangSP();
+
+    @GET("api/getGioHang")
+    Observable<HoaDon> getGioHang(@Query("makh")int makh);
+
+
+
 
     @POST("api/Register")
     Observable<Integer>Dangky(@Body Khachhang khachhang);
@@ -53,4 +59,16 @@ public interface ServiceAPI {
 
     @POST("api/ThayDoiTrangThai")
     Observable<Integer> thayDoiTrangThai(@Body HoaDon hoaDon);
+
+    @POST("api/themCTHDGioHang")
+    Observable<Integer> themCTHD(@Body CTHD cthd);
+
+    @POST("api/xoaGioHang")
+    Observable<Integer> xoaCTHD(@Body CTHD cthd);
+
+    @POST("api/capnhatGiaHDthemCTHD")
+    Observable<Integer>tanggiahoadon(@Body HoaDon hoaDon);
+
+    @POST("api/capnhatGiaHDxoaCTHD")
+    Observable<Integer>giamgiahoadon(@Body HoaDon hoaDon);
 }
