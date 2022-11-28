@@ -33,6 +33,7 @@ import com.example.duan1_application.model.CTHD;
 import com.example.duan1_application.model.HangSP;
 import com.example.duan1_application.model.HoaDon;
 import com.example.duan1_application.model.ItenClick;
+import com.example.duan1_application.model.Khachhang;
 import com.example.duan1_application.model.SanPham;
 import com.example.duan1_application.model.Size;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -59,8 +60,8 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     private SharedPreferences sharedPreferences;
     private int makh;
     private ItenClick itenClick;
-
-
+    int So = 1;
+    String sdt="";
     public SanPhamAdapter(Context context, ArrayList<SanPham> list,ItenClick itenClick) {
         this.context = context;
         this.list = list;
@@ -190,7 +191,9 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         ImageView ivHinh = dialog.findViewById(R.id.ivHinhDiaLog);
         Button btnDatHang = dialog.findViewById(R.id.btnDatHangDiaLog);
         Spinner spinner = dialog.findViewById(R.id.spinner);
-
+        Button btnSoTru = dialog.findViewById(R.id.btnSoTru);
+        Button btnSoCong = dialog.findViewById(R.id.btnSoCong);
+        edtSoLuong.setText(""+So);
         if (x==-2){
             btnDatHang.setText("Them vao Gio hang");
 //            edtsdt.setVisibility(View.GONE);
@@ -203,9 +206,33 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 .load(sanPham.getHinhanh())
                 .centerCrop()
                 .into(ivHinh);
+        btnSoTru.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(So > 1){
+                    int sotru = So--;
+                    edtSoLuong.setText(""+(sotru-1));
+                } else {
+                    edtSoLuong.setText(""+So);
+                }
+            }
+        });
+        btnSoCong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int soCong = So++;
+                edtSoLuong.setText(""+(soCong+1));
+            }
+        });
         btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sdt=sharedPreferences.getString("sdt","");
+                new CompositeDisposable().add(requestInterface.getKH(makh)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.io())
+                        .subscribe(this::handleResponse2, this::handleError)
+                );
                 String SDT = edtsdt.getText().toString();
                 String DiaChi = edtdiaChi.getText().toString();
                 Date currentTime = Calendar.getInstance().getTime();
@@ -221,32 +248,14 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                         .subscribeOn(Schedulers.io())
                         .subscribe(this::handleResponse, this::handleError)
                 );
-                int masp = sanPham.getMaSp();
-                new CompositeDisposable().add(requestInterface.getDSSizetheoMaSp(masp)
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribeOn(Schedulers.io())
-                                .subscribe(this::handleResponseSize, this::handleError)
-                );
+
                 dialog.dismiss();
             }
 
-            private void handleResponseSize(ArrayList<Size> list) {
-                ArrayList<Size> list1 = list;
-                ArrayList<HashMap<String,Object>> listHM = new ArrayList<>();
-                for (Size size: list1){
-                    HashMap<String,Object> hs = new HashMap<>();
-                    hs.put("masize",size.getMasize());
-                    listHM.add(hs);
-                }
-                SimpleAdapter simpleAdapter = new SimpleAdapter(
-                        context,
-                        listHM,
-                        android.R.layout.simple_list_item_1,
-                        new String[]{"masize"},
-                        new int[]{android.R.id.text1}
-                );
-                spinner.setAdapter(simpleAdapter);
+            private void handleResponse2(Khachhang khachhang) {
+                edtsdt.setText(khachhang.getSdt().substring(0,4)+"******");
             }
+
 
             private void handleError(Throwable throwable) {
                 Toast.makeText(context, "thất bại", Toast.LENGTH_SHORT).show();

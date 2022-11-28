@@ -59,6 +59,7 @@ public class Frangment_MuaSanPham extends Fragment {
     private ArrayList<HangSP>listhangsp;
     private ArrayList<SanPham>list;
     private int soluong;
+    int So = 1;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -167,13 +168,32 @@ public class Frangment_MuaSanPham extends Fragment {
         ImageView ivHinhgiohang = dialog.findViewById(R.id.ivHinhDiaLoggiohang);
         Button btnthemgiohang = dialog.findViewById(R.id.btnthemgiohangDiaLog);
         Spinner spinner = dialog.findViewById(R.id.spinnergiohang);
-
+        Button btnSoTru = dialog.findViewById(R.id.btnSoTru);
+        Button btnSoCong = dialog.findViewById(R.id.btnSoCong);
         txtTengiohang.setText(sanPham.getTenSp());
         txtgiagiohang.setText(String.valueOf(sanPham.getGia()));
         Glide.with(getContext())
                 .load(sanPham.getHinhanh())
                 .centerCrop()
                 .into(ivHinhgiohang);
+        btnSoTru.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(So > 1){
+                    int sotru = So--;
+                    edtSoLuong.setText(""+(sotru-1));
+                } else {
+                    edtSoLuong.setText(""+So);
+                }
+            }
+        });
+        btnSoCong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int soCong = So++;
+                edtSoLuong.setText(""+(soCong+1));
+            }
+        });
         btnthemgiohang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -200,7 +220,7 @@ public class Frangment_MuaSanPham extends Fragment {
                 );
             }
             private void handleResponsetanggiahd(Integer integer) {
-                Toast.makeText(getContext(), "Da them vao gio hang", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
 
