@@ -7,7 +7,7 @@ import java.lang.String;
 
 public class Size implements Serializable {
   private int maSp;
-
+  private int sosize;
   private String masize;
 
   private int soluong;
@@ -34,5 +34,13 @@ public class Size implements Serializable {
 
   public void setSoluong(int soluong) {
     this.soluong = soluong;
+  }
+
+  public int getSosize() {
+    return sosize;
+  }
+
+  public void setSosize(int sosize) {
+    this.sosize = sosize;
   }
 }

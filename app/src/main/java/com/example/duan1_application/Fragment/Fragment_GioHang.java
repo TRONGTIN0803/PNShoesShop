@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.duan1_application.Adapter.GioHangAdapter;
 import com.example.duan1_application.Adapter.SanPhamAdapter;
 import com.example.duan1_application.R;
+import com.example.duan1_application.ShowNotification;
 import com.example.duan1_application.api.ServiceAPI;
 import com.example.duan1_application.model.CTHD;
 import com.example.duan1_application.model.HoaDon;
@@ -50,7 +51,7 @@ public class Fragment_GioHang extends Fragment {
     private TextView txtgiagiohang;
     private Button btnthanhtoan;
     String sdt="";
-    int giasp,soluongsp,mahoadon;
+    int giasp,soluongsp,mahoadon,mahd,giathanhtoan;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_giohang,container,false);
@@ -58,10 +59,18 @@ public class Fragment_GioHang extends Fragment {
         txtgiagiohang=view.findViewById(R.id.txtgiagiohang);
         btnthanhtoan=view.findViewById(R.id.btnthanhtoan);
         DemoCallAPI();
+        btnthanhtoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowNotification.showProgressDialog(getContext(),"Vui Lòng Chờ...");
+                DiaLogDathang();
+            }
+        });
         return view;
     }
 
     private void DemoCallAPI() {
+        ShowNotification.showProgressDialog(getContext(),"Vui Lòng Chờ...");
         SharedPreferences sharedPreferences= getActivity().getSharedPreferences("KHACHHANG", Context.MODE_PRIVATE);
         int maKH =sharedPreferences.getInt("makh",-1);
         sdt=sharedPreferences.getString("sdt","");
@@ -88,27 +97,29 @@ public class Fragment_GioHang extends Fragment {
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponsecthd, this::handleErrorcthd)
         );
-        txtgiagiohang.setText("Tổng Hóa Đơn: "+hoaDon.getTriGia());
-        btnthanhtoan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int mahd= hoaDon.getMaHd();
-                HoaDon hoaDon1=new HoaDon(mahd,0);
-                new CompositeDisposable().add(requestInterface.thayDoiTrangThai(hoaDon1)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.io())
-                        .subscribe(this::handleResponsetdtt, this::handleErrortdtt)
-                );
-            }
-
-            private void handleResponsetdtt(Integer integer) {
-                Toast.makeText(getContext(), "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
-            }
-
-            private void handleErrortdtt(Throwable throwable) {
-                Toast.makeText(getContext(), "Đặt hàng thất bại!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        mahd=hoaDon.getMaHd();
+        txtgiagiohang.setText(String.valueOf(hoaDon.getTriGia()));
+        giathanhtoan=hoaDon.getTriGia();
+//        btnthanhtoan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int mahd= hoaDon.getMaHd();
+//                HoaDon hoaDon1=new HoaDon(mahd,0);
+//                new CompositeDisposable().add(requestInterface.thayDoiTrangThai(hoaDon1)
+//                        .observeOn(AndroidSchedulers.mainThread())
+//                        .subscribeOn(Schedulers.io())
+//                        .subscribe(this::handleResponsetdtt, this::handleErrortdtt)
+//                );
+//            }
+//
+//            private void handleResponsetdtt(Integer integer) {
+//                Toast.makeText(getContext(), "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            private void handleErrortdtt(Throwable throwable) {
+//                Toast.makeText(getContext(), "Đặt hàng thất bại!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void handleResponsecthd(ArrayList<CTHD> cthds) {
@@ -152,6 +163,7 @@ public class Fragment_GioHang extends Fragment {
             }
         });
         recyclerView.setAdapter(adapter);
+        ShowNotification.dismissProgressDialog();
     }
 
     private void handleErrorcthd(Throwable throwable) {
@@ -160,6 +172,7 @@ public class Fragment_GioHang extends Fragment {
 
     private void handleError(Throwable throwable) {
         Toast.makeText(getContext(), "Gio hang rong", Toast.LENGTH_SHORT).show();
+        ShowNotification.dismissProgressDialog();
 
     }
 
@@ -182,13 +195,31 @@ public class Fragment_GioHang extends Fragment {
         TextView txtgiadathang=dialog.findViewById(R.id.txtgiadathang);
 
         edtsdtdathang.setText(sdt);
-        txtgiadathang.setText(String.valueOf(txtgiagiohang));
+        txtgiadathang.setText(String.valueOf(giathanhtoan));
+        ShowNotification.dismissProgressDialog();
         btndathangthanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String sodt=edtsdtdathang.getText().toString();
+                String diachi=edtdiachidathang.getText().toString();
+                HoaDon hoaDon=new HoaDon(mahd,0,sodt,diachi);
+                new CompositeDisposable().add(requestInterface.thanhtoanGioHang(hoaDon)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.io())
+                        .subscribe(this::handleResponsethanhtoangh, this::handleErrorthanhtoangh)
+                );
+            }
 
+            private void handleResponsethanhtoangh(Integer integer) {
+                Toast.makeText(getContext(), "Đặt Hàng Thành Công!", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+
+            private void handleErrorthanhtoangh(Throwable throwable) {
+                Toast.makeText(getContext(), "Tin Ngu!", Toast.LENGTH_SHORT).show();
             }
         });
+        dialog.show();
     }
 
 //    private void handleResponse(ArrayList<HoaDon> hoaDons) {

@@ -62,6 +62,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     private ItenClick itenClick;
     int So = 1;
     String sdt="";
+    private Spinner spinner;
     public SanPhamAdapter(Context context, ArrayList<SanPham> list,ItenClick itenClick) {
         this.context = context;
         this.list = list;
@@ -76,6 +77,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         View view = inflater.inflate(R.layout.item_sanpham,parent,false);
         sharedPreferences= context.getSharedPreferences("KHACHHANG",Context.MODE_PRIVATE);
         makh=sharedPreferences.getInt("makh",-1);
+        sdt=sharedPreferences.getString("sdt","");
         requestInterface = new Retrofit.Builder()
                 .baseUrl(BASE_SERVICE)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -190,14 +192,19 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         EditText edtdiaChi = dialog.findViewById(R.id.edtDiachi);
         ImageView ivHinh = dialog.findViewById(R.id.ivHinhDiaLog);
         Button btnDatHang = dialog.findViewById(R.id.btnDatHangDiaLog);
-        Spinner spinner = dialog.findViewById(R.id.spinner);
+        spinner = dialog.findViewById(R.id.spinner);
         Button btnSoTru = dialog.findViewById(R.id.btnSoTru);
         Button btnSoCong = dialog.findViewById(R.id.btnSoCong);
+
+        DemoCallAPI(sanPham.getMaSp());
+
+        edtsdt.setText(sdt);
+
         edtSoLuong.setText(""+So);
         if (x==-2){
             btnDatHang.setText("Them vao Gio hang");
-//            edtsdt.setVisibility(View.GONE);
-//            edtdiaChi.setVisibility(View.GONE);
+            edtsdt.setVisibility(View.GONE);
+            edtdiaChi.setVisibility(View.GONE);
         }
         txtTen.setText(sanPham.getTenSp());
         txtgia.setText("Giá sản phẩm: "+sanPham.getGia());
@@ -227,12 +234,12 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sdt=sharedPreferences.getString("sdt","");
-                new CompositeDisposable().add(requestInterface.getKH(makh)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.io())
-                        .subscribe(this::handleResponse2, this::handleError)
-                );
+
+//                new CompositeDisposable().add(requestInterface.getKH(makh)
+//                        .observeOn(AndroidSchedulers.mainThread())
+//                        .subscribeOn(Schedulers.io())
+//                        .subscribe(this::handleResponse2, this::handleError)
+//                );
                 String SDT = edtsdt.getText().toString();
                 String DiaChi = edtdiaChi.getText().toString();
                 Date currentTime = Calendar.getInstance().getTime();
@@ -243,18 +250,31 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 HashMap<String,Object> hsm= (HashMap<String, Object>) spinner.getSelectedItem();
                 String masize = (String) hsm.get("masize");
                 HoaDon hoaDon = new HoaDon(makh,x,SDT,DiaChi,gia,ngay,sanPham.getMaSp(),sol,masize);
-                new CompositeDisposable().add(requestInterface.themHoaDon(hoaDon)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.io())
-                        .subscribe(this::handleResponse, this::handleError)
-                );
+                if (x==0){
+                    new CompositeDisposable().add(requestInterface.themHoaDon(hoaDon)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribeOn(Schedulers.io())
+                            .subscribe(this::handleResponse, this::handleError)
+                    );
+                }else{
+                    new CompositeDisposable().add(requestInterface.themvaoGioHang(hoaDon)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribeOn(Schedulers.io())
+                            .subscribe(this::handleResponsegiohang, this::handleError)
+                    );
+                }
+
 
                 dialog.dismiss();
             }
 
-            private void handleResponse2(Khachhang khachhang) {
-                edtsdt.setText(khachhang.getSdt().substring(0,4)+"******");
+            private void handleResponsegiohang(Integer integer) {
+                Toast.makeText(context, "Thêm vào Giỏ Hàng thành công", Toast.LENGTH_SHORT).show();
             }
+
+//            private void handleResponse2(Khachhang khachhang) {
+//                edtsdt.setText(khachhang.getSdt().substring(0,4)+"******");
+//            }
 
 
             private void handleError(Throwable throwable) {
@@ -270,8 +290,42 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     }
 
 
-    private void size(){
+    private void DemoCallAPI(int masp) {
+
+        new CompositeDisposable().add(requestInterface.getdssizesp(masp)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::handleResponse, this::handleError)
+        );
     }
+
+    private void handleResponse(ArrayList<Size> sizes) {
+        ArrayList<Size>list=sizes;
+        SimpleAdapter simpleAdapter=new SimpleAdapter(
+                context,getDSLoaisach(list),  R.layout.my_selected_item,
+                new String[]{"sosize"},new int[]{R.id.spinneritemselected});
+        spinner.setAdapter(simpleAdapter);
+
+    }
+
+    private ArrayList<HashMap<String, Object>>getDSLoaisach(ArrayList<Size>list){
+
+        ArrayList<HashMap<String, Object>>listHM=new ArrayList<>();
+
+        for (Size size:list){
+            HashMap<String, Object> hs=new HashMap<>();
+            hs.put("masize",size.getMasize());
+            hs.put("sosize",size.getSosize());
+            listHM.add(hs);
+        }
+        return listHM;
+    }
+
+
+    private void handleError(Throwable throwable) {
+        Toast.makeText(context, "nganh l", Toast.LENGTH_SHORT).show();
+    }
+
 
 
 

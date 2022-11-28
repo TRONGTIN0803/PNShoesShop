@@ -42,6 +42,9 @@ public interface ServiceAPI {
     @GET("api/getGioHang")
     Observable<HoaDon> getGioHang(@Query("makh")int makh);
 
+    @GET("api/getSoluongSizeSP")
+    Observable<ArrayList<Size>>getdssizesp(@Query("masp")int masp);
+
 
 
 
@@ -71,4 +74,10 @@ public interface ServiceAPI {
 
     @POST("api/capnhatGiaHDxoaCTHD")
     Observable<Integer>giamgiahoadon(@Body HoaDon hoaDon);
+
+    @POST("api/themvaogiohang")
+    Observable<Integer>themvaoGioHang(@Body HoaDon hoaDon);
+
+    @POST("api/thanhtoangiohang")
+    Observable<Integer>thanhtoanGioHang(@Body HoaDon hoaDon);
 }

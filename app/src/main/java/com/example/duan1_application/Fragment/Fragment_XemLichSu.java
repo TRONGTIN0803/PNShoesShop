@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duan1_application.Adapter.LichSuAdapter;
 import com.example.duan1_application.R;
+import com.example.duan1_application.ShowNotification;
 import com.example.duan1_application.api.ServiceAPI;
 import com.example.duan1_application.model.HoaDon;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -41,6 +42,7 @@ public class Fragment_XemLichSu extends Fragment {
         return view;
     }
     private void DemoCallAPI() {
+        ShowNotification.showProgressDialog(getContext(),"Vui Lòng Chờ...");
         SharedPreferences sharedPreferences= getActivity().getSharedPreferences("KHACHHANG", Context.MODE_PRIVATE);
         int maKH =sharedPreferences.getInt("makh",-1);
         requestInterface = new Retrofit.Builder()
@@ -64,6 +66,7 @@ public class Fragment_XemLichSu extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         LichSuAdapter adapter = new LichSuAdapter(listHoaDon,getContext());
         recyclerView.setAdapter(adapter);
+        ShowNotification.dismissProgressDialog();
     }
 
 }

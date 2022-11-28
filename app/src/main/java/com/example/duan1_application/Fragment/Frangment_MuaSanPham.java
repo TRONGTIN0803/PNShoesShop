@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,15 +35,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.duan1_application.Adapter.SanPhamAdapter;
 import com.example.duan1_application.R;
+import com.example.duan1_application.ShowNotification;
 import com.example.duan1_application.api.ServiceAPI;
 import com.example.duan1_application.model.CTHD;
 import com.example.duan1_application.model.HangSP;
 import com.example.duan1_application.model.HoaDon;
 import com.example.duan1_application.model.ItenClick;
 import com.example.duan1_application.model.SanPham;
+import com.example.duan1_application.model.Size;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.Delayed;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -60,16 +64,17 @@ public class Frangment_MuaSanPham extends Fragment {
     private ArrayList<SanPham>list;
     private int soluong;
     int So = 1;
+    private Spinner spinner;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_muasanpham,container,false);
         recyclerView = view.findViewById(R.id.recyclerView);
-
         DemoCallAPI();
         return view;
     }
     private void DemoCallAPI() {
+        ShowNotification.showProgressDialog(getContext(),"Vui Lòng Chờ...");
         requestInterface = new Retrofit.Builder()
                 .baseUrl(BASE_SERVICE)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -88,8 +93,6 @@ public class Frangment_MuaSanPham extends Fragment {
 
     private void handleResponse(ArrayList<SanPham> sanPhams) {
         setHasOptionsMenu(true);
-
-
         list = sanPhams;
         getDSHANGSP();
 
@@ -121,6 +124,7 @@ public class Frangment_MuaSanPham extends Fragment {
             }
 
         }
+        ShowNotification.dismissProgressDialog();
     }
 
     private void handleErrorhangsp(Throwable throwable) {
@@ -167,9 +171,11 @@ public class Frangment_MuaSanPham extends Fragment {
         EditText edtSoLuong = dialog.findViewById(R.id.edtsoLuonggiohang);
         ImageView ivHinhgiohang = dialog.findViewById(R.id.ivHinhDiaLoggiohang);
         Button btnthemgiohang = dialog.findViewById(R.id.btnthemgiohangDiaLog);
-        Spinner spinner = dialog.findViewById(R.id.spinnergiohang);
+        spinner = dialog.findViewById(R.id.spinnergiohang);
         Button btnSoTru = dialog.findViewById(R.id.btnSoTru);
         Button btnSoCong = dialog.findViewById(R.id.btnSoCong);
+
+        CallAPISize(sanPham.getMaSp());
         txtTengiohang.setText(sanPham.getTenSp());
         txtgiagiohang.setText(String.valueOf(sanPham.getGia()));
         Glide.with(getContext())
@@ -200,7 +206,8 @@ public class Frangment_MuaSanPham extends Fragment {
                 int mahd=hoaDon.getMaHd();
                 int masp=hoaDon.getMaSp();
                 soluong=Integer.parseInt(edtSoLuong.getText().toString());
-                String masize="MS01";
+                HashMap<String,Object> hsm= (HashMap<String, Object>) spinner.getSelectedItem();
+                String masize = (String) hsm.get("masize");
                 CTHD cthd=new CTHD(mahd,masp,soluong,masize);
                 new CompositeDisposable().add(requestInterface.themCTHD(cthd)
                         .observeOn(AndroidSchedulers.mainThread())
@@ -234,5 +241,41 @@ public class Frangment_MuaSanPham extends Fragment {
         });
         dialog.show();
     }
+    private void CallAPISize(int masp) {
+
+        new CompositeDisposable().add(requestInterface.getdssizesp(masp)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::handleResponsesize, this::handleErrorsize)
+        );
+    }
+
+    private void handleResponsesize(ArrayList<Size> sizes) {
+        ArrayList<Size>list=sizes;
+        SimpleAdapter simpleAdapter=new SimpleAdapter(
+                getContext(),getDSLoaisach(list),  R.layout.my_selected_item,
+                new String[]{"sosize"},new int[]{R.id.spinneritemselected});
+        spinner.setAdapter(simpleAdapter);
+
+    }
+
+    private ArrayList<HashMap<String, Object>>getDSLoaisach(ArrayList<Size>list){
+
+        ArrayList<HashMap<String, Object>>listHM=new ArrayList<>();
+
+        for (Size size:list){
+            HashMap<String, Object> hs=new HashMap<>();
+            hs.put("masize",size.getMasize());
+            hs.put("sosize",size.getSosize());
+            listHM.add(hs);
+        }
+        return listHM;
+    }
+
+
+    private void handleErrorsize(Throwable throwable) {
+        Toast.makeText(getContext(), "nganh l", Toast.LENGTH_SHORT).show();
+    }
+
 
 }

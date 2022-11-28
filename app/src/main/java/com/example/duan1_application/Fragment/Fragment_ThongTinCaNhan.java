@@ -76,7 +76,6 @@ public class Fragment_ThongTinCaNhan extends Fragment {
         ivsuaname=view.findViewById(R.id.ivsuaname);
         mProgressDialog = new ProgressDialog(getContext());
         mProgressDialog.setMessage("Loading, please wait...");
-
         requestInterface = new Retrofit.Builder()
                 .baseUrl(BASE_SERVICE)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -99,6 +98,7 @@ public class Fragment_ThongTinCaNhan extends Fragment {
         return view;
     }
     private void DemoCallAPI() {
+        ShowNotification.showProgressDialog(getContext(),"Vui Lòng Chờ...");
         SharedPreferences sharedPreferences= getContext().getSharedPreferences("KHACHHANG",Context.MODE_PRIVATE);
         int makh=sharedPreferences.getInt("makh",-1);
         new CompositeDisposable().add(requestInterface.getKH(makh)
@@ -126,6 +126,7 @@ public class Fragment_ThongTinCaNhan extends Fragment {
         }
 
         txtSDT.setText(khachHang.getSdt().substring(0,4)+"******");
+        ShowNotification.dismissProgressDialog();
     }
 
     private void ShowDiaLog(){
@@ -182,7 +183,6 @@ public class Fragment_ThongTinCaNhan extends Fragment {
         Dialog dialog=new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_capnhat_avt);
-
         Window window=dialog.getWindow();
         if (window==null){
             return;
@@ -241,6 +241,7 @@ public class Fragment_ThongTinCaNhan extends Fragment {
         }
     });
     private void uploadImages(){
+        ShowNotification.showProgressDialog(getContext(),"Vui Lòng Chờ...");
         MediaManager.get().upload(imagePath).callback(new UploadCallback() {
             @Override
             public void onStart(String requestId) {
@@ -258,7 +259,6 @@ public class Fragment_ThongTinCaNhan extends Fragment {
                 //               showlink.setText(resultData.get("url").toString());
                 link=resultData.get("url").toString();
                 updateAvt(link);
-                mProgressDialog.show();
             }
 
             @Override
@@ -302,7 +302,7 @@ public class Fragment_ThongTinCaNhan extends Fragment {
         if (integer==1){
             Toast.makeText(getContext(), "Update Thanh cong", Toast.LENGTH_SHORT).show();
             Glide.with(this).load(link).into(ivAVT);
-            mProgressDialog.dismiss();
+            ShowNotification.dismissProgressDialog();
         }
     }
 
