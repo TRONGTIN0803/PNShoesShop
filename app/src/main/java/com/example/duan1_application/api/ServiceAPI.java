@@ -4,6 +4,7 @@ import com.example.duan1_application.model.CTHD;
 import com.example.duan1_application.model.HangSP;
 import com.example.duan1_application.model.HoaDon;
 import com.example.duan1_application.model.Khachhang;
+import com.example.duan1_application.model.KhuyenMai;
 import com.example.duan1_application.model.SanPham;
 import com.example.duan1_application.model.Size;
 
@@ -44,6 +45,9 @@ public interface ServiceAPI {
 
     @GET("api/getSoluongSizeSP")
     Observable<ArrayList<Size>>getdssizesp(@Query("masp")int masp);
+
+    @GET("api/getDSKhuyenMai")
+    Observable<ArrayList<KhuyenMai>>getDSKhuyenMai();
 
 
 

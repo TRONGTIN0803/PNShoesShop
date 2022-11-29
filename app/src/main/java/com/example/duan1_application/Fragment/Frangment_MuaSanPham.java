@@ -30,6 +30,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -41,6 +42,7 @@ import com.example.duan1_application.model.CTHD;
 import com.example.duan1_application.model.HangSP;
 import com.example.duan1_application.model.HoaDon;
 import com.example.duan1_application.model.ItenClick;
+import com.example.duan1_application.model.KhuyenMai;
 import com.example.duan1_application.model.SanPham;
 import com.example.duan1_application.model.Size;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -62,6 +64,7 @@ public class Frangment_MuaSanPham extends Fragment {
     private SearchView searchView;
     private ArrayList<HangSP>listhangsp;
     private ArrayList<SanPham>list;
+    private ArrayList<KhuyenMai>listKM;
     private int soluong;
     int So = 1;
     private Spinner spinner;
@@ -94,7 +97,7 @@ public class Frangment_MuaSanPham extends Fragment {
     private void handleResponse(ArrayList<SanPham> sanPhams) {
         setHasOptionsMenu(true);
         list = sanPhams;
-        getDSHANGSP();
+        callAPIKM();
 
     }
     private void getDSHANGSP(){
@@ -122,13 +125,24 @@ public class Frangment_MuaSanPham extends Fragment {
                     sp.setTenhang(item.getTenhang());
                 }
             }
-
         }
         ShowNotification.dismissProgressDialog();
+        for (SanPham item:list){
+            for (KhuyenMai km:listKM){
+                if (item.getMaKm()!=null && item.getMaKm().equals(km.getMaKm())){
+                    item.setGiacu(item.getGia());
+                    float kmne=(item.getGia()*km.getGiaKm())/100;
+                    int gia= (int) (item.getGia()-kmne);
+                    item.setGia(gia);
+                }
+            }
+
+        }
+
     }
 
     private void handleErrorhangsp(Throwable throwable) {
-        Toast.makeText(getContext(), "Tin Ngu", Toast.LENGTH_SHORT).show();
+ //       Toast.makeText(getContext(), "Tin Ngu", Toast.LENGTH_SHORT).show();
     }
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -277,5 +291,20 @@ public class Frangment_MuaSanPham extends Fragment {
         Toast.makeText(getContext(), "nganh l", Toast.LENGTH_SHORT).show();
     }
 
+    private void callAPIKM(){
+        new CompositeDisposable().add(requestInterface.getDSKhuyenMai()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::handleResponsekm, this::handleErrorkm)
+        );
+    }
 
+    private void handleResponsekm(ArrayList<KhuyenMai> khuyenMais) {
+        listKM=khuyenMais;
+        getDSHANGSP();
+    }
+
+    private void handleErrorkm(Throwable throwable) {
+        //       Toast.makeText(this, "call km error", Toast.LENGTH_SHORT).show();
+    }
 }

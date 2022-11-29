@@ -93,6 +93,12 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 .centerCrop()
                 .into(holder.ivHinh);
         holder.txtTen.setText(list.get(position).getTenSp());
+        if (list.get(position).getMaKm()!=null){
+            holder.txtgiacu.setText(android.text.Html.fromHtml("<strike>"+list.get(position).getGiacu()+"</strike>"));
+        }else if (list.get(position).getMaKm()==null){
+            holder.txtgiacu.setVisibility(View.GONE);
+        }
+
         holder.txtGia.setText(String.valueOf(list.get(position).getGia()));
         holder.btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,13 +167,14 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView ivHinh;
-        TextView txtTen,txtGia;
+        TextView txtTen,txtGia,txtgiacu;
         Button btnDatHang,btngiohang;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivHinh = itemView.findViewById(R.id.ivHinh);
             txtTen = itemView.findViewById(R.id.txtTen);
             txtGia = itemView.findViewById(R.id.txtGia);
+            txtgiacu=itemView.findViewById(R.id.txtGiacu);
             btnDatHang = itemView.findViewById(R.id.btnDatHang);
             btngiohang=itemView.findViewById(R.id.btnthemgiohang);
         }
