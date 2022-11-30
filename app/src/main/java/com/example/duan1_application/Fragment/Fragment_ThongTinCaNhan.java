@@ -41,6 +41,7 @@ import com.bumptech.glide.Glide;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
+import com.example.duan1_application.ChoDuyetActivity;
 import com.example.duan1_application.R;
 import com.example.duan1_application.ShowNotification;
 import com.example.duan1_application.api.ServiceAPI;
@@ -60,7 +61,7 @@ public class Fragment_ThongTinCaNhan extends Fragment {
     ServiceAPI requestInterface;
     ImageView ivAVT,ivsuaname,ivshowavt,ivchonanh;
     TextView txtTen,txtSDT;
-    private Button btncapnhatavt,btnhuycapnhatavt;
+    private Button btncapnhatavt,btnhuycapnhatavt,btnChoDuyet;
     private Uri imagePath;
     private HashMap config = new HashMap();
     private String link;
@@ -74,6 +75,7 @@ public class Fragment_ThongTinCaNhan extends Fragment {
         txtTen = view.findViewById(R.id.txtTen);
         txtSDT = view.findViewById(R.id.txtSdt);
         ivsuaname=view.findViewById(R.id.ivsuaname);
+        btnChoDuyet = view.findViewById(R.id.btnChoDuyet);
         mProgressDialog = new ProgressDialog(getContext());
         mProgressDialog.setMessage("Loading, please wait...");
         requestInterface = new Retrofit.Builder()
@@ -93,6 +95,12 @@ public class Fragment_ThongTinCaNhan extends Fragment {
             @Override
             public void onClick(View view) {
                 ShowDiaLogAvt();
+            }
+        });
+        btnChoDuyet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), ChoDuyetActivity.class));
             }
         });
         return view;

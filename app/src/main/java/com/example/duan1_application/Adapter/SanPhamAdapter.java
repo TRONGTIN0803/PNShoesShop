@@ -38,6 +38,7 @@ import com.example.duan1_application.model.SanPham;
 import com.example.duan1_application.model.Size;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -106,8 +107,11 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
 
 
 
-
-        holder.txtGia.setText(String.valueOf(list.get(position).getGia()));
+        int tien = list.get(position).getGia();
+        Locale locale = new Locale("nv", "VN");
+        NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
+        String tienformat = nf.format(tien);
+        holder.txtGia.setText(tienformat);
 
         holder.btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override

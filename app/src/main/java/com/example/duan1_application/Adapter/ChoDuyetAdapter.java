@@ -15,7 +15,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,6 +25,7 @@ import com.example.duan1_application.R;
 import com.example.duan1_application.api.ServiceAPI;
 import com.example.duan1_application.model.CTHD;
 import com.example.duan1_application.model.HoaDon;
+import com.example.duan1_application.model.ItemClickHuycthd;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.text.NumberFormat;
@@ -38,25 +38,27 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class LichSuAdapter extends RecyclerView.Adapter<LichSuAdapter.ViewHolder>{
-    ServiceAPI requestInterface;
+public class ChoDuyetAdapter extends RecyclerView.Adapter<ChoDuyetAdapter.ViewHolder>{
     private Context context;
     private ArrayList<HoaDon> list;
+    ServiceAPI requestInterface;
+    private ItemClickHuycthd itemClickHuycthd;
     TextView ten,soluong,gia;
     ImageView hinhanh;
     RecyclerView rcldialog;
     Dialog dialog;
     ArrayList<CTHD> listct;
-    public LichSuAdapter(ArrayList<HoaDon> list, Context context) {
+    public ChoDuyetAdapter(ArrayList<HoaDon> list, Context context,ItemClickHuycthd itemClickHuycthd ) {
         this.context = context;
         this.list = list;
+        this.itemClickHuycthd = itemClickHuycthd;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-        View view = inflater.inflate(R.layout.item_lichsu,parent,false);
+        View view = inflater.inflate(R.layout.item_choduyet,parent,false);
         requestInterface = new Retrofit.Builder()
                 .baseUrl(BASE_SERVICE)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -68,21 +70,27 @@ public class LichSuAdapter extends RecyclerView.Adapter<LichSuAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        if (list.get(position).getTrangThai() == 0) {
-            holder.txtTrangThai.setText("Đang sử lý");
-        } else if (list.get(position).getTrangThai() == 1) {
+        if (list.get(position).getTrangThai()==0){
+            holder.txtTrangThai.setText("Đang chờ duyệt");
+        }else if(list.get(position).getTrangThai()==1){
             holder.txtTrangThai.setText("Đã duyệt");
-        } else if (list.get(position).getTrangThai() == -1) {
+        }else if(list.get(position).getTrangThai()==-1){
             holder.txtTrangThai.setText("Đã hủy đơn hàng");
         }
-        holder.txtSdt.setText(list.get(position).getSdt());
-        holder.txtDiaChi.setText(list.get(position).getDiachi());
-        holder.txtNgay.setText(list.get(position).getNgayHd());
+        holder.txtSdtCho.setText(list.get(position).getSdt());
+        holder.txtDiaChiCho.setText(list.get(position).getDiachi());
+        holder.txtNgayCho.setText(list.get(position).getNgayHd());
         int tien = list.get(position).getTriGia();
         Locale locale = new Locale("nv", "VN");
         NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
         String tienformat = nf.format(tien);
-        holder.txtGiaTri.setText(tienformat);
+        holder.txtGiaTriCho.setText(tienformat);
+        holder.btnHuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemClickHuycthd.Itemclickxoacthd(list.get(holder.getAdapterPosition()));
+            }
+        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,20 +100,23 @@ public class LichSuAdapter extends RecyclerView.Adapter<LichSuAdapter.ViewHolder
         });
     }
 
+
     @Override
     public int getItemCount() {
         return list.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView txtTrangThai,txtSdt,txtDiaChi,txtNgay,txtGiaTri;
+        TextView txtTrangThai,txtSdtCho,txtDiaChiCho,txtNgayCho,txtGiaTriCho;
+        Button btnHuy;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtTrangThai = itemView.findViewById(R.id.txtTrangThai);
-            txtSdt = itemView.findViewById(R.id.txtSdt);
-            txtDiaChi = itemView.findViewById(R.id.txtDiaChi);
-            txtNgay= itemView.findViewById(R.id.txtNgay);
-            txtGiaTri = itemView.findViewById(R.id.txtGiaTri);
+            txtTrangThai = itemView.findViewById(R.id.txtTrangThaiCho);
+            txtSdtCho = itemView.findViewById(R.id.txtSdtCho);
+            txtDiaChiCho = itemView.findViewById(R.id.txtDiaChiCho);
+            txtNgayCho = itemView.findViewById(R.id.txtNgayCho);
+            txtGiaTriCho = itemView.findViewById(R.id.txtGiaTriCho);
+            btnHuy = itemView.findViewById(R.id.btnHuy);
         }
     }
     public void showdialog(int mahd){

@@ -26,7 +26,7 @@
                 android:text="Số điện thoại :"
                 />
             <TextView
-                android:id="@+id/txtSdt"
+                android:id="@+id/txtSdtCho"
                 android:textSize="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 android:text="Địa chỉ :"
                 />
             <TextView
-                android:id="@+id/txtDiaChi"
+                android:id="@+id/txtDiaChiCho"
                 android:textSize="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                 />
 
             <TextView
-                android:id="@+id/txtNgay"
+                android:id="@+id/txtNgayCho"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -78,23 +78,28 @@
 
         </LinearLayout>
 
+            <TextView
+                android:id="@+id/txtGiaTriCho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.000.000"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:textColor="#40bFFF"
+                android:layout_marginTop="4dp"
+                android:layout_gravity="right"/>
         <TextView
-            android:id="@+id/txtGiaTri"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1.000.000"
-            android:textSize="24dp"
-            android:textStyle="bold"
-            android:textColor="#40bFFF"
-            android:layout_marginTop="4dp"
-            android:layout_gravity="right"/>
-        <TextView
-            android:id="@+id/txtTrangThai"
+            android:id="@+id/txtTrangThaiCho"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="fdg"
             android:textColor="@color/red"
             android:textSize="24sp"
             android:gravity="center"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnHuy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hủy đơn hàng"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
