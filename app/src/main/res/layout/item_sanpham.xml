@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="15dp"
+        android:padding="8dp"
         android:background="@drawable/edt_login">
         <ImageView
             android:layout_width="120dp"
@@ -19,6 +19,7 @@
             android:src="@mipmap/image1"
             android:layout_gravity="center" />
         <TextView
+            android:gravity="center"
             android:id="@+id/txtTen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,7 +30,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="25dp"
             android:orientation="horizontal"
             android:layout_marginTop="5dp">
             <TextView
@@ -52,6 +53,20 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:background="@drawable/ic_baseline_star_border_24"/>
+
+
+            <TextView
+                android:id="@+id/txtdanhgia"
+                android:layout_width="wrap_content"
+                android:textSize="14dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content"
+                android:text="Đánh giá"
+
+                android:textColor="#40bfff"
+                android:textStyle="italic"
+
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,7 +74,7 @@
             <TextView
                 android:id="@+id/txtGia"
                 android:layout_width="0dp"
-                android:layout_weight="6"
+                android:layout_weight="4"
                 android:layout_height="wrap_content"
                 android:textColor="#40BFFF"
                 android:textSize="16sp"
@@ -75,23 +90,32 @@
                 android:textStyle="bold"
                 android:layout_marginTop="7dp"/>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="8dp">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Đặt hàng"
-            android:id="@+id/btnDatHang"
-            android:background="@drawable/btn_login"
-            android:textColor="@color/white"
-            android:layout_marginTop="5dp"/>
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="giỏ hàng"
-            android:id="@+id/btnthemgiohang"
-            android:background="@drawable/btn_login"
-            android:textColor="@color/white"
-            android:layout_marginTop="5dp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDatHang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/btn_login"
+                android:text="Đặt hàng"
+                android:textColor="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnthemgiohang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/btn_login"
+                android:text="giỏ hàng"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -49,6 +49,7 @@
             android:layout_marginLeft="20dp"
             android:layout_gravity="center" />
         <EditText
+
             android:id="@+id/edtsoLuonggiohang"
             android:layout_width="70dp"
             android:layout_height="50dp"
@@ -73,7 +74,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Them vao gio hang"
+        android:text="Thêm vào giỏ hàng"
         android:id="@+id/btnthemgiohangDiaLog"
         android:layout_marginTop="10dp"
         android:background="@drawable/btn_login"

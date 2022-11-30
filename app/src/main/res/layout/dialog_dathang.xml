@@ -4,15 +4,16 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_white_conner_16dp"
     android:orientation="vertical"
+    android:layout_margin="16dp"
     >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dặt Hàng"
+        android:text="Đặt Hàng"
         android:textSize="32dp"
         android:gravity="center"
-        android:textColor="@color/yellow"
+        android:textColor="@color/white"
         android:background="@drawable/bg_blue_conner_topleft_topright_16dp"/>
     <TextView
         android:layout_width="match_parent"
@@ -22,6 +23,7 @@
         android:textColor="@color/black"
         android:textSize="22dp"/>
     <EditText
+        android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_gray_edittext_conner_16dp"
@@ -36,6 +38,7 @@
         android:textColor="@color/black"
         android:textSize="22dp"/>
     <EditText
+        android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_gray_edittext_conner_16dp"
@@ -45,14 +48,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="3"
+            android:layout_marginLeft="16dp"
+            android:layout_width="27dp"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:text="Tổng giá: "
-            android:padding="20dp"
             android:textColor="@color/black"
-            android:textSize="22dp"/>
+            android:textSize="22dp" />
+
         <TextView
             android:layout_width="0dp"
             android:layout_weight="6"
@@ -64,7 +69,8 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:id="@+id/btndathangthanhtoan"
         android:background="@drawable/bg_yellow_conner_16dp"

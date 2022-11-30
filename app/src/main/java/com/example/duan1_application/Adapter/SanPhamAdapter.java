@@ -98,8 +98,17 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         }else if (list.get(position).getMaKm()==null){
             holder.txtgiacu.setVisibility(View.GONE);
         }
+//xin 3 hàng
+        String x="Đánh giá";
+        String html="<a href=\\\"...\\\">"+ x +"</a>";
+        holder.txtdanhgia.setText(android.text.Html.fromHtml(html));
+
+
+
+
 
         holder.txtGia.setText(String.valueOf(list.get(position).getGia()));
+
         holder.btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,7 +176,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView ivHinh;
-        TextView txtTen,txtGia,txtgiacu;
+        TextView txtTen,txtGia,txtgiacu,txtdanhgia;
         Button btnDatHang,btngiohang;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -177,6 +186,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
             txtgiacu=itemView.findViewById(R.id.txtGiacu);
             btnDatHang = itemView.findViewById(R.id.btnDatHang);
             btngiohang=itemView.findViewById(R.id.btnthemgiohang);
+            txtdanhgia=itemView.findViewById(R.id.txtdanhgia);
         }
     }
     private void showDiaLog(SanPham sanPham,int x){
