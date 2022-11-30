@@ -16,15 +16,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Đánh giá" />
-
-    <ImageView
+    <TextView
+        android:textSize="25dp"
+        android:gravity="center"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/red"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:src="@mipmap/image1" />
+        android:layout_height="wrap_content"
+        android:id="@+id/txttensanpham"/>
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@mipmap/image1"
+        android:layout_gravity="center"
+        android:id="@+id/ivsanpham"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvComment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="300dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:hint="Binh Luan"
+            android:padding="8dp"
+            android:background="@drawable/bg_gray_edittext_conner_16dp"
+            android:id="@+id/edtcomment"/>
+<!--        <ImageView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="2"-->
+<!--            android:padding="8dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_baseline_send_24"-->
+<!--            android:id="@+id/ivsendcomment"/>-->
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:src="@drawable/ic_baseline_send_24"
+            android:backgroundTint="@color/white"
+            android:id="@+id/btnsendcmt"/>
+    </LinearLayout>
 
 </LinearLayout>

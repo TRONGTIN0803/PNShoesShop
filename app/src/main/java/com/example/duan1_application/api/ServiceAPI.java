@@ -1,6 +1,7 @@
 package com.example.duan1_application.api;
 
 import com.example.duan1_application.model.CTHD;
+import com.example.duan1_application.model.Comment;
 import com.example.duan1_application.model.HangSP;
 import com.example.duan1_application.model.HoaDon;
 import com.example.duan1_application.model.Khachhang;
@@ -49,6 +50,12 @@ public interface ServiceAPI {
     @GET("api/getDSKhuyenMai")
     Observable<ArrayList<KhuyenMai>>getDSKhuyenMai();
 
+    @GET("api/getDSComment")
+    Observable<ArrayList<Comment>>getdscomment(@Query("masp")int masp);
+
+    @GET("api/getSanPhamtheoMa")
+    Observable<SanPham>getsanpham(@Query("masp")int masp);
+
 
 
 
@@ -84,4 +91,7 @@ public interface ServiceAPI {
 
     @POST("api/thanhtoangiohang")
     Observable<Integer>thanhtoanGioHang(@Body HoaDon hoaDon);
+
+    @POST("api/ThemComment")
+    Observable<Integer>themCmt(@Body Comment comment);
 }

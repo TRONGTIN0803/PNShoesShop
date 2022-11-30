@@ -5,9 +5,11 @@ import static com.example.duan1_application.api.ServiceAPI.BASE_SERVICE;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.duan1_application.CommentActivity;
 import com.example.duan1_application.R;
 import com.example.duan1_application.api.ServiceAPI;
 import com.example.duan1_application.model.CTHD;
@@ -103,6 +106,18 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         String x="Đánh giá";
         String html="<a href=\\\"...\\\">"+ x +"</a>";
         holder.txtdanhgia.setText(android.text.Html.fromHtml(html));
+
+        holder.txtdanhgia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context,CommentActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putInt("masp",list.get(holder.getAdapterPosition()).getMaSp());
+                bundle.putInt("makh",makh);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
 
 
 
