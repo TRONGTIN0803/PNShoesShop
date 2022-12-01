@@ -23,13 +23,13 @@
         android:textSize="24dp"
         android:gravity="center"
         android:fontFamily="@font/poppins_medium"
-        android:textColor="#FF9800"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txttensanpham"/>
     <ImageView
         android:layout_margin="5dp"
-        android:layout_width="190dp"
+        android:layout_width="240dp"
         android:layout_height="120dp"
         android:src="@mipmap/image1"
         android:layout_gravity="center"
@@ -41,18 +41,20 @@
         android:background="#40bfff"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:padding="8dp"
-        android:layout_marginTop="2dp"
         android:id="@+id/rcvComment"
         android:layout_width="match_parent"
-        android:layout_height="300dp"/>
+        android:layout_height="300dp"
+        android:layout_marginTop="2dp"
+        android:padding="8dp"
+         />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="8"
+            android:layout_weight="6"
             android:hint="Thêm bình luận ..."
             android:layout_margin="8dp"
             android:padding="8dp"
@@ -66,10 +68,11 @@
 <!--            android:src="@drawable/ic_baseline_send_24"-->
 <!--            android:id="@+id/ivsendcomment"/>-->
         <ImageButton
+            android:layout_gravity="center"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:src="@drawable/ic_baseline_send_24"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@mipmap/send_message"
             android:backgroundTint="@color/white"
             android:id="@+id/btnsendcmt"/>
     </LinearLayout>

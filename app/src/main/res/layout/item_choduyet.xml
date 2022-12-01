@@ -28,6 +28,8 @@
             android:orientation="horizontal"
             android:padding="12dp">
             <TextView
+                android:fontFamily="@font/poppins_medium"
+
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:layout_width="wrap_content"
@@ -35,6 +37,8 @@
                 android:text="Số điện thoại :"
                 />
             <TextView
+                android:fontFamily="@font/poppins_medium"
+
                 android:id="@+id/txtSdtCho"
                 android:textSize="18dp"
                 android:layout_width="wrap_content"
@@ -49,6 +53,8 @@
             android:orientation="horizontal"
             android:padding="12dp">
             <TextView
+                android:fontFamily="@font/poppins_medium"
+
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:layout_width="wrap_content"
@@ -56,6 +62,8 @@
                 android:text="Địa chỉ :"
                 />
             <TextView
+                android:fontFamily="@font/poppins_medium"
+
                 android:id="@+id/txtDiaChiCho"
                 android:textSize="18dp"
                 android:layout_width="wrap_content"
@@ -70,6 +78,8 @@
             android:orientation="horizontal"
             android:padding="12dp">
             <TextView
+                android:fontFamily="@font/poppins_medium"
+
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:layout_width="wrap_content"
@@ -78,6 +88,8 @@
                 />
 
             <TextView
+                android:fontFamily="@font/poppins_medium"
+
                 android:id="@+id/txtNgayCho"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -88,6 +100,8 @@
         </LinearLayout>
 
             <TextView
+                android:fontFamily="@font/poppins_medium"
+
                 android:id="@+id/txtGiaTriCho"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -100,6 +114,8 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnHuy"
+            android:fontFamily="@font/poppins_medium"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hủy đơn hàng"/>

@@ -29,6 +29,8 @@
             android:orientation="horizontal"
             android:padding="12dp">
             <TextView
+                android:fontFamily="@font/poppins_medium"
+
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:layout_width="wrap_content"
@@ -36,6 +38,8 @@
                 android:text="Số điện thoại :"
                 />
             <TextView
+                android:fontFamily="@font/poppins_medium"
+
                 android:id="@+id/txtSdt"
                 android:textSize="18dp"
                 android:layout_width="wrap_content"
@@ -50,6 +54,8 @@
             android:orientation="horizontal"
             android:padding="12dp">
             <TextView
+                android:fontFamily="@font/poppins_medium"
+
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:layout_width="wrap_content"
@@ -57,6 +63,8 @@
                 android:text="Địa chỉ :"
                 />
             <TextView
+                android:fontFamily="@font/poppins_medium"
+
                 android:id="@+id/txtDiaChi"
                 android:textSize="18dp"
                 android:layout_width="wrap_content"
@@ -71,6 +79,8 @@
             android:orientation="horizontal"
             android:padding="12dp">
             <TextView
+                android:fontFamily="@font/poppins_medium"
+
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:layout_width="wrap_content"
@@ -79,6 +89,8 @@
                 />
 
             <TextView
+                android:fontFamily="@font/poppins_medium"
+
                 android:id="@+id/txtNgay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -89,6 +101,8 @@
         </LinearLayout>
 
         <TextView
+            android:fontFamily="@font/poppins_medium"
+
             android:id="@+id/txtGiaTri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
