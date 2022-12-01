@@ -40,6 +40,7 @@ import com.example.duan1_application.model.ItenClick;
 import com.example.duan1_application.model.Khachhang;
 import com.example.duan1_application.model.SanPham;
 import com.example.duan1_application.model.Size;
+import com.example.duan1_application.model.SuaSoLuong;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.text.NumberFormat;
@@ -65,15 +66,20 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     private SharedPreferences sharedPreferences;
     private int makh;
     private ItenClick itenClick;
+    private SuaSoLuong suaSoLuong;
     int So = 1;
     int soluong;
     String sdt="";
     private Spinner spinner;
-    public SanPhamAdapter(Context context, ArrayList<SanPham> list,ItenClick itenClick) {
+    String masize;
+    int masp;
+    int soLuongSp;
+    public SanPhamAdapter(Context context, ArrayList<SanPham> list,ItenClick itenClick,SuaSoLuong suaSoLuong) {
         this.context = context;
         this.list = list;
         this.listsearch=list;
         this.itenClick=itenClick;
+        this.suaSoLuong = suaSoLuong;
     }
 
     @NonNull
@@ -105,6 +111,8 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         }else if (list.get(position).getMaKm()==null){
             holder.txtgiacu.setVisibility(View.GONE);
         }
+
+
 //xin 3 hàng
         String x="Đánh giá";
         String html="<a href=\\\"...\\\">"+ x +"</a>";
@@ -289,9 +297,9 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 int sol = Integer.parseInt(edtSoLuong.getText().toString());
                 int gia = sanPham.getGia()*sol;
                 HashMap<String,Object> hsm= (HashMap<String, Object>) spinner.getSelectedItem();
-                String masize = (String) hsm.get("masize");
-
-
+                masize = (String) hsm.get("masize");
+                soLuongSp = sol;
+                masp = sanPham.getMaSp();
                 HoaDon hoaDon = new HoaDon(makh,x,SDT,DiaChi,gia,ngay,sanPham.getMaSp(),sol,masize);
                 if (x==0){
                     new CompositeDisposable().add(requestInterface.themHoaDon(hoaDon)
@@ -325,8 +333,10 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
             }
 
             private void handleResponse(Integer integer) {
-                Toast.makeText(context, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
+                Size size = new Size(masp,masize,soLuongSp);
+                suaSoLuong.ItemclickSuaSl(size);
             }
+
         });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

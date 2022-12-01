@@ -46,6 +46,7 @@ import com.example.duan1_application.model.ItenClick;
 import com.example.duan1_application.model.KhuyenMai;
 import com.example.duan1_application.model.SanPham;
 import com.example.duan1_application.model.Size;
+import com.example.duan1_application.model.SuaSoLuong;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.ArrayList;
@@ -116,7 +117,23 @@ public class Frangment_MuaSanPham extends Fragment {
         adapter = new SanPhamAdapter(getContext(), list, new ItenClick() {
             @Override
             public void ItemClick(SanPham sanPham, HoaDon hoaDon) {
-                DialogGioHang(sanPham,hoaDon);
+                DialogGioHang(sanPham, hoaDon);
+            }
+        }, new SuaSoLuong() {
+            @Override
+            public void ItemclickSuaSl(Size size) {
+                new CompositeDisposable().add(requestInterface.suaSoLuong(size)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.io())
+                        .subscribe(this::handleResponseSize, this::handleError)
+                );
+            }
+
+            private void handleError(Throwable throwable) {
+            }
+
+            private void handleResponseSize(Integer integer) {
+                Toast.makeText(getContext(), "Dat hang thanh cong", Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView.setAdapter(adapter);

@@ -97,4 +97,10 @@ public interface ServiceAPI {
 
     @POST("api/ThemComment")
     Observable<Integer>themCmt(@Body Comment comment);
+
+    @POST("api/suaSoluong")
+    Observable<Integer> suaSoLuong(@Body Size size);
+
+    @POST("api/suaSoluongkhiHoanDon")
+    Observable<Integer> suaSoluongkhiHoanDon(@Body Size size);
 }
