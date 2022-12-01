@@ -12,6 +12,8 @@
         android:id="@+id/ivHinhDiaLog"
         android:layout_gravity="center"/>
     <TextView
+        android:fontFamily="@font/poppins_medium"
+
         android:id="@+id/txtTenDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,6 +23,8 @@
         android:layout_marginTop="10dp"/>
 
     <TextView
+        android:fontFamily="@font/poppins_medium"
+
         android:id="@+id/txtGiaDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,6 +34,8 @@
         android:layout_marginTop="10dp"/>
 
     <EditText
+        android:fontFamily="@font/poppins_medium"
+
         android:id="@+id/edtsdt"
         android:layout_width="match_parent"
         android:layout_height="52dp"
@@ -41,6 +47,7 @@
         android:layout_marginTop="10dp"/>
 
     <EditText
+        android:fontFamily="@font/poppins_medium"
 
         android:id="@+id/edtDiachi"
         android:layout_width="match_parent"
@@ -57,6 +64,8 @@
         android:layout_marginTop="10dp"
         >
         <TextView
+
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Số lượng:"
@@ -65,8 +74,8 @@
             android:textSize="20sp" />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSoTru"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
             android:text="-"
             android:background="@drawable/botron_btntangsoluong"
             android:textColor="@color/black"
@@ -75,8 +84,8 @@
         <EditText
             android:layout_margin="8dp"
             android:id="@+id/edtsoLuong"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
             android:background="@drawable/botron_btntangsoluong"
             android:text="1"
             android:gravity="center"
@@ -84,8 +93,8 @@
             android:paddingLeft="5dp" />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSoCong"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
             android:text="+"
             android:background="@drawable/botron_btntangsoluong"
             android:textColor="@color/black"
@@ -122,9 +131,11 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:fontFamily="@font/poppins_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Đặt hàng"
+        android:textSize="20dp"
         android:id="@+id/btnDatHangDiaLog"
         android:layout_marginTop="10dp"
         android:background="@drawable/btn_login"
