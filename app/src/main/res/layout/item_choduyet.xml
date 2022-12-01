@@ -12,6 +12,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp">
+        <TextView
+            android:fontFamily="@font/poppins_medium"
+            android:id="@+id/txtTrangThaiCho"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="fdg"
+            android:textColor="#E91E63"
+            android:textSize="24sp"
+            android:gravity="center"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -88,14 +97,7 @@
                 android:textColor="#40bFFF"
                 android:layout_marginTop="4dp"
                 android:layout_gravity="right"/>
-        <TextView
-            android:id="@+id/txtTrangThaiCho"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="fdg"
-            android:textColor="@color/red"
-            android:textSize="24sp"
-            android:gravity="center"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnHuy"
             android:layout_width="match_parent"

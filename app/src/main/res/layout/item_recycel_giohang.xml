@@ -4,25 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/bg_light"
         android:layout_marginTop="16sp"
+        android:background="@drawable/bg_light"
+        android:orientation="vertical"
         android:padding="16dp">
+        <ImageView
+            android:id="@+id/ivxoaitemgiohang"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="right"
+            android:src="@mipmap/x" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/ivHinhSP"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginRight="12sp"
-            android:src="@mipmap/image1"/>
 
+
+            <ImageView
+                android:id="@+id/ivHinhSP"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="12sp"
+                android:src="@mipmap/image1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -32,67 +47,67 @@
                     android:id="@+id/txtTenSP"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
                     android:fontFamily="@font/poppins_bold"
-                    android:textSize="18sp"
-                    android:text="Nike Air Zoom Pegasus 36 Miami" />
+                    android:text="Nike Air Zoom Pegasus 36 Miami"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/txtGiaSP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#40BFFF"
-                        android:text="2000"
+                        android:layout_weight="1"
                         android:fontFamily="@font/poppins_bold"
-                        android:textSize="16sp"
-                        android:layout_weight="1"/>
+                        android:text="2000"
+                        android:textColor="#40BFFF"
+                        android:textSize="16sp" />
+
                     <TextView
                         android:id="@+id/txtSoLuong"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#03A9F4"
-                        android:text="2"
+                        android:layout_weight="1"
                         android:fontFamily="@font/poppins_bold"
-                        android:textSize="16sp"
-                        android:layout_weight="1"/>
+                        android:text="2"
+                        android:textColor="#03A9F4"
+                        android:textSize="16sp" />
                 </LinearLayout>
-<!--                <TextView-->
-<!--                    android:id="@+id/txtTongGia"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textColor="#03A9F4"-->
-<!--                    android:text="2"-->
-<!--                    android:fontFamily="@font/poppins_bold"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:layout_marginTop="5dp"/>-->
-<!--                <TextView-->
-<!--                    android:id="@+id/txtTrangThai"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textColor="#F44336"-->
-<!--                    android:text="2"-->
-<!--                    android:fontFamily="@font/poppins_bold"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:layout_marginTop="5dp"/>-->
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_delete_forever_24"
-                    android:layout_gravity="end"
-                    android:id="@+id/ivxoaitemgiohang"/>
+                <!--                <TextView-->
+                <!--                    android:id="@+id/txtTongGia"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:textColor="#03A9F4"-->
+                <!--                    android:text="2"-->
+                <!--                    android:fontFamily="@font/poppins_bold"-->
+                <!--                    android:textSize="16sp"-->
+                <!--                    android:layout_marginTop="5dp"/>-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/txtTrangThai"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:textColor="#F44336"-->
+                <!--                    android:text="2"-->
+                <!--                    android:fontFamily="@font/poppins_bold"-->
+                <!--                    android:textSize="16sp"-->
+                <!--                    android:layout_marginTop="5dp"/>-->
+
             </LinearLayout>
+
         </LinearLayout>
-<!--        <androidx.appcompat.widget.AppCompatButton-->
-<!--            android:id="@+id/btnHuy"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Hủy đơn"-->
-<!--            android:background="@drawable/btn_login"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:layout_marginTop="10dp"/>-->
+
+        <!--        <androidx.appcompat.widget.AppCompatButton-->
+        <!--            android:id="@+id/btnHuy"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Hủy đơn"-->
+        <!--            android:background="@drawable/btn_login"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:layout_marginTop="10dp"/>-->
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -6,21 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".CommentActivity"
     android:orientation="vertical"
-    android:padding="8dp"
+
     >
     <TextView
+        android:background="#40bfff"
 
         android:textSize="28dp"
         android:gravity="center"
         android:fontFamily="@font/poppins_medium"
-        android:textColor="#40BFFF"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Đánh giá" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="#40bfff"/>
+
     <TextView
         android:textSize="24dp"
         android:gravity="center"
@@ -30,17 +28,20 @@
         android:layout_height="wrap_content"
         android:id="@+id/txttensanpham"/>
     <ImageView
-        android:layout_width="120dp"
+        android:layout_margin="5dp"
+        android:layout_width="190dp"
         android:layout_height="120dp"
         android:src="@mipmap/image1"
         android:layout_gravity="center"
         android:id="@+id/ivsanpham"/>
     <View
+        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="1dp"
         android:background="#40bfff"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:padding="8dp"
         android:layout_marginTop="2dp"
         android:id="@+id/rcvComment"
         android:layout_width="match_parent"
@@ -53,6 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="8"
             android:hint="Thêm bình luận ..."
+            android:layout_margin="8dp"
             android:padding="8dp"
             android:background="@drawable/bg_gray_edittext_conner_16dp"
             android:id="@+id/edtcomment"/>

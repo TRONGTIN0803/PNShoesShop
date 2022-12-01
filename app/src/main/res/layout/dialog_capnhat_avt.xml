@@ -24,9 +24,9 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="-40dp"
         android:id="@+id/ivchonanh"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/ic_baseline_photo_camera_24" />
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/add_image" />
 
     <LinearLayout
         android:layout_width="match_parent"

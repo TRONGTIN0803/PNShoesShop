@@ -4,23 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/ivavtngcmt"/>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="20dp"
-        android:layout_height="30dp"
-        android:id="@+id/ivavtngcmt"/>
+        <TextView
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txttenngcmt"/>
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txttenngcmt"/>
+        android:id="@+id/txtndcmt"
+        android:paddingLeft="10dp"
+        android:textSize="16dp"
+        android:textColor="@color/black"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtngaycmt"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtndcmt"/>
+
 
 </LinearLayout>
