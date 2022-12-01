@@ -10,7 +10,7 @@ public class CTHD implements Serializable {
   private String hinhanh;
   private int maHd;
   private String tenSp;
-  private int masp;
+  private int maSp;
   private int soluong;
   private String masize;
   private int gia;
@@ -21,7 +21,7 @@ public class CTHD implements Serializable {
 
   public CTHD(int mahd, int masp, int soluong, String masize) {
     this.maHd = mahd;
-    this.masp = masp;
+    this.maSp = masp;
     this.soluong = soluong;
     this.masize = masize;
   }
@@ -75,11 +75,11 @@ public class CTHD implements Serializable {
   }
 
   public int getMasp() {
-    return masp;
+    return maSp;
   }
 
   public void setMasp(int masp) {
-    this.masp = masp;
+    this.maSp = masp;
   }
 
   public String getMasize() {

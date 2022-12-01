@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
@@ -65,6 +66,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     private int makh;
     private ItenClick itenClick;
     int So = 1;
+    int soluong;
     String sdt="";
     private Spinner spinner;
     public SanPhamAdapter(Context context, ArrayList<SanPham> list,ItenClick itenClick) {
@@ -98,6 +100,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 .into(holder.ivHinh);
         holder.txtTen.setText(list.get(position).getTenSp());
         if (list.get(position).getMaKm()!=null){
+            holder.txtgiacu.setVisibility(View.VISIBLE);
             holder.txtgiacu.setText(android.text.Html.fromHtml("<strike>"+list.get(position).getGiacu()+"</strike>"));
         }else if (list.get(position).getMaKm()==null){
             holder.txtgiacu.setVisibility(View.GONE);
@@ -105,19 +108,19 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
 //xin 3 hàng
         String x="Đánh giá";
         String html="<a href=\\\"...\\\">"+ x +"</a>";
-        holder.txtdanhgia.setText(android.text.Html.fromHtml(html));
+//        holder.txtdanhgia.setText(android.text.Html.fromHtml(html));
 
-        holder.txtdanhgia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(context,CommentActivity.class);
-                Bundle bundle=new Bundle();
-                bundle.putInt("masp",list.get(holder.getAdapterPosition()).getMaSp());
-                bundle.putInt("makh",makh);
-                intent.putExtras(bundle);
-                context.startActivity(intent);
-            }
-        });
+//        holder.txtdanhgia.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent=new Intent(context,CommentActivity.class);
+//                Bundle bundle=new Bundle();
+//                bundle.putInt("masp",list.get(holder.getAdapterPosition()).getMaSp());
+//                bundle.putInt("makh",makh);
+//                intent.putExtras(bundle);
+//                context.startActivity(intent);
+//            }
+//        });
 
 
 
@@ -231,10 +234,12 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         spinner = dialog.findViewById(R.id.spinner);
         Button btnSoTru = dialog.findViewById(R.id.btnSoTru);
         Button btnSoCong = dialog.findViewById(R.id.btnSoCong);
+        TextView txtsoluongtheosize=dialog.findViewById(R.id.txtsoluongtheosize);
 
         DemoCallAPI(sanPham.getMaSp());
 
         edtsdt.setText(sdt);
+
 
         edtSoLuong.setText(""+So);
         if (x==-2){
@@ -285,6 +290,8 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 int gia = sanPham.getGia()*sol;
                 HashMap<String,Object> hsm= (HashMap<String, Object>) spinner.getSelectedItem();
                 String masize = (String) hsm.get("masize");
+
+
                 HoaDon hoaDon = new HoaDon(makh,x,SDT,DiaChi,gia,ngay,sanPham.getMaSp(),sol,masize);
                 if (x==0){
                     new CompositeDisposable().add(requestInterface.themHoaDon(hoaDon)
@@ -321,6 +328,20 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 Toast.makeText(context, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
             }
         });
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                HashMap<String,Object> hsm= (HashMap<String, Object>) spinner.getSelectedItem();
+                soluong= (int) hsm.get("soluong");
+                txtsoluongtheosize.setText(String.valueOf(soluong));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         dialog.show();
 
     }
@@ -352,6 +373,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
             HashMap<String, Object> hs=new HashMap<>();
             hs.put("masize",size.getMasize());
             hs.put("sosize",size.getSosize());
+            hs.put("soluong",size.getSoluong());
             listHM.add(hs);
         }
         return listHM;

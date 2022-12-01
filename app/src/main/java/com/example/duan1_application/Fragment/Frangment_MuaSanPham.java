@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -188,6 +189,7 @@ public class Frangment_MuaSanPham extends Fragment {
         spinner = dialog.findViewById(R.id.spinnergiohang);
         Button btnSoTru = dialog.findViewById(R.id.btnSoTru);
         Button btnSoCong = dialog.findViewById(R.id.btnSoCong);
+        TextView txtsoluongtheosizegiohnag=dialog.findViewById(R.id.txtsoluongtheosizegiohang);
 
         CallAPISize(sanPham.getMaSp());
         txtTengiohang.setText(sanPham.getTenSp());
@@ -253,6 +255,19 @@ public class Frangment_MuaSanPham extends Fragment {
                 Toast.makeText(getContext(), "Tin Ngu!", Toast.LENGTH_SHORT).show();
             }
         });
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                HashMap<String,Object> hsm= (HashMap<String, Object>) spinner.getSelectedItem();
+                soluong= (int) hsm.get("soluong");
+                txtsoluongtheosizegiohnag.setText(String.valueOf(soluong));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         dialog.show();
     }
     private void CallAPISize(int masp) {
@@ -281,6 +296,7 @@ public class Frangment_MuaSanPham extends Fragment {
             HashMap<String, Object> hs=new HashMap<>();
             hs.put("masize",size.getMasize());
             hs.put("sosize",size.getSosize());
+            hs.put("soluong",size.getSoluong());
             listHM.add(hs);
         }
         return listHM;

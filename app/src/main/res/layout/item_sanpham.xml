@@ -55,18 +55,17 @@
                 android:background="@drawable/ic_baseline_star_border_24"/>
 
 
-            <TextView
-                android:id="@+id/txtdanhgia"
-                android:layout_width="wrap_content"
-                android:textSize="14dp"
-                android:layout_marginLeft="20dp"
-                android:layout_height="wrap_content"
-                android:text="Đánh giá"
+<!--            <TextView-->
+<!--                android:id="@+id/txtdanhgia"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:textSize="14dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Đánh giá"-->
+<!--                android:textColor="#40bfff"-->
+<!--                android:textStyle="italic"-->
 
-                android:textColor="#40bfff"
-                android:textStyle="italic"
-
-                />
+<!--                />-->
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

@@ -9,7 +9,6 @@ public class Size implements Serializable {
   private int maSp;
   private int sosize;
   private String masize;
-
   private int soluong;
 
   public int getMaSp() {

@@ -47,6 +47,9 @@ public interface ServiceAPI {
     @GET("api/getSoluongSizeSP")
     Observable<ArrayList<Size>>getdssizesp(@Query("masp")int masp);
 
+    @GET("api/getSoluongSizesp")
+    Observable<ArrayList<Size>>getdssizesphaha(@Query("masp")int masp);
+
     @GET("api/getDSKhuyenMai")
     Observable<ArrayList<KhuyenMai>>getDSKhuyenMai();
 
