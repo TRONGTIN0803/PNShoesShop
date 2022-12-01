@@ -9,7 +9,6 @@ import android.os.Bundle;
 import com.example.duan1_application.Fragment.Fragment_GioHang;
 import com.example.duan1_application.Fragment.Fragment_LichSu;
 import com.example.duan1_application.Fragment.Fragment_ThongTinCaNhan;
-import com.example.duan1_application.Fragment.Fragment_XemLichSu;
 import com.example.duan1_application.Fragment.Frangment_MuaSanPham;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

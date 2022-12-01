@@ -30,19 +30,19 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Fragment_XemLichSu extends Fragment {
+public class Fragment_XemLichSuDuyet extends Fragment {
     RecyclerView recyclerView;
     ServiceAPI requestInterface;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_xemlichsu,container,false);
+        View view=inflater.inflate(R.layout.fragment_xemlichsu1,container,false);
         recyclerView = view.findViewById(R.id.recyclerViewLichSu);
         DemoCallAPI();
         return view;
     }
     private void DemoCallAPI() {
-        ShowNotification.showProgressDialog(getContext(),"Vui Lòng Chờ...");
+        //ShowNotification.showProgressDialog(getContext(),"Vui Lòng Chờ...");
         SharedPreferences sharedPreferences= getActivity().getSharedPreferences("KHACHHANG", Context.MODE_PRIVATE);
         int maKH =sharedPreferences.getInt("makh",-1);
         requestInterface = new Retrofit.Builder()
@@ -50,7 +50,7 @@ public class Fragment_XemLichSu extends Fragment {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(ServiceAPI.class);
-        new CompositeDisposable().add(requestInterface.getDSHoaDontheoTrangThaiKH(maKH,-1)
+        new CompositeDisposable().add(requestInterface.getDSHoaDontheoTrangThaiKH(maKH,1)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError)
@@ -65,9 +65,8 @@ public class Fragment_XemLichSu extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         LichSuAdapter adapter = new LichSuAdapter(listHoaDon,getContext());
-
         recyclerView.setAdapter(adapter);
-        ShowNotification.dismissProgressDialog();
+        //ShowNotification.dismissProgressDialog();
     }
 
 }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,11 +16,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.duan1_application.Adapter.LichSuAdapter;
+import com.example.duan1_application.Adapter.ChoDuyetAdapter;
 import com.example.duan1_application.R;
 import com.example.duan1_application.ShowNotification;
 import com.example.duan1_application.api.ServiceAPI;
 import com.example.duan1_application.model.HoaDon;
+import com.example.duan1_application.model.ItemClickHuycthd;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.ArrayList;
@@ -30,14 +32,14 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Fragment_XemLichSu1 extends Fragment {
+public class Fragment_XemLichSuCho extends Fragment {
     RecyclerView recyclerView;
     ServiceAPI requestInterface;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_xemlichsu1,container,false);
-        recyclerView = view.findViewById(R.id.recyclerViewLichSu);
+        View view=inflater.inflate(R.layout.fragment_xemlichsucho,container,false);
+        recyclerView = view.findViewById(R.id.recyclerViewChoDuyet);
         DemoCallAPI();
         return view;
     }
@@ -50,7 +52,7 @@ public class Fragment_XemLichSu1 extends Fragment {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(ServiceAPI.class);
-        new CompositeDisposable().add(requestInterface.getDSHoaDontheoTrangThaiKH(maKH,1)
+        new CompositeDisposable().add(requestInterface.getDSHoaDontheoTrangThaiKH(maKH,0)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleError)
@@ -64,7 +66,28 @@ public class Fragment_XemLichSu1 extends Fragment {
         ArrayList<HoaDon> listHoaDon = hoaDons;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        LichSuAdapter adapter = new LichSuAdapter(listHoaDon,getContext());
+        ChoDuyetAdapter adapter = new ChoDuyetAdapter(listHoaDon, getContext(), new ItemClickHuycthd() {
+            @Override
+            public void Itemclickxoacthd(HoaDon hoaDon) {
+                int maHd = hoaDon.getMaHd();
+                int trangthai = -1;
+                HoaDon hoaDon1 = new HoaDon(maHd,trangthai);
+                new CompositeDisposable().add(requestInterface.thayDoiTrangThai(hoaDon1)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(Schedulers.io())
+                        .subscribe(this::handleResponse, this::handleError)
+                );
+            }
+
+            private void handleError(Throwable throwable) {
+            }
+
+            private void handleResponse(Integer integer) {
+                Toast.makeText(getContext(), "Hủy đơn thành công", Toast.LENGTH_SHORT).show();
+                DemoCallAPI();
+            }
+        });
+
         recyclerView.setAdapter(adapter);
         ShowNotification.dismissProgressDialog();
     }

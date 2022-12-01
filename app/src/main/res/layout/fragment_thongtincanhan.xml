@@ -82,11 +82,6 @@
                 android:gravity="right"
                 android:paddingRight="10dp" />
         </LinearLayout>
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnChoDuyet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Đơn đang chờ duyệt"/>
     </LinearLayout>
 
 </LinearLayout>

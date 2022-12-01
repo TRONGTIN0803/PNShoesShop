@@ -29,10 +29,13 @@ public class Fragment_LichSu extends Fragment {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                 if (position==0){
-                    tab.setText("Đơn đã hủy");
-                }else {
+                    tab.setText("Đơn chờ duyệt");
+                }else if (position == 1){
                     tab.setText("Đơn đã duyệt");
+                }else{
+                    tab.setText("Đơn đã hủy");
                 }
+
             }
         }).attach();
         return view;
