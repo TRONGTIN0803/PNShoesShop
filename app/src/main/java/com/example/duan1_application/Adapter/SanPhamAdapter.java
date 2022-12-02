@@ -105,9 +105,13 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 .centerCrop()
                 .into(holder.ivHinh);
         holder.txtTen.setText(list.get(position).getTenSp());
+        float tien1 = list.get(position).getGiacu();
+        Locale locale1 = new Locale("nv", "VN");
+        NumberFormat nf1 = NumberFormat.getCurrencyInstance(locale1);
+        String tienformat1 = nf1.format(tien1);
         if (list.get(position).getMaKm()!=null){
             holder.txtgiacu.setVisibility(View.VISIBLE);
-            holder.txtgiacu.setText(android.text.Html.fromHtml("<strike>"+list.get(position).getGiacu()+"</strike>"));
+            holder.txtgiacu.setText(android.text.Html.fromHtml("<strike>"+tienformat1+"</strike>"));
         }else if (list.get(position).getMaKm()==null){
             holder.txtgiacu.setVisibility(View.GONE);
         }
