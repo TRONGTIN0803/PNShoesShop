@@ -34,6 +34,7 @@ import com.example.duan1_application.api.ServiceAPI;
 import com.example.duan1_application.model.CTHD;
 import com.example.duan1_application.model.HoaDon;
 import com.example.duan1_application.model.ItemClickxoacthd;
+import com.example.duan1_application.model.KhuyenMai;
 import com.example.duan1_application.model.SanPham;
 import com.example.duan1_application.model.Size;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -54,7 +55,8 @@ public class Fragment_GioHang extends Fragment {
     private TextView txtgiagiohang;
     private Button btnthanhtoan;
     String sdt = "";
-    int giasp, soluongsp, mahoadon, mahd, giathanhtoan;
+    int giasp, soluongsp, mahoadon, mahd, giathanhtoan,masp;
+    private ArrayList<KhuyenMai>listKM;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_giohang, container, false);
@@ -116,10 +118,13 @@ public class Fragment_GioHang extends Fragment {
         GioHangAdapter adapter = new GioHangAdapter(list, getContext(), new ItemClickxoacthd() {
             @Override
             public void Itemclickxoacthd(CTHD cthd) {
+                GetDSKM();
+                GetSanPham(cthd.getMasp());
                 int macthd = cthd.getMacthd();
-                giasp = cthd.getGia();
+            //    giasp = cthd.getGia();
                 soluongsp = cthd.getSoluong();
                 mahoadon = cthd.getMahd();
+                masp=cthd.getMasp();
                 CTHD cthd1 = new CTHD(macthd);
                 new CompositeDisposable().add(requestInterface.xoaCTHD(cthd)
                         .observeOn(AndroidSchedulers.mainThread())
@@ -239,6 +244,36 @@ public class Fragment_GioHang extends Fragment {
 
     private void handleResponseSize(Integer integer) {
         Toast.makeText(getContext(), "Đặt Hàng Thành Công!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void GetSanPham(int masp){
+        new CompositeDisposable().add(requestInterface.getsanpham(masp)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::handleResponseSanPham, this::handleError)
+        );
+    }
+
+    private void handleResponseSanPham(SanPham sanPham) {
+        giasp= sanPham.getGia();
+        for (KhuyenMai item:listKM){
+            if (sanPham.getMaKm().equals(item.getMaKm())){
+                float kmne=(sanPham.getGia()*item.getGiaKm())/100;
+                giasp= (int) (sanPham.getGia()-kmne);
+            }
+        }
+    }
+
+    private void GetDSKM(){
+        new CompositeDisposable().add(requestInterface.getDSKhuyenMai()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::handleResponseKM, this::handleError)
+        );
+    }
+
+    private void handleResponseKM(ArrayList<KhuyenMai> khuyenMais) {
+        listKM=khuyenMais;
     }
 
 }
