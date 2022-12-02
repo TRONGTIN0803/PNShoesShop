@@ -175,7 +175,7 @@ public class Fragment_GioHang extends Fragment {
     }
 
     private void handleError(Throwable throwable) {
-        Toast.makeText(getContext(), "Gio hang rong", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Giỏ hàng rổng", Toast.LENGTH_SHORT).show();
         ShowNotification.dismissProgressDialog();
 
     }
@@ -252,7 +252,7 @@ public class Fragment_GioHang extends Fragment {
 
     private void handleResponseSize(Integer integer) {
         Toast.makeText(getContext(), "Đặt Hàng Thành Công!", Toast.LENGTH_SHORT).show();
-
+        DemoCallAPI();
     }
 
 }
