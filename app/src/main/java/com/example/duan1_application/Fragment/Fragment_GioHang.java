@@ -38,7 +38,9 @@ import com.example.duan1_application.model.SanPham;
 import com.example.duan1_application.model.Size;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -99,28 +101,12 @@ public class Fragment_GioHang extends Fragment {
                 .subscribe(this::handleResponsecthd, this::handleErrorcthd)
         );
         mahd = hoaDon.getMaHd();
-        txtgiagiohang.setText(String.valueOf(hoaDon.getTriGia()));
+        int tien = hoaDon.getTriGia();
+        Locale locale = new Locale("nv", "VN");
+        NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
+        String tienformat = nf.format(tien);
+        txtgiagiohang.setText(tienformat);
         giathanhtoan = hoaDon.getTriGia();
-//        btnthanhtoan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                int mahd= hoaDon.getMaHd();
-//                HoaDon hoaDon1=new HoaDon(mahd,0);
-//                new CompositeDisposable().add(requestInterface.thayDoiTrangThai(hoaDon1)
-//                        .observeOn(AndroidSchedulers.mainThread())
-//                        .subscribeOn(Schedulers.io())
-//                        .subscribe(this::handleResponsetdtt, this::handleErrortdtt)
-//                );
-//            }
-//
-//            private void handleResponsetdtt(Integer integer) {
-//                Toast.makeText(getContext(), "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            private void handleErrortdtt(Throwable throwable) {
-//                Toast.makeText(getContext(), "Đặt hàng thất bại!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
     private void handleResponsecthd(ArrayList<CTHD> cthds) {
@@ -216,6 +202,7 @@ public class Fragment_GioHang extends Fragment {
 
             private void handleResponsethanhtoangh(Integer integer) {
                 goiCTHD(mahd);
+                DemoCallAPI();
                 dialog.dismiss();
             }
 
@@ -252,7 +239,6 @@ public class Fragment_GioHang extends Fragment {
 
     private void handleResponseSize(Integer integer) {
         Toast.makeText(getContext(), "Đặt Hàng Thành Công!", Toast.LENGTH_SHORT).show();
-        DemoCallAPI();
     }
 
 }

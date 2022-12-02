@@ -17,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtgiagiohang"
-            android:text="gia"
             android:textSize="32dp"
             android:textStyle="bold"
             android:textColor="@color/red"

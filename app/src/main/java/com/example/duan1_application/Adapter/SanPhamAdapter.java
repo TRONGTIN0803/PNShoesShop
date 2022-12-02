@@ -116,22 +116,6 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
 //xin 3 hàng
         String x="Đánh giá";
         String html="<a href=\\\"...\\\">"+ x +"</a>";
-//        holder.txtdanhgia.setText(android.text.Html.fromHtml(html));
-
-//        holder.txtdanhgia.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent=new Intent(context,CommentActivity.class);
-//                Bundle bundle=new Bundle();
-//                bundle.putInt("masp",list.get(holder.getAdapterPosition()).getMaSp());
-//                bundle.putInt("makh",makh);
-//                intent.putExtras(bundle);
-//                context.startActivity(intent);
-//            }
-//        });
-
-
-
 
         int tien = list.get(position).getGia();
         Locale locale = new Locale("nv", "VN");

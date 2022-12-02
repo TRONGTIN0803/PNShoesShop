@@ -25,7 +25,9 @@ import com.example.duan1_application.model.ItemClickxoacthd;
 import com.example.duan1_application.model.SanPham;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -61,50 +63,11 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        if (list.get(position).getTrangThai()==0){
-//            holder.txtTrangThai.setText("Đang sử lý");
-//        }
-//        holder.txtTongGia.setText("Tổng giá: "+list.get(position).getTriGia());
-//        holder.btnHuy.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int maHd = list.get(holder.getAdapterPosition()).getMaHd();
-//                int trangthai = -1;
-//                HoaDon hoaDon = new HoaDon(maHd,trangthai);
-//                new CompositeDisposable().add(requestInterface.thayDoiTrangThai(hoaDon)
-//                        .observeOn(AndroidSchedulers.mainThread())
-//                        .subscribeOn(Schedulers.io())
-//                        .subscribe(this::handleResponse, this::handleError)
-//                );
-//            }
-//
-//            private void handleError(Throwable throwable) {
-//
-//            }
-//
-//            private void handleResponse(Integer integer) {
-//
-//            }
-//        });
-//        new CompositeDisposable().add(requestInterface.getCTHD(list.get(position).getMaHd())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeOn(Schedulers.io())
-//                .subscribe(this::handleResponseCT, this::handleErrorCT)
-//        );
-//
-//    }
-//
-//    private void handleErrorCT(Throwable throwable) {
-//    }
-//
-//    private void handleResponseCT(CTHD cthd) {
-//
-//        Glide.with(context).load(String.valueOf(cthd.getHinhanh())).centerCrop().into(ivHinhSP);
-//        txtTenSP.setText(cthd.getTenSp());
-//        txtGiaSP.setText("Giá: "+cthd.getGia());
-//        txtSoLuong.setText("Số Lượng: "+cthd.getSoluong());
- //       holder.txtTrangThai.setText("Đang sử lý");
-        holder.txtGiaSP.setText("Giá SP: "+list.get(position).getGia());
+        int tien = list.get(position).getGia();
+        Locale locale = new Locale("nv", "VN");
+        NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
+        String tienformat = nf.format(tien);
+        holder.txtGiaSP.setText("Giá SP: "+tienformat);
         Glide.with(context).load(list.get(position).getHinhanh()).centerCrop().into(ivHinhSP);
         txtTenSP.setText(list.get(position).getTenSp());
         txtSoLuong.setText("Số Lượng: "+list.get(position).getSoluong());
@@ -113,12 +76,6 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.ViewHold
             public void onClick(View view) {
                 itemClickxoacthd.Itemclickxoacthd(list.get(holder.getAdapterPosition()));
             }
-
-
-
-
-
-
 
         });
     }

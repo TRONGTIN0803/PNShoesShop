@@ -7,6 +7,8 @@
         <entry key="..\:/DA1_Test/app/src/main/res/drawable-v24/edt_login.xml" value="0.2005" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/DA1_Test/app/src/main/res/layout/dialog_dathang.xml" value="0.18931159420289856" />
+        <entry key="..\:/DA1_Test/app/src/main/res/layout/dialog_giohang.xml" value="0.18931159420289856" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/dialog_sanpham.xml" value="0.19429347826086957" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/fragment__san_pham_test.xml" value="0.25" />
         <entry key="..\:/DA1_Test/app/src/main/res/layout/fragment_giohang.xml" value="0.24895833333333334" />
