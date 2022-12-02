@@ -20,8 +20,10 @@ import com.example.duan1_application.Adapter.ChoDuyetAdapter;
 import com.example.duan1_application.R;
 import com.example.duan1_application.ShowNotification;
 import com.example.duan1_application.api.ServiceAPI;
+import com.example.duan1_application.model.CTHD;
 import com.example.duan1_application.model.HoaDon;
 import com.example.duan1_application.model.ItemClickHuycthd;
+import com.example.duan1_application.model.Size;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.ArrayList;
@@ -35,6 +37,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Fragment_XemLichSuCho extends Fragment {
     RecyclerView recyclerView;
     ServiceAPI requestInterface;
+    int maHd;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,7 +72,7 @@ public class Fragment_XemLichSuCho extends Fragment {
         ChoDuyetAdapter adapter = new ChoDuyetAdapter(listHoaDon, getContext(), new ItemClickHuycthd() {
             @Override
             public void Itemclickxoacthd(HoaDon hoaDon) {
-                int maHd = hoaDon.getMaHd();
+                maHd = hoaDon.getMaHd();
                 int trangthai = -1;
                 HoaDon hoaDon1 = new HoaDon(maHd,trangthai);
                 new CompositeDisposable().add(requestInterface.thayDoiTrangThai(hoaDon1)
@@ -77,19 +80,47 @@ public class Fragment_XemLichSuCho extends Fragment {
                         .subscribeOn(Schedulers.io())
                         .subscribe(this::handleResponse, this::handleError)
                 );
+
             }
 
             private void handleError(Throwable throwable) {
             }
 
             private void handleResponse(Integer integer) {
-                Toast.makeText(getContext(), "Hủy đơn thành công", Toast.LENGTH_SHORT).show();
-                DemoCallAPI();
+                goiCTHD(maHd);
             }
         });
 
         recyclerView.setAdapter(adapter);
         ShowNotification.dismissProgressDialog();
     }
+    private void goiCTHD(int mahd){
+        new CompositeDisposable().add(requestInterface.getCTHD(mahd)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::handleResponseCTHD, this::handleError)
+        );
+    }
+
+    private void handleResponseCTHD(ArrayList<CTHD> cthds) {
+
+        for(CTHD cthd: cthds){
+            String masize = cthd.getMasize();
+            int soLuong = cthd.getSoluong();
+            int masp = cthd.getMasp();
+            Size size = new Size(masp,masize,soLuong);
+            new CompositeDisposable().add(requestInterface.suaSoluongkhiHoanDon(size)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(this::handleResponseSize, this::handleError)
+            );
+        }
+    }
+
+    private void handleResponseSize(Integer integer) {
+        Toast.makeText(getContext(), "Hủy đơn thành công", Toast.LENGTH_SHORT).show();
+        DemoCallAPI();
+    }
+
 
 }

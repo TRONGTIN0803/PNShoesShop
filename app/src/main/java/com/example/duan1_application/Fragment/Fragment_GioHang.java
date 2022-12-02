@@ -35,6 +35,7 @@ import com.example.duan1_application.model.CTHD;
 import com.example.duan1_application.model.HoaDon;
 import com.example.duan1_application.model.ItemClickxoacthd;
 import com.example.duan1_application.model.SanPham;
+import com.example.duan1_application.model.Size;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.ArrayList;
@@ -50,19 +51,19 @@ public class Fragment_GioHang extends Fragment {
     ServiceAPI requestInterface;
     private TextView txtgiagiohang;
     private Button btnthanhtoan;
-    String sdt="";
-    int giasp,soluongsp,mahoadon,mahd,giathanhtoan;
+    String sdt = "";
+    int giasp, soluongsp, mahoadon, mahd, giathanhtoan;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_giohang,container,false);
+        View view = inflater.inflate(R.layout.fragment_giohang, container, false);
         recyclerView = view.findViewById(R.id.recyclerViewCart);
-        txtgiagiohang=view.findViewById(R.id.txtgiagiohang);
-        btnthanhtoan=view.findViewById(R.id.btnthanhtoan);
+        txtgiagiohang = view.findViewById(R.id.txtgiagiohang);
+        btnthanhtoan = view.findViewById(R.id.btnthanhtoan);
         DemoCallAPI();
         btnthanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShowNotification.showProgressDialog(getContext(),"Vui Lòng Chờ...");
+                ShowNotification.showProgressDialog(getContext(), "Vui Lòng Chờ...");
                 DiaLogDathang();
             }
         });
@@ -70,10 +71,10 @@ public class Fragment_GioHang extends Fragment {
     }
 
     private void DemoCallAPI() {
-        ShowNotification.showProgressDialog(getContext(),"Vui Lòng Chờ...");
-        SharedPreferences sharedPreferences= getActivity().getSharedPreferences("KHACHHANG", Context.MODE_PRIVATE);
-        int maKH =sharedPreferences.getInt("makh",-1);
-        sdt=sharedPreferences.getString("sdt","");
+        ShowNotification.showProgressDialog(getContext(), "Vui Lòng Chờ...");
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("KHACHHANG", Context.MODE_PRIVATE);
+        int maKH = sharedPreferences.getInt("makh", -1);
+        sdt = sharedPreferences.getString("sdt", "");
         requestInterface = new Retrofit.Builder()
                 .baseUrl(BASE_SERVICE)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -97,9 +98,9 @@ public class Fragment_GioHang extends Fragment {
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponsecthd, this::handleErrorcthd)
         );
-        mahd=hoaDon.getMaHd();
+        mahd = hoaDon.getMaHd();
         txtgiagiohang.setText(String.valueOf(hoaDon.getTriGia()));
-        giathanhtoan=hoaDon.getTriGia();
+        giathanhtoan = hoaDon.getTriGia();
 //        btnthanhtoan.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -123,33 +124,35 @@ public class Fragment_GioHang extends Fragment {
     }
 
     private void handleResponsecthd(ArrayList<CTHD> cthds) {
-        ArrayList<CTHD>list=cthds;
+        ArrayList<CTHD> list = cthds;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         GioHangAdapter adapter = new GioHangAdapter(list, getContext(), new ItemClickxoacthd() {
             @Override
             public void Itemclickxoacthd(CTHD cthd) {
-                int macthd=cthd.getMacthd();
-                giasp=cthd.getGia();
-                soluongsp=cthd.getSoluong();
-                mahoadon=cthd.getMahd();
-                CTHD cthd1=new CTHD(macthd);
+                int macthd = cthd.getMacthd();
+                giasp = cthd.getGia();
+                soluongsp = cthd.getSoluong();
+                mahoadon = cthd.getMahd();
+                CTHD cthd1 = new CTHD(macthd);
                 new CompositeDisposable().add(requestInterface.xoaCTHD(cthd)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe(this::handleResponsexoaitemgiohang, this::handleErrorxoaitemgiohang)
                 );
             }
+
             private void handleResponsexoaitemgiohang(Integer integer) {
-                int mahd=mahoadon;
-                int gia=soluongsp*giasp;
-                HoaDon hoaDon=new HoaDon(mahd,1,gia);
+                int mahd = mahoadon;
+                int gia = soluongsp * giasp;
+                HoaDon hoaDon = new HoaDon(mahd, 1, gia);
                 new CompositeDisposable().add(requestInterface.giamgiahoadon(hoaDon)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe(this::handleResponsegiamgiahd, this::handleErrorgiamgiahd)
                 );
             }
+
             private void handleResponsegiamgiahd(Integer integer) {
                 Toast.makeText(getContext(), "Xoa thanh cong!", Toast.LENGTH_SHORT).show();
                 DemoCallAPI();
@@ -158,6 +161,7 @@ public class Fragment_GioHang extends Fragment {
             private void handleErrorgiamgiahd(Throwable throwable) {
                 Toast.makeText(getContext(), "Tin Ngu", Toast.LENGTH_SHORT).show();
             }
+
             private void handleErrorxoaitemgiohang(Throwable throwable) {
                 Toast.makeText(getContext(), "Xóa thất bại", Toast.LENGTH_SHORT).show();
             }
@@ -176,23 +180,23 @@ public class Fragment_GioHang extends Fragment {
 
     }
 
-    private void DiaLogDathang(){
-        Dialog dialog=new Dialog(getContext());
+    private void DiaLogDathang() {
+        Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_dathang);
 
-        Window window=dialog.getWindow();
-        if (window==null){
+        Window window = dialog.getWindow();
+        if (window == null) {
             return;
         }
         window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(true);
 
-        EditText edtsdtdathang=dialog.findViewById(R.id.edtsdtdathang);
-        EditText edtdiachidathang=dialog.findViewById(R.id.edtdiachidathang);
-        Button btndathangthanhtoan=dialog.findViewById(R.id.btndathangthanhtoan);
-        TextView txtgiadathang=dialog.findViewById(R.id.txtgiadathang);
+        EditText edtsdtdathang = dialog.findViewById(R.id.edtsdtdathang);
+        EditText edtdiachidathang = dialog.findViewById(R.id.edtdiachidathang);
+        Button btndathangthanhtoan = dialog.findViewById(R.id.btndathangthanhtoan);
+        TextView txtgiadathang = dialog.findViewById(R.id.txtgiadathang);
 
         edtsdtdathang.setText(sdt);
         txtgiadathang.setText(String.valueOf(giathanhtoan));
@@ -200,9 +204,9 @@ public class Fragment_GioHang extends Fragment {
         btndathangthanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String sodt=edtsdtdathang.getText().toString();
-                String diachi=edtdiachidathang.getText().toString();
-                HoaDon hoaDon=new HoaDon(mahd,0,sodt,diachi);
+                String sodt = edtsdtdathang.getText().toString();
+                String diachi = edtdiachidathang.getText().toString();
+                HoaDon hoaDon = new HoaDon(mahd, 0, sodt, diachi);
                 new CompositeDisposable().add(requestInterface.thanhtoanGioHang(hoaDon)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
@@ -211,7 +215,7 @@ public class Fragment_GioHang extends Fragment {
             }
 
             private void handleResponsethanhtoangh(Integer integer) {
-                Toast.makeText(getContext(), "Đặt Hàng Thành Công!", Toast.LENGTH_SHORT).show();
+                goiCTHD(mahd);
                 dialog.dismiss();
             }
 
@@ -220,19 +224,35 @@ public class Fragment_GioHang extends Fragment {
             }
         });
         dialog.show();
+
     }
 
-//    private void handleResponse(ArrayList<HoaDon> hoaDons) {
-//        ArrayList<HoaDon> listHoaDon = hoaDons;
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-//        recyclerView.setLayoutManager(linearLayoutManager);
-//        GioHangAdapter adapter = new GioHangAdapter(listHoaDon,getContext());
-//        recyclerView.setAdapter(adapter);
-//    }
-//
-//
-//    private void handleError(Throwable throwable) {
-//        Toast.makeText(getContext(), "Chưa kết nối internet", Toast.LENGTH_SHORT).show();
-//    }
+    private void goiCTHD(int mahd) {
+        new CompositeDisposable().add(requestInterface.getCTHD(mahd)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::handleResponseCTHD, this::handleError)
+        );
+
+    }
+
+    private void handleResponseCTHD(ArrayList<CTHD> cthds) {
+        for(CTHD cthd: cthds){
+            String masize = cthd.getMasize();
+            int soLuong = cthd.getSoluong();
+            int masp = cthd.getMasp();
+            Size size = new Size(masp,masize,soLuong);
+            new CompositeDisposable().add(requestInterface.suaSoLuong(size)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(this::handleResponseSize, this::handleError)
+            );
+        }
+    }
+
+    private void handleResponseSize(Integer integer) {
+        Toast.makeText(getContext(), "Đặt Hàng Thành Công!", Toast.LENGTH_SHORT).show();
+
+    }
 
 }

@@ -11,6 +11,12 @@ public class Size implements Serializable {
   private String masize;
   private int soluong;
 
+  public Size(int maSp, String masize, int soluong) {
+    this.maSp = maSp;
+    this.masize = masize;
+    this.soluong = soluong;
+  }
+
   public int getMaSp() {
     return maSp;
   }
