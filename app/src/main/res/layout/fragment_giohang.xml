@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnthanhtoan"
-            android:text="Dặt hàng"
+            android:text="Đặt hàng"
             android:backgroundTint="@color/teal_200"
             android:textSize="16dp"/>
 

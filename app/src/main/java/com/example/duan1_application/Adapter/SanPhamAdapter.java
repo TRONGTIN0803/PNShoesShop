@@ -288,23 +288,26 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 masize = (String) hsm.get("masize");
                 soLuongSp = sol;
                 masp = sanPham.getMaSp();
-                HoaDon hoaDon = new HoaDon(makh,x,SDT,DiaChi,gia,ngay,sanPham.getMaSp(),sol,masize);
-                if (x==0){
-                    new CompositeDisposable().add(requestInterface.themHoaDon(hoaDon)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribeOn(Schedulers.io())
-                            .subscribe(this::handleResponse, this::handleError)
-                    );
-                }else{
-                    new CompositeDisposable().add(requestInterface.themvaoGioHang(hoaDon)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribeOn(Schedulers.io())
-                            .subscribe(this::handleResponsegiohang, this::handleError)
-                    );
+                if (DiaChi.equals("")){
+                    Toast.makeText(context, "Chưa nhập địa chỉ", Toast.LENGTH_SHORT).show();
+                }else {
+                    HoaDon hoaDon = new HoaDon(makh, x, SDT, DiaChi, gia, ngay, sanPham.getMaSp(), sol, masize);
+                    if (x == 0) {
+                        new CompositeDisposable().add(requestInterface.themHoaDon(hoaDon)
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribeOn(Schedulers.io())
+                                .subscribe(this::handleResponse, this::handleError)
+                        );
+                    } else {
+                        new CompositeDisposable().add(requestInterface.themvaoGioHang(hoaDon)
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribeOn(Schedulers.io())
+                                .subscribe(this::handleResponsegiohang, this::handleError)
+                        );
+                    }
                 }
 
 
-                dialog.dismiss();
             }
 
             private void handleResponsegiohang(Integer integer) {
@@ -323,6 +326,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
             private void handleResponse(Integer integer) {
                 Size size = new Size(masp,masize,soLuongSp);
                 suaSoLuong.ItemclickSuaSl(size);
+                dialog.dismiss();
             }
 
         });

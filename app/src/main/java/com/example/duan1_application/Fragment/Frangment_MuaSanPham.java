@@ -133,7 +133,7 @@ public class Frangment_MuaSanPham extends Fragment {
             }
 
             private void handleResponseSize(Integer integer) {
-                Toast.makeText(getContext(), "Dat hang thanh cong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView.setAdapter(adapter);

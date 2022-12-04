@@ -197,12 +197,16 @@ public class Fragment_GioHang extends Fragment {
             public void onClick(View view) {
                 String sodt = edtsdtdathang.getText().toString();
                 String diachi = edtdiachidathang.getText().toString();
-                HoaDon hoaDon = new HoaDon(mahd, 0, sodt, diachi);
-                new CompositeDisposable().add(requestInterface.thanhtoanGioHang(hoaDon)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.io())
-                        .subscribe(this::handleResponsethanhtoangh, this::handleErrorthanhtoangh)
-                );
+                if (diachi.equals("")){
+                    Toast.makeText(getContext(), "Chưa nhập địa chỉ", Toast.LENGTH_SHORT).show();
+                }else {
+                    HoaDon hoaDon = new HoaDon(mahd, 0, sodt, diachi);
+                    new CompositeDisposable().add(requestInterface.thanhtoanGioHang(hoaDon)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribeOn(Schedulers.io())
+                            .subscribe(this::handleResponsethanhtoangh, this::handleErrorthanhtoangh)
+                    );
+                }
             }
 
             private void handleResponsethanhtoangh(Integer integer) {
