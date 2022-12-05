@@ -42,10 +42,12 @@ public class DialogCTHD extends RecyclerView.Adapter<DialogCTHD.ViewHolder> {
     ServiceAPI requestInterface;
     int mahd,masp;
     TextView txtdanhgia;
+    int trangthai;
 
-    public DialogCTHD(Context context, ArrayList<CTHD> list) {
+    public DialogCTHD(Context context, ArrayList<CTHD> list,int trangthai) {
         this.context = context;
         this.list = list;
+        this.trangthai=trangthai;
     }
 
     @NonNull
@@ -78,7 +80,27 @@ public class DialogCTHD extends RecyclerView.Adapter<DialogCTHD.ViewHolder> {
         holder.gia.setText(tienformat);
         mahd=list.get(position).getMahd();
         masp=list.get(position).getMasp();
-       GetHoaDon();
+//       GetHoaDon();
+        if (trangthai==1){
+            txtdanhgia.setVisibility(View.VISIBLE);
+            String x="Đánh giá";
+            String html="<a href=\\\"...\\\">"+ x +"</a>";
+            txtdanhgia.setText(android.text.Html.fromHtml(html));
+
+            txtdanhgia.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(context, CommentActivity.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("masp",masp);
+                    bundle.putInt("makh",makh);
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
+                }
+            });
+        }else{
+            txtdanhgia.setVisibility(View.GONE);
+        }
     }
 
 

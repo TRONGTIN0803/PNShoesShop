@@ -47,9 +47,11 @@ public class LichSuAdapter extends RecyclerView.Adapter<LichSuAdapter.ViewHolder
     RecyclerView rcldialog;
     Dialog dialog;
     ArrayList<CTHD> listct;
-    public LichSuAdapter(ArrayList<HoaDon> list, Context context) {
+    int trangthai;
+    public LichSuAdapter(ArrayList<HoaDon> list, Context context,int trangthai) {
         this.context = context;
         this.list = list;
+        this.trangthai=trangthai;
     }
 
     @NonNull
@@ -87,7 +89,8 @@ public class LichSuAdapter extends RecyclerView.Adapter<LichSuAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 int mahd = list.get(holder.getAdapterPosition()).getMaHd();
-                showdialog(mahd);
+                trangthai=list.get(holder.getAdapterPosition()).getTrangThai();
+                showdialog(mahd,trangthai);
             }
         });
     }
@@ -108,7 +111,7 @@ public class LichSuAdapter extends RecyclerView.Adapter<LichSuAdapter.ViewHolder
             txtGiaTri = itemView.findViewById(R.id.txtGiaTri);
         }
     }
-    public void showdialog(int mahd){
+    public void showdialog(int mahd,int trangthai){
         dialog =new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.layout_dialog_hdct);
@@ -138,7 +141,7 @@ public class LichSuAdapter extends RecyclerView.Adapter<LichSuAdapter.ViewHolder
         listct = hdcts;
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(context);
         rcldialog.setLayoutManager(linearLayoutManager);
-        DialogCTHD dialogAdapter=new DialogCTHD(context,listct);
+        DialogCTHD dialogAdapter=new DialogCTHD(context,listct,trangthai);
         rcldialog.setAdapter(dialogAdapter);
     }
 

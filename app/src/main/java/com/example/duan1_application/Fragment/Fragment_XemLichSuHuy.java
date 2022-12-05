@@ -64,7 +64,7 @@ public class Fragment_XemLichSuHuy extends Fragment {
         ArrayList<HoaDon> listHoaDon = hoaDons;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        LichSuAdapter adapter = new LichSuAdapter(listHoaDon,getContext());
+        LichSuAdapter adapter = new LichSuAdapter(listHoaDon,getContext(),-1);
 
         recyclerView.setAdapter(adapter);
         //ShowNotification.dismissProgressDialog();

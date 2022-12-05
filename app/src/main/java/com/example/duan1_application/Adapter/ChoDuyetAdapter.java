@@ -48,6 +48,7 @@ public class ChoDuyetAdapter extends RecyclerView.Adapter<ChoDuyetAdapter.ViewHo
     RecyclerView rcldialog;
     Dialog dialog;
     ArrayList<CTHD> listct;
+    int trangthai;
     public ChoDuyetAdapter(ArrayList<HoaDon> list, Context context,ItemClickHuycthd itemClickHuycthd ) {
         this.context = context;
         this.list = list;
@@ -95,7 +96,8 @@ public class ChoDuyetAdapter extends RecyclerView.Adapter<ChoDuyetAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 int mahd = list.get(holder.getAdapterPosition()).getMaHd();
-                showdialog(mahd);
+                trangthai=list.get(holder.getAdapterPosition()).getTrangThai();
+                showdialog(mahd,trangthai);
             }
         });
     }
@@ -119,7 +121,7 @@ public class ChoDuyetAdapter extends RecyclerView.Adapter<ChoDuyetAdapter.ViewHo
             btnHuy = itemView.findViewById(R.id.btnHuy);
         }
     }
-    public void showdialog(int mahd){
+    public void showdialog(int mahd,int trangthai){
         dialog =new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.layout_dialog_hdct);
@@ -149,7 +151,7 @@ public class ChoDuyetAdapter extends RecyclerView.Adapter<ChoDuyetAdapter.ViewHo
         listct = hdcts;
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(context);
         rcldialog.setLayoutManager(linearLayoutManager);
-        DialogCTHD dialogAdapter=new DialogCTHD(context,listct);
+        DialogCTHD dialogAdapter=new DialogCTHD(context,listct,trangthai);
         rcldialog.setAdapter(dialogAdapter);
     }
 
