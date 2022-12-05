@@ -115,9 +115,10 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnHuy"
             android:fontFamily="@font/poppins_medium"
-
+            android:background="#E91E63"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="Hủy đơn hàng"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

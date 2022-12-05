@@ -288,16 +288,17 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 masize = (String) hsm.get("masize");
                 soLuongSp = sol;
                 masp = sanPham.getMaSp();
-                if (DiaChi.equals("")){
-                    Toast.makeText(context, "Chưa nhập địa chỉ", Toast.LENGTH_SHORT).show();
-                }else {
+
                     HoaDon hoaDon = new HoaDon(makh, x, SDT, DiaChi, gia, ngay, sanPham.getMaSp(), sol, masize);
                     if (x == 0) {
+                        if (DiaChi.equals("")){
+                            Toast.makeText(context, "Chưa nhập địa chỉ", Toast.LENGTH_SHORT).show();
+                        }else {
                         new CompositeDisposable().add(requestInterface.themHoaDon(hoaDon)
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribeOn(Schedulers.io())
                                 .subscribe(this::handleResponse, this::handleError)
-                        );
+                        );}
                     } else {
                         new CompositeDisposable().add(requestInterface.themvaoGioHang(hoaDon)
                                 .observeOn(AndroidSchedulers.mainThread())
@@ -305,7 +306,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                                 .subscribe(this::handleResponsegiohang, this::handleError)
                         );
                     }
-                }
+
 
 
             }

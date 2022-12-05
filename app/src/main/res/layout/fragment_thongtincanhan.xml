@@ -46,7 +46,8 @@
                 android:fontFamily="@font/poppins_medium"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:paddingRight="10dp"/>
+                android:paddingRight="10dp"
+                android:textColor="@color/black"/>
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -79,7 +80,8 @@
                 android:fontFamily="@font/poppins_medium"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:paddingRight="10dp" />
+                android:paddingRight="10dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
     </LinearLayout>
 
