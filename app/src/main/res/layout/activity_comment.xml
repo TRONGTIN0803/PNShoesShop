@@ -1,56 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CommentActivity"
-    android:orientation="vertical"
+    tools:context=".CommentActivity">
 
-    >
-    <TextView
-        android:background="#40bfff"
-
-        android:textSize="28dp"
-        android:gravity="center"
-        android:fontFamily="@font/poppins_medium"
-        android:textColor="@color/white"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Đánh giá" />
+        android:layout_alignParentTop="true" />
 
     <TextView
-        android:textSize="24dp"
-        android:gravity="center"
+        android:id="@+id/txttensanpham"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
         android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        android:text="dsfdf"
         android:textColor="@color/black"
+        android:textSize="24dp" />
+
+    <LinearLayout
+        android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txttensanpham"/>
-    <ImageView
-        android:layout_margin="5dp"
-        android:layout_width="240dp"
-        android:layout_height="120dp"
-        android:src="@mipmap/image1"
-        android:layout_gravity="center"
-        android:id="@+id/ivsanpham"/>
-    <View
-        android:layout_marginTop="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#40bfff"/>
+        android:layout_below="@+id/txttensanpham"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/ivsanpham"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/image1" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvComment"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="2dp"
-        android:padding="8dp"
-         />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/linear"
+        android:layout_below="@+id/linear1"
+        android:layout_marginTop="10dp"
+        android:padding="8dp" />
 
     <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp">
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -77,4 +80,4 @@
             android:id="@+id/btnsendcmt"/>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

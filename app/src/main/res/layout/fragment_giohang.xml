@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="8dp"
+    android:padding="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewCart"
             android:layout_width="match_parent"
-            android:layout_height="400dp"/>
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/txtgiagiohang"
+            android:layout_alignParentTop="true" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/txtgiagiohang"
-            android:textSize="32dp"
-            android:textStyle="bold"
-            android:textColor="@color/red"
-            android:padding="10dp"/>
-        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/btnthanhtoan"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:textColor="@color/red"
+            android:textSize="32dp"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/btnthanhtoan"
-            android:text="Đặt hàng"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:backgroundTint="@color/teal_200"
-            android:textSize="16dp"/>
+            android:text="Đặt hàng"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"/>
 
-
-
-</LinearLayout>
+</RelativeLayout>

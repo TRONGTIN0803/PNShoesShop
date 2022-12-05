@@ -2,12 +2,16 @@ package com.example.duan1_application;
 
 import static com.example.duan1_application.api.ServiceAPI.BASE_SERVICE;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -57,7 +61,13 @@ public class CommentActivity extends AppCompatActivity {
         edtcomment=findViewById(R.id.edtcomment);
         ivsanpham=findViewById(R.id.ivsanpham);
         btnsendcmt=findViewById(R.id.btnsendcmt);
-
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24);
+        actionBar.setTitle("Đánh giá");
+        //toolbar.setTitleTextColor(Color.WHITE);
         requestInterface = new Retrofit.Builder()
                 .baseUrl(BASE_SERVICE)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -97,6 +107,19 @@ public class CommentActivity extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
     public void CallSanPham(int masp){
         new CompositeDisposable().add(requestInterface.getsanpham(masp)
