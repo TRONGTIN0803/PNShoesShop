@@ -152,6 +152,8 @@ public class Frangment_MuaSanPham extends Fragment {
                     float kmne=(item.getGia()*km.getGiaKm())/100;
                     int gia= (int) (item.getGia()-kmne);
                     item.setGia(gia);
+                    int giakm=(int) km.getGiaKm();
+                    item.setGiakm(giakm);
                 }
             }
 
@@ -196,7 +198,7 @@ public class Frangment_MuaSanPham extends Fragment {
         }
         window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(true);
+        dialog.setCancelable(false);
 
         TextView txtTengiohang = dialog.findViewById(R.id.txtTenDialoggiohang);
         TextView txtgiagiohang = dialog.findViewById(R.id.txtGiaDialoggiohang);
@@ -206,6 +208,7 @@ public class Frangment_MuaSanPham extends Fragment {
         spinner = dialog.findViewById(R.id.spinnergiohang);
         Button btnSoTru = dialog.findViewById(R.id.btnSoTru);
         Button btnSoCong = dialog.findViewById(R.id.btnSoCong);
+        Button btnhuy=dialog.findViewById(R.id.btnHuyGioHangDiaLog);
         TextView txtsoluongtheosizegiohnag=dialog.findViewById(R.id.txtsoluongtheosizegiohang);
 
         CallAPISize(sanPham.getMaSp());
@@ -241,12 +244,18 @@ public class Frangment_MuaSanPham extends Fragment {
                 soluong=Integer.parseInt(edtSoLuong.getText().toString());
                 HashMap<String,Object> hsm= (HashMap<String, Object>) spinner.getSelectedItem();
                 String masize = (String) hsm.get("masize");
+                int soluongsp=(int)hsm.get("soluong"); 
                 CTHD cthd=new CTHD(mahd,masp,soluong,masize);
-                new CompositeDisposable().add(requestInterface.themCTHD(cthd)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.io())
-                        .subscribe(this::handleResponsegetgiohangadd, this::handleErrorgetgiohangadd)
-                );
+                if (soluong>soluongsp){
+                    Toast.makeText(getContext(), "Số lượng sản phẩm không đủ!", Toast.LENGTH_SHORT).show();
+                }else{
+                    new CompositeDisposable().add(requestInterface.themCTHD(cthd)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribeOn(Schedulers.io())
+                            .subscribe(this::handleResponsegetgiohangadd, this::handleErrorgetgiohangadd)
+                    );
+                }
+
             }
 
             private void handleResponsegetgiohangadd(Integer integer) {
@@ -283,6 +292,13 @@ public class Frangment_MuaSanPham extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+
+        btnhuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
             }
         });
         dialog.show();

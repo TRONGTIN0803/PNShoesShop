@@ -111,9 +111,12 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         String tienformat1 = nf1.format(tien1);
         if (list.get(position).getMaKm()!=null){
             holder.txtgiacu.setVisibility(View.VISIBLE);
-            holder.txtgiacu.setText(android.text.Html.fromHtml("<strike>"+tienformat1+"</strike>"));
+            holder.txtphantramkm.setVisibility(View.VISIBLE);
+            holder.txtgiacu.setText(android.text.Html.fromHtml("<strike>Giá gốc: "+tienformat1+"</strike>"));
+            holder.txtphantramkm.setText("-"+list.get(position).getGiakm()+"%");
         }else if (list.get(position).getMaKm()==null){
             holder.txtgiacu.setVisibility(View.GONE);
+            holder.txtphantramkm.setVisibility(View.GONE);
         }
 
 
@@ -125,7 +128,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         Locale locale = new Locale("nv", "VN");
         NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
         String tienformat = nf.format(tien);
-        holder.txtGia.setText(tienformat);
+        holder.txtGia.setText("Giá : "+tienformat);
 
         holder.btnDatHang.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,7 +197,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView ivHinh;
-        TextView txtTen,txtGia,txtgiacu,txtdanhgia;
+        TextView txtTen,txtGia,txtgiacu,txtdanhgia,txtphantramkm;
         Button btnDatHang,btngiohang;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -205,6 +208,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
             btnDatHang = itemView.findViewById(R.id.btnDatHang);
             btngiohang=itemView.findViewById(R.id.btnthemgiohang);
             txtdanhgia=itemView.findViewById(R.id.txtdanhgia);
+            txtphantramkm=itemView.findViewById(R.id.txtphantramkm);
         }
     }
     private void showDiaLog(SanPham sanPham,int x){
@@ -218,7 +222,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         }
         window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(true);
+        dialog.setCancelable(false);
 
         TextView txtTen = dialog.findViewById(R.id.txtTenDialog);
         TextView txtgia = dialog.findViewById(R.id.txtGiaDialog);
@@ -227,6 +231,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         EditText edtdiaChi = dialog.findViewById(R.id.edtDiachi);
         ImageView ivHinh = dialog.findViewById(R.id.ivHinhDiaLog);
         Button btnDatHang = dialog.findViewById(R.id.btnDatHangDiaLog);
+        Button btnhuy=dialog.findViewById(R.id.btnHuyDatHangDiaLog);
         spinner = dialog.findViewById(R.id.spinner);
         Button btnSoTru = dialog.findViewById(R.id.btnSoTru);
         Button btnSoCong = dialog.findViewById(R.id.btnSoCong);
@@ -239,7 +244,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
 
         edtSoLuong.setText(""+So);
         if (x==-2){
-            btnDatHang.setText("Them vao Gio hang");
+            btnDatHang.setText("Thêm vào giỏ");
             edtsdt.setVisibility(View.GONE);
             edtdiaChi.setVisibility(View.GONE);
         }
@@ -286,19 +291,22 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 int gia = sanPham.getGia()*sol;
                 HashMap<String,Object> hsm= (HashMap<String, Object>) spinner.getSelectedItem();
                 masize = (String) hsm.get("masize");
+                int slsanpham=(int) hsm.get("soluong");
                 soLuongSp = sol;
                 masp = sanPham.getMaSp();
-
+                if (sol>slsanpham){
+                    Toast.makeText(context, "Số lượng sản phẩm không đủ", Toast.LENGTH_SHORT).show();
+                }else{
                     HoaDon hoaDon = new HoaDon(makh, x, SDT, DiaChi, gia, ngay, sanPham.getMaSp(), sol, masize);
                     if (x == 0) {
                         if (DiaChi.equals("")){
                             Toast.makeText(context, "Chưa nhập địa chỉ", Toast.LENGTH_SHORT).show();
                         }else {
-                        new CompositeDisposable().add(requestInterface.themHoaDon(hoaDon)
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribeOn(Schedulers.io())
-                                .subscribe(this::handleResponse, this::handleError)
-                        );}
+                            new CompositeDisposable().add(requestInterface.themHoaDon(hoaDon)
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribeOn(Schedulers.io())
+                                    .subscribe(this::handleResponse, this::handleError)
+                            );}
                     } else {
                         new CompositeDisposable().add(requestInterface.themvaoGioHang(hoaDon)
                                 .observeOn(AndroidSchedulers.mainThread())
@@ -306,13 +314,13 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                                 .subscribe(this::handleResponsegiohang, this::handleError)
                         );
                     }
-
-
+                }
 
             }
 
             private void handleResponsegiohang(Integer integer) {
                 Toast.makeText(context, "Thêm vào Giỏ Hàng thành công", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
             }
 
 //            private void handleResponse2(Khachhang khachhang) {
@@ -344,7 +352,12 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
 
             }
         });
-
+        btnhuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
         dialog.show();
 
     }

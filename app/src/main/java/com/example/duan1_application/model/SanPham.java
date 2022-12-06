@@ -9,6 +9,7 @@ public class SanPham {
     private String tenhang;
     private String maKm;
     private float giacu;
+    private int giakm;
 
     public SanPham(int maSp, String tenSp, int gia, String mahang, String hinhanh) {
         this.maSp = maSp;
@@ -80,5 +81,13 @@ public class SanPham {
 
     public void setGiacu(float giacu) {
         this.giacu = giacu;
+    }
+
+    public int getGiakm() {
+        return giakm;
+    }
+
+    public void setGiakm(int giakm) {
+        this.giakm = giakm;
     }
 }

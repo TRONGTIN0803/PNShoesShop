@@ -4,27 +4,45 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_white_conner_16dp"
     android:orientation="vertical"
-    android:padding="20dp">
+    >
 
     <ImageView
         android:layout_width="180dp"
         android:layout_height="180dp"
         android:id="@+id/ivHinhDiaLog"
-        android:layout_gravity="center"/>
-    <TextView
-        android:fontFamily="@font/poppins_medium"
-
-        android:id="@+id/txtTenDialog"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="Tên sp:"
+            android:textSize="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/black"/>
+        <TextView
+            android:fontFamily="@font/poppins_medium"
+            android:id="@+id/txtTenDialog"
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            />
+    </LinearLayout>
+
 
     <TextView
         android:fontFamily="@font/poppins_medium"
-
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:id="@+id/txtGiaDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +53,8 @@
 
     <EditText
         android:fontFamily="@font/poppins_medium"
-
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:id="@+id/edtsdt"
         android:layout_width="match_parent"
         android:layout_height="52dp"
@@ -48,7 +67,8 @@
 
     <EditText
         android:fontFamily="@font/poppins_medium"
-
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:id="@+id/edtDiachi"
         android:layout_width="match_parent"
         android:layout_height="52dp"
@@ -62,7 +82,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        >
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
         <TextView
 
             android:layout_gravity="center"
@@ -103,12 +124,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
         <TextView
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:text="Size"
+            android:text="Size:"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="20dp"
+            android:textColor="@color/black"
             android:layout_gravity="center"/>
         <Spinner
             android:id="@+id/spinner"
@@ -121,24 +147,46 @@
             android:layout_weight="3"
             android:layout_height="wrap_content"
             android:layout_gravity="center|end"
-            android:text="Số lượng còn:"/>
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:text="SL còn:"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="2"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="20dp"
+            android:textColor="@color/black"
             android:id="@+id/txtsoluongtheosize"/>
     </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:fontFamily="@font/poppins_medium"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Đặt hàng"
-        android:textSize="20dp"
-        android:id="@+id/btnDatHangDiaLog"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/btn_login"
-        android:textColor="@color/white"/>
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatButton
+            android:fontFamily="@font/poppins_medium"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Đặt hàng"
+            android:textSize="20dp"
+            android:id="@+id/btnDatHangDiaLog"
+            android:layout_marginTop="10dp"
+            android:background="#E64A19"
+            android:textColor="@color/white"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:fontFamily="@font/poppins_medium"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Hủy"
+            android:textSize="20dp"
+            android:id="@+id/btnHuyDatHangDiaLog"
+            android:layout_marginTop="10dp"
+            android:background="@color/gray"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
 
 </LinearLayout>
