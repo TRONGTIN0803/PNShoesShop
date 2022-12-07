@@ -13,6 +13,7 @@
         android:layout_alignParentTop="true" />
 
     <TextView
+
         android:id="@+id/txttensanpham"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,6 +25,7 @@
         android:textSize="24dp" />
 
     <LinearLayout
+        android:background="#40bfff"
         android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

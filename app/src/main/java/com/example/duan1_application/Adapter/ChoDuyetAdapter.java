@@ -76,7 +76,7 @@ public class ChoDuyetAdapter extends RecyclerView.Adapter<ChoDuyetAdapter.ViewHo
         }else if(list.get(position).getTrangThai()==1){
             holder.txtTrangThai.setText("Đã duyệt");
         }else if(list.get(position).getTrangThai()==-1){
-            holder.txtTrangThai.setText("Đã hủy đơn hàng");
+            holder.txtTrangThai.setText("Đã hủy đơn");
         }
         holder.txtSdtCho.setText(list.get(position).getSdt());
         holder.txtDiaChiCho.setText(list.get(position).getDiachi());

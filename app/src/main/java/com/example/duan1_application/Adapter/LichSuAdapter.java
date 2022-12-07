@@ -75,7 +75,7 @@ public class LichSuAdapter extends RecyclerView.Adapter<LichSuAdapter.ViewHolder
         } else if (list.get(position).getTrangThai() == 1) {
             holder.txtTrangThai.setText("Đã duyệt");
         } else if (list.get(position).getTrangThai() == -1) {
-            holder.txtTrangThai.setText("Đã hủy đơn hàng");
+            holder.txtTrangThai.setText("Đã hủy đơn ");
         }
         holder.txtSdt.setText(list.get(position).getSdt());
         holder.txtDiaChi.setText(list.get(position).getDiachi());
