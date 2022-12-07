@@ -79,7 +79,10 @@ public class LichSuAdapter extends RecyclerView.Adapter<LichSuAdapter.ViewHolder
         }
         holder.txtSdt.setText(list.get(position).getSdt());
         holder.txtDiaChi.setText(list.get(position).getDiachi());
-        holder.txtNgay.setText(list.get(position).getNgayHd());
+   //     holder.txtNgay.setText(list.get(position).getNgayHd());
+        String ngay=list.get(position).getNgayHd();
+        String s=ngay.substring(0,10);
+        holder.txtNgay.setText(s);
         int tien = list.get(position).getTriGia();
         Locale locale = new Locale("nv", "VN");
         NumberFormat nf = NumberFormat.getCurrencyInstance(locale);

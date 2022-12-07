@@ -80,7 +80,9 @@ public class ChoDuyetAdapter extends RecyclerView.Adapter<ChoDuyetAdapter.ViewHo
         }
         holder.txtSdtCho.setText(list.get(position).getSdt());
         holder.txtDiaChiCho.setText(list.get(position).getDiachi());
-        holder.txtNgayCho.setText(list.get(position).getNgayHd());
+        String ngay=list.get(position).getNgayHd();
+        String s=ngay.substring(0,10);
+        holder.txtNgayCho.setText(s);
         int tien = list.get(position).getTriGia();
         Locale locale = new Locale("nv", "VN");
         NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
