@@ -72,7 +72,7 @@ public class ChoDuyetAdapter extends RecyclerView.Adapter<ChoDuyetAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         if (list.get(position).getTrangThai()==0){
-            holder.txtTrangThai.setText("Đang chờ duyệt");
+            holder.txtTrangThai.setText("Chờ duyệt");
         }else if(list.get(position).getTrangThai()==1){
             holder.txtTrangThai.setText("Đã duyệt");
         }else if(list.get(position).getTrangThai()==-1){

@@ -57,7 +57,9 @@
         <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/drawable/account.xml" value="0.154" />
         <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/drawable/bg_blue_conner_topleft_topright_16dp.xml" value="0.154" />
         <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/drawable/botron_btntangsoluong.xml" value="0.1" />
+        <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/drawable/botron_gia_khuyen_mai.xml" value="0.155" />
         <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/drawable/ic_baseline_photo_camera_24.xml" value="0.154" />
+        <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/drawable/radius_btn_huy_don.xml" value="0.1665" />
         <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/layout/activity_comment.xml" value="0.264" />
         <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -73,6 +75,10 @@
         <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/layout/fragment_thongtincanhan.xml" value="0.25" />
         <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/layout/fragment_xemlichsu.xml" value="0.25" />
         <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/layout/fragment_xemlichsu1.xml" value="0.25" />
+        <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/layout/fragment_xemlichsucho.xml" value="0.25" />
+        <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/layout/item_choduyet.xml" value="0.264" />
+        <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/layout/item_comment.xml" value="0.25" />
+        <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/layout/item_hoadon_chitiet.xml" value="0.25" />
         <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/layout/item_lichsu.xml" value="0.25" />
         <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/layout/item_recycel_giohang.xml" value="0.25" />
         <entry key="..\:/Du_An_1/Du_an_1/DA1_Test/DA1_Test/app/src/main/res/layout/item_sanpham.xml" value="0.264" />
