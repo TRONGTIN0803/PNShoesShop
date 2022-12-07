@@ -61,42 +61,45 @@
             android:textColor="#40BFFF"
             android:textSize="16sp"
             android:textStyle="bold" />
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:id="@+id/txtGiacu"
-                android:layout_width="wrap_content"
-                android:text="11111111"
-                android:layout_height="wrap_content"
-                android:textColor="#E91E63"
-                android:textSize="14sp"
-                android:layout_below="@id/txtGia"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/txtGiacu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtGia"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="8dp"
+            android:text="11111111"
+            android:textColor="#E91E63"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_below="@id/txtGia"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal"
-            android:layout_below="@id/txtGiacu"
             android:weightSum="2">
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnDatHang"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Đặt hàng"
-                android:textSize="10dp"
                 android:background="#E64A19"
-                android:textColor="@color/white" />
+                android:text="Đặt hàng"
+                android:textColor="@color/white"
+                android:textSize="10dp" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnthemgiohang"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="giỏ hàng"
-                android:textSize="10dp"
+                android:layout_weight="1"
                 android:background="@color/teal_700"
-                android:textColor="@color/white" />
+                android:text="giỏ hàng"
+                android:textColor="@color/white"
+                android:textSize="10dp" />
         </LinearLayout>
 
 
