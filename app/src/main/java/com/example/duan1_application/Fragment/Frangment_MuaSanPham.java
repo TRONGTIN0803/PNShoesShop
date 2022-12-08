@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,8 +34,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.example.duan1_application.Adapter.PhotoAdapter;
 import com.example.duan1_application.Adapter.SanPhamAdapter;
 import com.example.duan1_application.R;
 import com.example.duan1_application.ShowNotification;
@@ -44,6 +47,7 @@ import com.example.duan1_application.model.HangSP;
 import com.example.duan1_application.model.HoaDon;
 import com.example.duan1_application.model.ItenClick;
 import com.example.duan1_application.model.KhuyenMai;
+import com.example.duan1_application.model.Photo;
 import com.example.duan1_application.model.SanPham;
 import com.example.duan1_application.model.Size;
 import com.example.duan1_application.model.SuaSoLuong;
@@ -51,6 +55,8 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.Delayed;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -70,11 +76,21 @@ public class Frangment_MuaSanPham extends Fragment {
     private int soluong;
     int So = 1;
     private Spinner spinner;
+    private ViewPager viewPagerslideshow;
+    private PhotoAdapter photoAdapter;
+    private ArrayList<Photo>listphoto;
+    private Timer timer;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_muasanpham,container,false);
         recyclerView = view.findViewById(R.id.recyclerView);
+        viewPagerslideshow=view.findViewById(R.id.viewpagerslideshow);
+        listphoto=getListPhoto();
+        photoAdapter=new PhotoAdapter(getContext(),listphoto);
+        viewPagerslideshow.setAdapter(photoAdapter);
+
+        autoslideshow();
         DemoCallAPI();
         return view;
     }
@@ -248,7 +264,10 @@ public class Frangment_MuaSanPham extends Fragment {
                 CTHD cthd=new CTHD(mahd,masp,soluong,masize);
                 if (soluong>soluongsp){
                     Toast.makeText(getContext(), "Số lượng sản phẩm không đủ!", Toast.LENGTH_SHORT).show();
-                }else{
+                }else if (soluong<=0){
+                    Toast.makeText(getContext(), "Vui lòng nhập số lượng!", Toast.LENGTH_SHORT).show();
+                }
+                else{
                     new CompositeDisposable().add(requestInterface.themCTHD(cthd)
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(Schedulers.io())
@@ -355,5 +374,52 @@ public class Frangment_MuaSanPham extends Fragment {
 
     private void handleErrorkm(Throwable throwable) {
         //       Toast.makeText(this, "call km error", Toast.LENGTH_SHORT).show();
+    }
+
+    private ArrayList<Photo> getListPhoto(){
+        ArrayList<Photo>listpt=new ArrayList<>();
+        listpt.add(new Photo(R.drawable.slideshow1));
+        listpt.add(new Photo(R.drawable.slideshow2));
+        listpt.add(new Photo(R.drawable.slideshow5));
+
+        return listpt;
+
+    }
+
+    private void autoslideshow(){
+        if (listphoto==null || listphoto.isEmpty() || viewPagerslideshow==null){
+            return;
+        }
+        if (timer==null){
+            timer=new Timer();
+        }
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        int currentItem = viewPagerslideshow.getCurrentItem();
+                        int totalItem=listphoto.size()-1;
+                        if (currentItem<totalItem){
+                            currentItem++;
+                            viewPagerslideshow.setCurrentItem(currentItem);
+                        }else{
+                            viewPagerslideshow.setCurrentItem(0);
+                        }
+                    }
+                });
+            }
+        },500,3000);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (timer!=null){
+            timer.cancel();
+            timer=null;
+        }
     }
 }

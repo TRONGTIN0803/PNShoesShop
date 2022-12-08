@@ -295,8 +295,11 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
                 soLuongSp = sol;
                 masp = sanPham.getMaSp();
                 if (sol>slsanpham){
-                    Toast.makeText(context, "Số lượng sản phẩm không đủ", Toast.LENGTH_SHORT).show();
-                }else{
+                    Toast.makeText(context, "Số lượng sản phẩm không đủ!", Toast.LENGTH_SHORT).show();
+                }else if (sol<=0){
+                    Toast.makeText(context, "Vui lòng nhập số lượng!", Toast.LENGTH_SHORT).show();
+                }
+                else{
                     HoaDon hoaDon = new HoaDon(makh, x, SDT, DiaChi, gia, ngay, sanPham.getMaSp(), sol, masize);
                     if (x == 0) {
                         if (DiaChi.equals("")){
