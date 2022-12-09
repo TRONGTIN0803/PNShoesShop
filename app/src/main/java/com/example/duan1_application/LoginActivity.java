@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnlayOTP, btnlogin,btnregister;
     private ServiceAPI requestInterface;
     private SharedPreferences sharedPreferences;
-
+    private boolean kt=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         sendVerificationCode("+84" +edtnumberphone.getText().toString());
-
+                        kt=true;
                     }
                 },1000);
 
@@ -107,13 +107,25 @@ public class LoginActivity extends AppCompatActivity {
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String otp = edtNum1.getText().toString() +
-                        edtNum2.getText().toString() +
-                        edtNum3.getText().toString() +
-                        edtNum4.getText().toString() +
-                        edtNum5.getText().toString() +
-                        edtNum6.getText().toString();
-                verifyCode(otp);
+                if (kt){
+                    String otp = edtNum1.getText().toString() +
+                            edtNum2.getText().toString() +
+                            edtNum3.getText().toString() +
+                            edtNum4.getText().toString() +
+                            edtNum5.getText().toString() +
+                            edtNum6.getText().toString();
+                    verifyCode(otp);
+                }else{
+                    ShowNotification.showProgressDialog(LoginActivity.this, "Vui lòng đợi");
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            sendVerificationCode("+84" +edtnumberphone.getText().toString());
+                            kt=true;
+                        }
+                    },1000);
+                }
+
                // checkLogin(edtnumberphone.getText().toString());
             }
         });
