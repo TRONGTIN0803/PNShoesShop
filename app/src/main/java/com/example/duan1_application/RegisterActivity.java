@@ -89,7 +89,6 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 ShowNotification.showProgressDialog(RegisterActivity.this, "Vui lòng đợi");
                 check(edtnumberphone.getText().toString());
-
             }
         });
 
