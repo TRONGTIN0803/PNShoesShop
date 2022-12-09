@@ -88,31 +88,37 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
+                android:inputType="number"
                 android:id="@+id/otp1"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
+                android:inputType="number"
                 android:id="@+id/otp2"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
+                android:inputType="number"
                 android:id="@+id/otp3"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
+                android:inputType="number"
                 android:id="@+id/otp4"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
+                android:inputType="number"
                 android:id="@+id/otp5"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
+                android:inputType="number"
                 android:id="@+id/otp6"/>
 
 

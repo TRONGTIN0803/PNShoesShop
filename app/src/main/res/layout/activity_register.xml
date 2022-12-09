@@ -86,31 +86,37 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
+                android:inputType="number"
                 android:id="@+id/otp1rgt"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
+                android:inputType="number"
                 android:id="@+id/otp2rgt"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
+                android:inputType="number"
                 android:id="@+id/otp3rgt"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
+                android:inputType="number"
                 android:id="@+id/otp4rgt"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
+                android:inputType="number"
                 android:id="@+id/otp5rgt"/>
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
+                android:inputType="number"
                 android:id="@+id/otp6rgt"/>
 
 
@@ -120,7 +126,7 @@
         android:id="@+id/btndangky"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:text="Sign in"
+        android:text="Sign up"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="18sp"
