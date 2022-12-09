@@ -28,10 +28,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Số điện thoại :"
+
                 />
             <TextView
                 android:fontFamily="@font/poppins_medium"
-
+                android:textColor="@color/black"
                 android:id="@+id/txtSdt"
                 android:textSize="14dp"
                 android:layout_width="wrap_content"
@@ -45,7 +46,6 @@
                 android:layout_weight="4"
                 android:layout_height="wrap_content"
                 android:text="fdg"
-
                 android:textColor="#FF5722"
                 android:textSize="16sp"
                 android:gravity="right"/>
@@ -70,6 +70,7 @@
 
                 android:id="@+id/txtDiaChi"
                 android:textSize="14dp"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -113,24 +114,23 @@
             android:layout_height="45dp"
             android:orientation="horizontal"
             >
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="6">
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="Ngày :"
                     />
                 <TextView
                     android:fontFamily="@font/poppins_medium"
                     android:id="@+id/txtNgay"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
                     android:layout_height="wrap_content"
-                    android:text="2022-06-21T00:00:00"
-                    android:textSize="14dp" />
-            </LinearLayout>
+                    android:text="2022-06-21"
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
 
         </LinearLayout>
 

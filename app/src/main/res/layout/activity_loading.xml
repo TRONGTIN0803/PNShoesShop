@@ -25,15 +25,16 @@
         android:fontFamily="@font/poppins_bold"
         android:text="Phuong Nam Shoes"
         android:textColor="#40bfff"
-
+        android:id="@+id/haha"
         android:textSize="16dp" />
 
     <ImageView
+        android:id="@+id/ivloading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_marginTop="40dp"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="86dp"
-        android:src="@mipmap/giphy4" />
+        android:layout_below="@+id/haha"
+        />
 
 </RelativeLayout>

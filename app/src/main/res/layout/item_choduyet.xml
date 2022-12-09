@@ -34,7 +34,7 @@
                 />
             <TextView
                 android:fontFamily="@font/poppins_medium"
-
+                android:textColor="@color/black"
                 android:id="@+id/txtSdtCho"
                 android:textSize="14dp"
                 android:layout_width="wrap_content"
@@ -69,7 +69,7 @@
                 />
             <TextView
                 android:fontFamily="@font/poppins_medium"
-
+                android:textColor="@color/black"
                 android:id="@+id/txtDiaChiCho"
                 android:textSize="14dp"
                 android:layout_width="wrap_content"
@@ -79,73 +79,87 @@
 
         </LinearLayout>
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp">
-            <TextView
-                android:fontFamily="@font/poppins_medium"
-
-                android:textColor="@color/black"
-                android:textSize="14dp"
-                android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="5"
                 android:layout_height="wrap_content"
-                android:text="Giá :"
-                />
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:id="@+id/txtGiaTriCho"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+                    <TextView
+                        android:fontFamily="@font/poppins_medium"
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="1.000.000"
-                android:textColor="#40bFFF"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+                        android:textColor="@color/black"
+                        android:textSize="14dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Giá :"
+                        />
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/txtGiaTriCho"
 
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="1.000.000"
+                        android:textColor="#40bFFF"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="6">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Ngày :"
+                            android:layout_weight="2"
+                            android:textColor="@color/black"
+                            />
+                        <TextView
+                            android:fontFamily="@font/poppins_medium"
+                            android:id="@+id/txtNgayCho"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="2022-06-21"
+                            android:layout_weight="5"
+                            android:textColor="@color/black"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnHuy"
+                        android:fontFamily="@font/poppins_medium"
+                        android:background="@drawable/radius_btn_huy_don"
+                        android:layout_weight="5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/white"
+                        android:textAllCaps="false"
+                        android:text="Hủy đơn"/>
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
-
-
-        <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="45dp"
-    android:orientation="horizontal"
-    >
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="6">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ngày :"
-            />
-        <TextView
-            android:fontFamily="@font/poppins_medium"
-            android:id="@+id/txtNgayCho"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2022-06-21T00:00:00"
-            android:textSize="14dp" />
-    </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnHuy"
-        android:fontFamily="@font/poppins_medium"
-        android:background="@drawable/radius_btn_huy_don"
-        android:layout_weight="5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:text="Hủy đơn"/>
-</LinearLayout>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

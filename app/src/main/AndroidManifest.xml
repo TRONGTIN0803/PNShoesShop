@@ -19,7 +19,7 @@
         tools:replace="android:fullBackupContent"
         tools:targetApi="31">
         <activity
-            android:name=".LoadingActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".CommentActivity"
@@ -33,7 +33,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".LoadingActivity"
             android:exported="true"
             android:theme="@style/notoolbar">
             <intent-filter>
