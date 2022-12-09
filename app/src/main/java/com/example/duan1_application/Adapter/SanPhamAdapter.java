@@ -249,7 +249,11 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
             edtdiaChi.setVisibility(View.GONE);
         }
         txtTen.setText(sanPham.getTenSp());
-        txtgia.setText("Giá sản phẩm: "+sanPham.getGia());
+        float tien1 = sanPham.getGia();
+        Locale locale1 = new Locale("nv", "VN");
+        NumberFormat nf1 = NumberFormat.getCurrencyInstance(locale1);
+        String tienformat1 = nf1.format(tien1);
+        txtgia.setText("Giá sản phẩm: "+tienformat1);
 
         Glide.with(context)
                 .load(sanPham.getHinhanh())

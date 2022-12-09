@@ -53,8 +53,10 @@ import com.example.duan1_application.model.Size;
 import com.example.duan1_application.model.SuaSoLuong;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Delayed;
@@ -229,7 +231,11 @@ public class Frangment_MuaSanPham extends Fragment {
 
         CallAPISize(sanPham.getMaSp());
         txtTengiohang.setText(sanPham.getTenSp());
-        txtgiagiohang.setText(String.valueOf(sanPham.getGia()));
+        float tien1 = sanPham.getGia();
+        Locale locale1 = new Locale("nv", "VN");
+        NumberFormat nf1 = NumberFormat.getCurrencyInstance(locale1);
+        String tienformat1 = nf1.format(tien1);
+        txtgiagiohang.setText(tienformat1);
         Glide.with(getContext())
                 .load(sanPham.getHinhanh())
                 .centerCrop()

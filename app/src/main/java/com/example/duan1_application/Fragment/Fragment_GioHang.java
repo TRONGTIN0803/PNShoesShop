@@ -190,7 +190,12 @@ public class Fragment_GioHang extends Fragment {
         TextView txtgiadathang = dialog.findViewById(R.id.txtgiadathang);
 
         edtsdtdathang.setText(sdt);
-        txtgiadathang.setText(String.valueOf(giathanhtoan));
+        float tien1 = giathanhtoan;
+        Locale locale1 = new Locale("nv", "VN");
+        NumberFormat nf1 = NumberFormat.getCurrencyInstance(locale1);
+        String tienformat1 = nf1.format(tien1);
+        txtgiadathang.setText(String.valueOf(tienformat1));
+
         ShowNotification.dismissProgressDialog();
         btndathangthanhtoan.setOnClickListener(new View.OnClickListener() {
             @Override
