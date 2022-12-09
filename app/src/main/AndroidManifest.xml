@@ -19,13 +19,16 @@
         tools:replace="android:fullBackupContent"
         tools:targetApi="31">
         <activity
+            android:name=".LoadingActivity"
+            android:exported="false" />
+        <activity
             android:name=".CommentActivity"
             android:exported="false"
-            android:theme="@style/notoolbar"/>
+            android:theme="@style/notoolbar" />
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/notoolbar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/notoolbar" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
