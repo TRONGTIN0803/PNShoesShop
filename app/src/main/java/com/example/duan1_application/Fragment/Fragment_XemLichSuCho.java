@@ -27,6 +27,8 @@ import com.example.duan1_application.model.Size;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -67,6 +69,13 @@ public class Fragment_XemLichSuCho extends Fragment {
 
     private void handleResponse(ArrayList<HoaDon> hoaDons) {
         ArrayList<HoaDon> listHoaDon = hoaDons;
+        Collections.sort(listHoaDon,new Comparator<HoaDon>(){
+            @Override
+            public int compare(HoaDon hoaDon, HoaDon t1) {
+
+                return hoaDon.getNgayHd().compareTo(t1.getNgayHd());
+            }
+        });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         ChoDuyetAdapter adapter = new ChoDuyetAdapter(listHoaDon, getContext(), new ItemClickHuycthd() {

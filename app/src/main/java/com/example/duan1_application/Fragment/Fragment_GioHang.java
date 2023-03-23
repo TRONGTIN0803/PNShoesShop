@@ -57,6 +57,7 @@ public class Fragment_GioHang extends Fragment {
     String sdt = "";
     int giasp, soluongsp, mahoadon, mahd, giathanhtoan,masp;
     private ArrayList<KhuyenMai>listKM;
+    private GioHangAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_giohang, container, false);
@@ -84,11 +85,7 @@ public class Fragment_GioHang extends Fragment {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(ServiceAPI.class);
-//        new CompositeDisposable().add(requestInterface.getDSHoaDontheoTrangThaiKH(maKH,0)
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribeOn(Schedulers.io())
-//                .subscribe(this::handleResponse, this::handleError)
-//        );
+
         new CompositeDisposable().add(requestInterface.getGioHang(maKH)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -115,7 +112,7 @@ public class Fragment_GioHang extends Fragment {
         ArrayList<CTHD> list = cthds;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        GioHangAdapter adapter = new GioHangAdapter(list, getContext(), new ItemClickxoacthd() {
+        adapter = new GioHangAdapter(list, getContext(), new ItemClickxoacthd() {
             @Override
             public void Itemclickxoacthd(CTHD cthd) {
                 GetDSKM();
@@ -146,6 +143,7 @@ public class Fragment_GioHang extends Fragment {
 
             private void handleResponsegiamgiahd(Integer integer) {
                 Toast.makeText(getContext(), "Xoa thanh cong!", Toast.LENGTH_SHORT).show();
+                adapter.notifyDataSetChanged();
                 DemoCallAPI();
             }
 
@@ -216,7 +214,8 @@ public class Fragment_GioHang extends Fragment {
 
             private void handleResponsethanhtoangh(Integer integer) {
                 goiCTHD(mahd);
-                DemoCallAPI();
+                adapter.notifyDataSetChanged();
+                //DemoCallAPI();
                 dialog.dismiss();
             }
 
@@ -253,6 +252,8 @@ public class Fragment_GioHang extends Fragment {
 
     private void handleResponseSize(Integer integer) {
         Toast.makeText(getContext(), "Đặt Hàng Thành Công!", Toast.LENGTH_SHORT).show();
+        adapter.notifyDataSetChanged();
+
     }
 
     private void GetSanPham(int masp){
